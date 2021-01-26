@@ -1,11 +1,23 @@
 import React from 'react';
+import profileIcon from '../../images/profileIcon.svg';
+import searchIcon from '../../images/searchIcon.svg';
 
 function Header() {
   return (
     <div>
-      <button data-testid="profile-top-btn">Tela de perfil</button>
-      <h1 data-testid="page-title">C'Hookies on top</h1>
-      <button data-testid="search-top-btn">Buscar</button>
+      <button
+        type="button"
+        data-testid="profile-top-btn"
+      >
+        <img src={ profileIcon } alt="Profile icon" />
+      </button>
+      <h1 data-testid="page-title">C&apos;Hookies on top</h1>
+      <button
+        type="button"
+        data-testid="search-top-btn"
+      >
+        <img src={ searchIcon } alt="Search icon" />
+      </button>
     </div>
   );
 }
