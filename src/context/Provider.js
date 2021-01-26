@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import RecipeAppContext from '.';
+import React from 'react';
 import PropTypes from 'prop-types';
+import RecipeAppContext from '.';
 
 const RecipeAppProvider = ({ children }) => {
-  const context = {}
+  const context = { };
 
   return (
     <RecipeAppContext.Provider value={ context }>
@@ -12,7 +12,7 @@ const RecipeAppProvider = ({ children }) => {
   );
 };
 
-export { RecipeAppContext, RecipeAppProvider as Provider};
+export { RecipeAppContext, RecipeAppProvider as Provider };
 
 RecipeAppProvider.propTypes = {
   children: PropTypes.node.isRequired,
