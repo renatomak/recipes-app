@@ -4,7 +4,7 @@ import Header from './Header';
 function TelaPrincipalComidas() {
   return (
     <div>
-      <Header />
+      <Header headerText="Comidas" />
     </div>
   );
 }
