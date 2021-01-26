@@ -1,6 +1,7 @@
 import React from 'react';
-import { Provider } from './context/Provider';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Provider } from './context/Provider';
+import Detalhes from './pages/Detalhes';
 import './App.css';
 
 function App() {
@@ -8,6 +9,8 @@ function App() {
     <Provider>
       <BrowserRouter>
         <Switch>
+          <Route exact path="/comidas/:id" component={ Detalhes } />
+          <Route exact path="/bebidas/:id" component={ Detalhes } />
         </Switch>
       </BrowserRouter>
     </Provider>
