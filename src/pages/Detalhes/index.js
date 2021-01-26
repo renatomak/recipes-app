@@ -1,10 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 function Detalhes(props) {
-  // const [receita, setReceita] = useState({});
-  const { location: { pathname } } = props;
-  const comidaOuBebida = pathname.split('/');
+  const [receita, setReceita] = useState({});
+
+  const { match: { path, params: { id } } } = props;
+  const comidaOuBebida = path.split('/')[1];
+
+  useEffect(() => {
+    let endpoint = '';
+    if (comidaOuBebida === 'comidas') {
+      endpoint = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
+    } else if (comidaOuBebida === 'bebidas') {
+      endpoint = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
+    }
+    fetch(endpoint)
+      .then((response) => response.json())
+      .then((json) => setReceita(json.meals[0]));
+  }, [comidaOuBebida, id]);
+  console.log(receita);
   return (
     <div className="detalhes">
       <div className="header-receita">
@@ -53,7 +67,7 @@ function Detalhes(props) {
         instruções
       </div>
 
-      {comidaOuBebida[1] === 'comidas' ? (
+      {comidaOuBebida === 'comidas' ? (
         <iframe
           src=""
           data-testid="video"
@@ -84,7 +98,10 @@ function Detalhes(props) {
 export default Detalhes;
 
 Detalhes.propTypes = {
-  location: {
-    pathname: PropTypes.string.isRequired,
-  }.isRequired,
+  match: PropTypes.shape({
+    path: PropTypes.string.isRequired,
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }),
+  }).isRequired,
 };
