@@ -28,6 +28,17 @@ function ChecahSeFoiFeita(idReceita) {
   return false;
 }
 
+function ChecaSeEstaEmAndamento(idReceita) {
+  if (localStorage.getItem('inProgressRecipes')) {
+    const receitasEmProgresso = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    const { cocktails, meals } = receitasEmProgresso;
+    const inProgress = cocktails || meals;
+
+    return Object.keys(inProgress)[0] === idReceita;
+  }
+  return false;
+}
+
 function Detalhes(props) {
   const [receita, setReceita] = useState({});
   const [ingredientes, setIngredientes] = useState([]);
@@ -153,7 +164,11 @@ function Detalhes(props) {
         className="iniciar-receita"
         hidden={ ChecahSeFoiFeita(idDrink || idMeal) }
       >
-        Iniciar receita
+        {
+          ChecaSeEstaEmAndamento(idDrink || idMeal)
+            ? 'Continuar Receita'
+            : 'Iniciar receita'
+        }
       </button>
 
     </div>
