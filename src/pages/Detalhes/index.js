@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import CarouselRecipes from './Carousel';
+import whiteHeart from '../../images/whiteHeartIcon.svg';
+import blackHeart from '../../images/blackHeartIcon.svg';
 
 function filtraIngredientes(items) {
   const auxArray = [];
@@ -24,6 +26,14 @@ function ChecahSeFoiFeita(idReceita) {
   if (localStorage.getItem('doneRecipes')) {
     const receitasFeitas = JSON.parse(localStorage.getItem('doneRecipes'));
     return receitasFeitas.some(({ id }) => id === idReceita);
+  }
+  return false;
+}
+
+function ChecaSeFavorita(idReceita) {
+  if (localStorage.getItem('favoriteRecipes')) {
+    const receitasFavoritas = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    return receitasFavoritas.some(({ id }) => id === idReceita);
   }
   return false;
 }
@@ -145,12 +155,16 @@ function Detalhes(props) {
           {copySuccess ? 'Link copiado!' : ''}
         </span>
 
-        <button
-          type="button"
+        <input
+          type="image"
           data-testid="favorite-btn"
-        >
-          favoritar
-        </button>
+          alt="favorite button"
+          src={
+            ChecaSeFavorita(idDrink || idMeal)
+              ? blackHeart
+              : whiteHeart
+          }
+        />
 
         <p data-testid="recipe-category">
           {strAlcoholic || strCategory}
