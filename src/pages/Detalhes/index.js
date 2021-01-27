@@ -39,13 +39,21 @@ function ChecaSeEstaEmAndamento(idReceita) {
   return false;
 }
 
+function irParaTeladeProgresso(history, idDrink, idMeal) {
+  if (idDrink) {
+    history.push(`/bebidas/${idDrink}/in-progress`);
+  } else if (idMeal) {
+    history.push(`/comidas/${idMeal}/in-progress`);
+  }
+}
+
 function Detalhes(props) {
   const [receita, setReceita] = useState({});
   const [ingredientes, setIngredientes] = useState([]);
   const [youTubeCode, setYouTubeCode] = useState('');
   const [recomendations, setRecomendations] = useState([]);
 
-  const { match: { path, params: { id } } } = props;
+  const { match: { path, params: { id } }, history } = props;
   const comidaOuBebida = path.split('/')[1];
 
   useEffect(() => {
@@ -163,6 +171,7 @@ function Detalhes(props) {
         data-testid="start-recipe-btn"
         className="iniciar-receita"
         hidden={ ChecahSeFoiFeita(idDrink || idMeal) }
+        onClick={ () => { irParaTeladeProgresso(history, idDrink, idMeal); } }
       >
         {
           ChecaSeEstaEmAndamento(idDrink || idMeal)
@@ -183,5 +192,8 @@ Detalhes.propTypes = {
     params: PropTypes.shape({
       id: PropTypes.string.isRequired,
     }),
+  }).isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
   }).isRequired,
 };
