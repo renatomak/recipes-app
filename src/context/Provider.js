@@ -9,13 +9,16 @@ const RecipeAppProvider = ({ children }) => {
 
   const searchButtonAPIRequest = async () => {
     let response = [];
-    if (radioButton === "ingredient") {
+    if (radioButton === 'ingredient') {
       response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchTerm}`);
     }
-    if (radioButton === "name") {
+    if (radioButton === 'name') {
       response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchTerm}`);
     }
-    if (radioButton === "first-letter") {
+    if (radioButton === 'first-letter') {
+      if (searchTerm.length > 1) {
+        alert('Sua busca deve conter somente 1 (um) caracter');
+      }
       response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${searchTerm}`);
     }
     const data = await response.json();

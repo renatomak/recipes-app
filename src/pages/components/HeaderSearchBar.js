@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import RecipeAppContext from '../../context/index';
 
 function HeaderSearchBar() {
-
   const {
     searchButtonAPIRequest,
     setSearchTerm,
@@ -14,7 +13,7 @@ function HeaderSearchBar() {
       <input
         type="text"
         data-testid="search-input"
-        onChange={ ({target}) => setSearchTerm(target.value) }
+        onChange={ ({ target }) => setSearchTerm(target.value) }
       />
       <br />
       <label htmlFor="ingredient">
@@ -25,7 +24,7 @@ function HeaderSearchBar() {
           value="ingredient"
           placeholder="Ingrediente"
           name="radio-buttons"
-          onChange={ ({target}) => setRadioButton(target.value) }
+          onChange={ ({ target }) => setRadioButton(target.value) }
         />
         Ingrediente
       </label>
@@ -38,7 +37,7 @@ function HeaderSearchBar() {
           placeholder="Nome"
           value="name"
           name="radio-buttons"
-          onChange={ ({target}) => setRadioButton(target.value) }
+          onChange={ ({ target }) => setRadioButton(target.value) }
         />
         Nome
       </label>
@@ -51,7 +50,7 @@ function HeaderSearchBar() {
           placeholder="Primeira letra"
           value="first-letter"
           name="radio-buttons"
-          onChange={ ({target}) => setRadioButton(target.value) }
+          onChange={ ({ target }) => setRadioButton(target.value) }
         />
         Primeira letra
       </label>
