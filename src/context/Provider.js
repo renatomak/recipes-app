@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import RecipeAppContext from '.';
 
 const RecipeAppProvider = ({ children }) => {
-  const context = { };
+  const context = {};
 
   return (
     <RecipeAppContext.Provider value={ context }>
