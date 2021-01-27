@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import CarouselRecipes from './Carousel';
+import CarouselRecipes from './components/Carousel';
 import {
-  ChecahSeFoiFeita,
+  ChecaSeFoiFeita,
   ChecaSeFavorita,
   ChecaSeEstaEmAndamento,
   irParaTeladeProgresso,
@@ -10,12 +10,12 @@ import {
   fetchReceitas,
   fetchRecomendacoes,
   favoritarReceita,
-} from './FuncoesAuxiliares';
+} from '../Auxiliares/FuncoesAuxiliares';
 
-import whiteHeart from '../../images/whiteHeartIcon.svg';
-import blackHeart from '../../images/blackHeartIcon.svg';
+import whiteHeart from '../images/whiteHeartIcon.svg';
+import blackHeart from '../images/blackHeartIcon.svg';
 
-function Detalhes(props) {
+function DetalhesReceitaBebidaComida(props) {
   const [receita, setReceita] = useState({});
   const [ingredientes, setIngredientes] = useState([]);
   const [youTubeCode, setYouTubeCode] = useState('');
@@ -128,7 +128,7 @@ function Detalhes(props) {
         type="button"
         data-testid="start-recipe-btn"
         className="iniciar-receita"
-        hidden={ ChecahSeFoiFeita(idDrink || idMeal) }
+        hidden={ ChecaSeFoiFeita(idDrink || idMeal) }
         onClick={ () => { irParaTeladeProgresso(history, idDrink, idMeal); } }
       >
         {
@@ -141,9 +141,9 @@ function Detalhes(props) {
   );
 }
 
-export default Detalhes;
+export default DetalhesReceitaBebidaComida;
 
-Detalhes.propTypes = {
+DetalhesReceitaBebidaComida.propTypes = {
   match: PropTypes.shape({
     url: PropTypes.string.isRequired,
     params: PropTypes.shape({

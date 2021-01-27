@@ -16,7 +16,7 @@ export function filtraIngredientes(items) {
   return auxArray;
 }
 
-export function ChecahSeFoiFeita(idReceita) {
+export function ChecaSeFoiFeita(idReceita) {
   if (localStorage.getItem('doneRecipes')) {
     const receitasFeitas = JSON.parse(localStorage.getItem('doneRecipes'));
     return receitasFeitas.some(({ id }) => id === idReceita);
