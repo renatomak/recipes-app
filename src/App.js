@@ -24,7 +24,9 @@ function App() {
     <Provider>
       <BrowserRouter>
         <Switch>
-          <Route path="/login" component={ Login } />
+          <Route exact path="/comidas/:id" component={ DetalhesReceitaBebidaComida } />
+          <Route exact path="/bebidas/:id" component={ DetalhesReceitaBebidaComida } />
+          <Route exact path="/" component={ Login } />
           <Route
             exact
             path="/comidas"
@@ -34,20 +36,6 @@ function App() {
             exact
             path="/bebidas"
             render={ () => <TelaPrincipal recipeType="Bebidas" /> }
-          />
-          <Route
-            exact
-            path="/comidas/:id"
-            render={ () => (<DetalhesReceitaBebidaComida
-              recipeType="Comidas"
-            />) }
-          />
-          <Route
-            exact
-            path="/bebidas/:id"
-            render={ () => (<DetalhesReceitaBebidaComida
-              recipeType="Bebidas"
-            />) }
           />
           <Route
             path="/comidas/:id/in-progress"
