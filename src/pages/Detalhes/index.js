@@ -20,6 +20,14 @@ function filtraIngredientes(items) {
   return auxArray;
 }
 
+function ChecahSeFoiFeita(idReceita) {
+  if (localStorage.getItem('doneRecipes')) {
+    const receitasFeitas = JSON.parse(localStorage.getItem('doneRecipes'));
+    return receitasFeitas.some(({ id }) => id === idReceita);
+  }
+  return false;
+}
+
 function Detalhes(props) {
   const [receita, setReceita] = useState({});
   const [ingredientes, setIngredientes] = useState([]);
@@ -72,6 +80,8 @@ function Detalhes(props) {
     strCategory,
     strAlcoholic,
     strInstructions,
+    idMeal,
+    idDrink,
   } = receita;
   return (
     <div className="detalhes">
@@ -141,6 +151,7 @@ function Detalhes(props) {
         type="button"
         data-testid="start-recipe-btn"
         className="iniciar-receita"
+        hidden={ ChecahSeFoiFeita(idDrink || idMeal) }
       >
         Iniciar receita
       </button>
