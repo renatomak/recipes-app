@@ -140,6 +140,7 @@ function Detalhes(props) {
       <button
         type="button"
         data-testid="start-recipe-btn"
+        className="iniciar-receita"
       >
         Iniciar receita
       </button>
