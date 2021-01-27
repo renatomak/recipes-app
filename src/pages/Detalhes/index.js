@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import CarouselRecipes from './Carousel';
 
 function filtraIngredientes(items) {
   const auxArray = [];
@@ -23,7 +24,7 @@ function Detalhes(props) {
   const [receita, setReceita] = useState({});
   const [ingredientes, setIngredientes] = useState([]);
   const [youTubeCode, setYouTubeCode] = useState('');
-  const [recomendations, setRecomendations] = useState({});
+  const [recomendations, setRecomendations] = useState([]);
 
   const { match: { path, params: { id } } } = props;
   const comidaOuBebida = path.split('/')[1];
@@ -59,10 +60,10 @@ function Detalhes(props) {
       .then((json) => {
         const { meals, drinks } = json;
         const data = meals || drinks;
-        setRecomendations(data[0]);
+        const minRecomendations = 6;
+        setRecomendations(data.filter((item, index) => index < minRecomendations));
       });
   }, [comidaOuBebida, id]);
-  console.log(recomendations);
   const {
     strMealThumb,
     strDrinkThumb,
@@ -134,13 +135,7 @@ function Detalhes(props) {
         />
       ) : null}
 
-      <div className="recomendações">
-        <div
-          data-testid="0-recomendation-card"
-        >
-          Recomendação
-        </div>
-      </div>
+      <CarouselRecipes recomendations={ recomendations } />
 
       <button
         type="button"
