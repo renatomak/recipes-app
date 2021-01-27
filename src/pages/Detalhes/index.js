@@ -23,16 +23,20 @@ function Detalhes(props) {
   const [receita, setReceita] = useState({});
   const [ingredientes, setIngredientes] = useState([]);
   const [youTubeCode, setYouTubeCode] = useState('');
+  const [recomendations, setRecomendations] = useState({});
 
   const { match: { path, params: { id } } } = props;
   const comidaOuBebida = path.split('/')[1];
 
   useEffect(() => {
     let endpoint = '';
+    let recomendationEndpoint = '';
     if (comidaOuBebida === 'comidas') {
       endpoint = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
+      recomendationEndpoint = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
     } else if (comidaOuBebida === 'bebidas') {
       endpoint = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
+      recomendationEndpoint = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
     }
     fetch(endpoint)
       .then((response) => response.json())
@@ -49,8 +53,16 @@ function Detalhes(props) {
         }
         setIngredientes(ingredientesArray);
       });
-  }, [comidaOuBebida, id]);
 
+    fetch(recomendationEndpoint)
+      .then((response) => response.json())
+      .then((json) => {
+        const { meals, drinks } = json;
+        const data = meals || drinks;
+        setRecomendations(data[0]);
+      });
+  }, [comidaOuBebida, id]);
+  console.log(recomendations);
   const {
     strMealThumb,
     strDrinkThumb,
@@ -60,7 +72,6 @@ function Detalhes(props) {
     strAlcoholic,
     strInstructions,
   } = receita;
-  console.log(ingredientes);
   return (
     <div className="detalhes">
       <div className="header-receita">
