@@ -5,16 +5,16 @@ import searchIcon from '../../images/searchIcon.svg';
 
 function Header(props) {
   const { headerText, showSearchButton } = props;
-  console.log(props);
   return (
     <header>
-      <button
+      <a
         type="button"
         data-testid="profile-top-btn"
         src={ profileIcon }
+        href="/perfil"
       >
         <img src={ profileIcon } alt="Profile icon" />
-      </button>
+      </a>
       <h1 data-testid="page-title">{ headerText }</h1>
       {JSON.parse(showSearchButton) && (
         <button
