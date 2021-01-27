@@ -47,14 +47,51 @@ function irParaTeladeProgresso(history, idDrink, idMeal) {
   }
 }
 
+function copyToClipboard(url, setMessage) {
+  navigator.clipboard.writeText(`http://localhost:3000${url}`);
+  setMessage(true);
+  const delay = 5000;
+  setTimeout(() => { setMessage(false); }, delay);
+}
+
+function fetchReceitas(endpoint, setReceita, setYouTubeCode, setIngredientes) {
+  fetch(endpoint)
+    .then((response) => response.json())
+    .then((json) => {
+      const { meals, drinks } = json;
+      const data = meals || drinks;
+      setReceita(data[0]);
+
+      const ingredientesArray = filtraIngredientes(data[0]);
+
+      if (meals) {
+        const { strYoutube } = meals[0];
+        setYouTubeCode(strYoutube.split('=')[1]);
+      }
+      setIngredientes(ingredientesArray);
+    });
+}
+
+function fetchRecomendacoes(recomendationEndpoint, setRecomendations) {
+  fetch(recomendationEndpoint)
+    .then((response) => response.json())
+    .then((json) => {
+      const { meals, drinks } = json;
+      const data = meals || drinks;
+      const minRecomendations = 6;
+      setRecomendations(data.filter((item, index) => index < minRecomendations));
+    });
+}
+
 function Detalhes(props) {
   const [receita, setReceita] = useState({});
   const [ingredientes, setIngredientes] = useState([]);
   const [youTubeCode, setYouTubeCode] = useState('');
   const [recomendations, setRecomendations] = useState([]);
+  const [copySuccess, setCopySuccess] = useState(false);
 
-  const { match: { path, params: { id } }, history } = props;
-  const comidaOuBebida = path.split('/')[1];
+  const { match: { url, params: { id } }, history } = props;
+  const comidaOuBebida = url.split('/')[1];
 
   useEffect(() => {
     let endpoint = '';
@@ -66,31 +103,11 @@ function Detalhes(props) {
       endpoint = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
       recomendationEndpoint = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
     }
-    fetch(endpoint)
-      .then((response) => response.json())
-      .then((json) => {
-        const { meals, drinks } = json;
-        const data = meals || drinks;
-        setReceita(data[0]);
+    fetchReceitas(endpoint, setReceita, setYouTubeCode, setIngredientes);
 
-        const ingredientesArray = filtraIngredientes(data[0]);
-
-        if (meals) {
-          const { strYoutube } = meals[0];
-          setYouTubeCode(strYoutube.split('=')[1]);
-        }
-        setIngredientes(ingredientesArray);
-      });
-
-    fetch(recomendationEndpoint)
-      .then((response) => response.json())
-      .then((json) => {
-        const { meals, drinks } = json;
-        const data = meals || drinks;
-        const minRecomendations = 6;
-        setRecomendations(data.filter((item, index) => index < minRecomendations));
-      });
+    fetchRecomendacoes(recomendationEndpoint, setRecomendations);
   }, [comidaOuBebida, id]);
+
   const {
     strMealThumb,
     strDrinkThumb,
@@ -102,6 +119,7 @@ function Detalhes(props) {
     idMeal,
     idDrink,
   } = receita;
+
   return (
     <div className="detalhes">
       <div className="header-receita">
@@ -118,9 +136,14 @@ function Detalhes(props) {
         <button
           type="button"
           data-testid="share-btn"
+          onClick={ () => copyToClipboard(url, setCopySuccess) }
         >
           compartilhar
         </button>
+
+        <span>
+          {copySuccess ? 'Link copiado!' : ''}
+        </span>
 
         <button
           type="button"
@@ -188,7 +211,7 @@ export default Detalhes;
 
 Detalhes.propTypes = {
   match: PropTypes.shape({
-    path: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
     params: PropTypes.shape({
       id: PropTypes.string.isRequired,
     }),
