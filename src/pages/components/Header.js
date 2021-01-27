@@ -34,7 +34,7 @@ function Header(props) {
           <input type="radio" data-testid="ingredient-search-radio" id="ingredient" placeholder="Ingrediente"></input>
           <label htmlFor="name">Nome</label>
           <input type="radio" data-testid="name-search-radio" id="name" placeholder="Nome"></input>
-          <label htmlFor="first-letter">Nome</label>
+          <label htmlFor="first-letter">Primeira letra</label>
           <input type="radio" data-testid="first-letter-search-radio" id="first-letter" placeholder="Primeira letra"></input>
           <button type="button" data-testid="exec-search-btn">Buscar</button>
         </div>
