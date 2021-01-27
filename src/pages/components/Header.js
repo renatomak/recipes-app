@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import profileIcon from '../../images/profileIcon.svg';
 import searchIcon from '../../images/searchIcon.svg';
+import HeaderSearchBar from './HeaderSearchBar';
 
 function Header(props) {
   const { headerText, showSearchButton } = props;
@@ -28,37 +29,7 @@ function Header(props) {
         </button>
       )}
       {searchBar && (
-        <div>
-          <input type="text" data-testid="search-input" />
-          <label htmlFor="ingredient">
-            Ingrediente
-            <input
-              type="radio"
-              data-testid="ingredient-search-radio"
-              id="ingredient"
-              placeholder="Ingrediente"
-            />
-          </label>
-          <label htmlFor="name">
-            Nome
-            <input
-              type="radio"
-              data-testid="name-search-radio"
-              id="name"
-              placeholder="Nome"
-            />
-          </label>
-          <label htmlFor="first-letter">
-            Primeira letra
-            <input
-              type="radio"
-              data-testid="first-letter-search-radio"
-              id="first-letter"
-              placeholder="Primeira letra"
-            />
-          </label>
-          <button type="button" data-testid="exec-search-btn">Buscar</button>
-        </div>
+        <HeaderSearchBar />
       )}
     </div>
   );
