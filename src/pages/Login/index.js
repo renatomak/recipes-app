@@ -2,8 +2,13 @@ import React, { useContext } from 'react';
 import { RecipeAppContext } from '../../context/Provider';
 
 function Login() {
-  const { user, handleChangeUser } = useContext(RecipeAppContext);
-  const { email, password } = user;
+  const {
+    email,
+    password,
+    handleChangeEmail,
+    handleChangePassword,
+  } = useContext(RecipeAppContext);
+
   return (
     <div>
       <form>
@@ -13,14 +18,14 @@ function Login() {
           value={ email }
           data-testid="email-input"
           placeholder="user@trybe.com"
-          onChange={ (e) => handleChangeUser(e) }
+          onChange={ ({ target }) => handleChangeEmail(target.value) }
         />
         <input
           type="text"
           name={ password }
           data-testid="password-input"
           placeholder="password"
-          onChange={ (e) => handleChangeUser(e) }
+          onChange={ ({ target }) => handleChangePassword(target.value) }
         />
         <button
           type="button"
