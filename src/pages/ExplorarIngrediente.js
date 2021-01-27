@@ -1,11 +1,11 @@
 import React from 'react';
-import Header from './Header';
+import Header from './components/Header';
 
-function ExplorarIndrediente(props) {
-  const { recipeType } = props;
+function ExplorarIndrediente() {
   return (
     <div>
-      <Header headerText="Explorar Ingredientes" />
+      <Header headerText="Explorar Ingredientes" showSearchButton="false" />
+      ;
     </div>
   );
 }

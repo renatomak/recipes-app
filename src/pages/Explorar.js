@@ -1,10 +1,10 @@
 import React from 'react';
-import Header from './Header';
+import Header from './components/Header';
 
 function Explorar() {
   return (
     <div>
-      <Header headerText="Explorar" />
+      <Header headerText="Explorar" showSearchButton="false" />
     </div>
   );
 }
