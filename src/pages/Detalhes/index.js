@@ -1,8 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
+function filtraIngredientes(items) {
+  const auxArray = [];
+  Object.entries(items)
+    .filter(([key, value]) => (
+      (key.includes('strIngredient') || key.includes('strMeasure')) && value
+    ))
+    .forEach(([keyFiltrado]) => {
+      if (keyFiltrado.includes('strIngredient')) {
+        const lastChar = -1;
+        const keyIndex = keyFiltrado.slice(lastChar);
+        const item = items[`strIngredient${keyIndex}`];
+        const measure = items[`strMeasure${keyIndex}`];
+        auxArray.push(`${item} ${measure}`);
+      }
+    });
+  return auxArray;
+}
+
 function Detalhes(props) {
   const [receita, setReceita] = useState({});
+  const [ingredientes, setIngredientes] = useState([]);
+  const [youTubeCode, setYouTubeCode] = useState('');
 
   const { match: { path, params: { id } } } = props;
   const comidaOuBebida = path.split('/')[1];
@@ -16,19 +36,43 @@ function Detalhes(props) {
     }
     fetch(endpoint)
       .then((response) => response.json())
-      .then((json) => setReceita(json.meals[0]));
+      .then((json) => {
+        const { meals, drinks } = json;
+        const data = meals || drinks;
+        setReceita(data[0]);
+
+        const ingredientesArray = filtraIngredientes(data[0]);
+
+        if (meals) {
+          const { strYoutube } = meals[0];
+          setYouTubeCode(strYoutube.split('=')[1]);
+        }
+        setIngredientes(ingredientesArray);
+      });
   }, [comidaOuBebida, id]);
-  console.log(receita);
+
+  const {
+    strMealThumb,
+    strDrinkThumb,
+    strMeal,
+    strDrink,
+    strCategory,
+    strAlcoholic,
+    strInstructions,
+  } = receita;
+  console.log(ingredientes);
   return (
     <div className="detalhes">
       <div className="header-receita">
         <img
-          src=""
+          src={ strMealThumb || strDrinkThumb }
           alt="detalhes da receita"
           data-testid="recipe-photo"
         />
 
-        <h2 data-testid="recipe-title">Titulo</h2>
+        <h2 data-testid="recipe-title">
+          {strMeal || strDrink}
+        </h2>
 
         <button
           type="button"
@@ -45,7 +89,7 @@ function Detalhes(props) {
         </button>
 
         <p data-testid="recipe-category">
-          Categoria
+          {strAlcoholic || strCategory}
         </p>
       </div>
 
@@ -53,23 +97,26 @@ function Detalhes(props) {
         className="ingredientes"
       >
         <p>Ingrdientes</p>
-        <p
-          data-testid="0-ingredient-name-and-measure"
-        >
-          Primeiro Ingrediente
-        </p>
+        {ingredientes.map((ingrediente, index) => (
+          <p
+            key={ index }
+            data-testid={ `${index}-ingredient-name-and-measure` }
+          >
+            {`${ingrediente}`}
+          </p>
+        ))}
       </div>
 
       <div
         data-testid="instructions"
         className="instructions"
       >
-        instruções
+        {strInstructions}
       </div>
 
       {comidaOuBebida === 'comidas' ? (
         <iframe
-          src=""
+          src={ `https://www.youtube.com/embed/${youTubeCode}` }
           data-testid="video"
           className="video"
           title="video da receita"
