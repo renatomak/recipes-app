@@ -2,29 +2,22 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Provider } from './context/Provider';
 import './App.css';
-import TelaPrincipalComidas from './pages/TelaPrincipal/TelaPrincipalComidas';
-import TelaPrincipalBebidas from './pages/TelaPrincipal/TelaPrincipalBebidas';
-import DetalhesReceitaBebida from './pages/DetalhesReceita/DetalhesReceitaBebida';
-import DetalhesReceitaComida from './pages/DetalhesReceita/DetalhesReceitaComida';
+import TelaPrincipal from './pages/TelaPrincipal';
+import DetalhesReceitaBebidaComida from './pages/DetalhesReceitaBebidaComida';
 import Explorar from './pages/Explorar/Explorar';
-import ExplorarBebidas from './pages/ExplorarBebidas/ExplorarBebidas';
-import ExplorarComidas from './pages/ExplorarComidas/ExplorarComidas';
-import ExplorarBebidasIngrediente from
-  './pages/ExplorarBebidasIngrediente/ExplorarBebidasIngrediente';
-import ExplorarComidasIngrediente from
-  './pages/ExplorarComidasIngrediente/ExplorarComidasIngrediente';
+import ExplorarBebidasComidas from './pages/ExplorarBebidasComidas';
+import ExplorarIngrediente from
+  './pages/ExplorarIngrediente';
 import ExplorarComidasArea from
-  './pages/ExplorarComidasArea/ExplorarComidasArea';
-import Login from './pages/Login/Login';
-import Perfil from './pages/Perfil/Perfil';
-import ReceitaEmProgressoBebida from
-  './pages/ReceitaEmProgresso/ReceitaEmProgressoBebida';
-import ReceitaEmProgressoComida from
-  './pages/ReceitaEmProgresso/ReceitaEmProgressoComida';
+  './pages/ExplorarComidasArea';
+import Login from './pages/Login';
+import Perfil from './pages/Perfil';
+import ReceitaEmProgresso from
+  './pages/ReceitaEmProgresso';
 import ReceitasFavoritas from
-  './pages/ReceitasFavoritas/ReceitasFavoritas';
+  './pages/ReceitasFavoritas';
 import ReceitasFeitas from
-  './pages/ReceitasFeitas/ReceitasFeitas';
+  './pages/ReceitasFeitas';
 
 function App() {
   return (
@@ -32,28 +25,32 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route path="/login" component={ Login } />
-          <Route path="/comidas" component={ TelaPrincipalComidas } />
-          <Route path="/bebidas" component={ TelaPrincipalBebidas } />
-          <Route path="/comidas/{id-da-receita}" component={ DetalhesReceitaComida } />
-          <Route path="/bebidas/{id-da-receita}" component={ DetalhesReceitaBebida } />
+          <Route path="/comidas" component={ TelaPrincipal } recipeType="Comida" />
+          <Route path="/bebidas" component={ TelaPrincipal } recipeType="Bebida" />
+          <Route path="/comidas/{id-da-receita}" component={ DetalhesReceitaBebidaComida } recipeType="Comida" />
+          <Route path="/bebidas/{id-da-receita}" component={ DetalhesReceitaBebidaComida } recipeType="Bebida" />
           <Route
             path="/comidas/{id-da-receita}/in-progress"
-            component={ ReceitaEmProgressoComida }
+            component={ ReceitaEmProgresso }
+            recipeType="Comida"
           />
           <Route
             path="/bebidas/{id-da-receita}/in-progress"
-            component={ ReceitaEmProgressoBebida }
+            component={ ReceitaEmProgresso }
+            recipeType="Bebida"
           />
-          <Route path="/explorar/comidas" component={ ExplorarComidas } />
-          <Route path="/explorar/bebidas" component={ ExplorarBebidas } />
+          <Route path="/explorar/comidas" component={ ExplorarBebidasComidas } recipeType="Comida" />
+          <Route path="/explorar/bebidas" component={ ExplorarBebidasComidas } recipeType="Bebida" />
           <Route path="/explorar" component={ Explorar } />
           <Route
             path="/explorar/comidas/ingredientes"
-            component={ ExplorarComidasIngrediente }
+            component={ ExplorarIngrediente }
+            recipeType="Comida"
           />
           <Route
             path="/explorar/bebidas/ingredientes"
-            component={ ExplorarBebidasIngrediente }
+            component={ ExplorarIngrediente }
+            recipeType="Bebida"
           />
           <Route path="/explorar/comidas/area" component={ ExplorarComidasArea } />
           <Route path="/perfil" component={ Perfil } />

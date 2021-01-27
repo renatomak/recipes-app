@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ReceitaEmProgressoComida() {
+function ReceitaEmProgresso() {
   return (
     <div>
       Receitas em progresso
@@ -8,4 +8,4 @@ function ReceitaEmProgressoComida() {
   );
 }
 
-export default ReceitaEmProgressoComida;
+export default ReceitaEmProgresso;

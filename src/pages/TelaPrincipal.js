@@ -1,7 +1,8 @@
 import React from 'react';
 import Header from '../Header/Header';
 
-function TelaPrincipalBebidas() {
+function TelaPrincipal(props) {
+  const { recipeType } = props;
   return (
     <div>
       <Header headerText="Bebidas" />
@@ -9,4 +10,4 @@ function TelaPrincipalBebidas() {
   );
 }
 
-export default TelaPrincipalBebidas;
+export default TelaPrincipal;
