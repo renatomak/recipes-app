@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import RecipeAppContext from '.';
 
 const RecipeAppProvider = ({ children }) => {
-  const [searchButtonApiResults, setsearchButtonApiResults] = useState([]);
+  const [searchButtonApiResults, setsearchButtonApiResults] = useState({});
   const [searchTerm, setSearchTerm] = useState('');
   const [radioButton, setRadioButton] = useState('');
   const [searchType, setSearchType] = useState('');
@@ -15,7 +15,7 @@ const RecipeAppProvider = ({ children }) => {
     if (searchType === 'Bebidas') {
       response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${searchTerm}`);
     }
-    return response;
+    return response.json();
   };
 
   const caseName = async (response) => {
@@ -25,7 +25,7 @@ const RecipeAppProvider = ({ children }) => {
     if (searchType === 'Bebidas') {
       response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchTerm}`);
     }
-    return response;
+    return response.json();
   };
 
   const caseFirstLetter = async (response) => {
@@ -38,21 +38,21 @@ const RecipeAppProvider = ({ children }) => {
     if (searchType === 'Bebidas') {
       response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${searchTerm}`);
     }
-    return response;
+    return response.json();
   };
 
   const searchButtonAPIRequest = async () => {
     const response = [];
+    let data = {};
     if (radioButton === 'ingredient') {
-      caseIngredient(response);
+      data = await caseIngredient(response);
     }
     if (radioButton === 'name') {
-      caseName(response);
+      data = await caseName(response);
     }
     if (radioButton === 'first-letter') {
-      caseFirstLetter(response);
+      data = await caseFirstLetter(response);
     }
-    const data = await response.json();
     setsearchButtonApiResults(data);
   };
 

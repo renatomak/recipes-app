@@ -21,7 +21,7 @@ function HeaderSearchBar(props) {
 
   const handleClick = () => {
     searchButtonAPIRequest();
-    console.log(searchButtonApiResults);
+    // console.log(searchButtonApiResults);
   };
 
   return (
