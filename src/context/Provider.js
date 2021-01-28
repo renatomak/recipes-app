@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import RecipeAppContext from '.';
 
 const RecipeAppProvider = ({ children }) => {
-  const context = {};
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleChangeEmail = (value) => setEmail(value);
+  const handleChangePassword = (value) => setPassword(value);
+
+  const context = {
+    email,
+    handleChangeEmail,
+    password,
+    handleChangePassword,
+  };
 
   return (
     <RecipeAppContext.Provider value={ context }>
