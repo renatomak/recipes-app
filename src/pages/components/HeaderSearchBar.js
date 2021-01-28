@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import RecipeAppContext from '../../context/index';
 
@@ -9,16 +9,18 @@ function HeaderSearchBar(props) {
     setRadioButton,
     setSearchType,
     searchButtonApiResults,
-    setSearchButtonApiResults
+    setSearchButtonApiResults,
   } = useContext(RecipeAppContext);
 
-  const { headerText } = props;
-  if (headerText === 'Comidas') {
-    setSearchType('Comidas');
-  }
-  if (headerText === 'Bebidas') {
-    setSearchType('Bebidas');
-  }
+  useEffect(() => {
+    const { headerText } = props;
+    if (headerText === 'Comidas') {
+      setSearchType('Comidas');
+    }
+    if (headerText === 'Bebidas') {
+      setSearchType('Bebidas');
+    }
+  }, [setSearchType, props]);
 
   const handleClick = async () => {
     const data = await searchButtonAPIRequest();
@@ -87,6 +89,6 @@ function HeaderSearchBar(props) {
 
 export default HeaderSearchBar;
 
-// HeaderSearchBar.propTypes = {
-//   headerText: PropTypes.string.isRequired,
-// };
+HeaderSearchBar.propTypes = {
+  headerText: PropTypes.string.isRequired,
+};
