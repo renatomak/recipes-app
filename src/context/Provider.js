@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import RecipeAppContext from '.';
 
 const RecipeAppProvider = ({ children }) => {
-<<<<<<< HEAD
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -16,9 +15,6 @@ const RecipeAppProvider = ({ children }) => {
     password,
     handleChangePassword,
   };
-=======
-  const context = {};
->>>>>>> 85afa3d0bb660e155fb998ffafab95cd62934800
 
   return (
     <RecipeAppContext.Provider value={ context }>

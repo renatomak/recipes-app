@@ -1,13 +1,25 @@
-import React, { useContext } from 'react';
-import { RecipeAppContext } from '../../context/Provider';
+import React, { useState } from 'react';
 
 function Login() {
-  const {
-    email,
-    password,
-    handleChangeEmail,
-    handleChangePassword,
-  } = useContext(RecipeAppContext);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [checkedPassword, setCheckedPassword] = useState(true);
+
+  const validatesEmail = () => {
+    const emailRegex = /[\w.-]+@[\w-]+\.[\w-.]+/gi;
+    return emailRegex.test(email);
+  };
+
+  const handleChangeEmail = ({ target: { value } }) => {
+    setEmail(value);
+  };
+
+  const handleChangePassword = ({ target: { value } }) => {
+    setPassword(value);
+    console.log(password.length);
+    const limitSize = 6;
+    if (password.length >= limitSize) setCheckedPassword(false);
+  };
 
   return (
     <div>
@@ -18,18 +30,20 @@ function Login() {
           value={ email }
           data-testid="email-input"
           placeholder="user@trybe.com"
-          onChange={ ({ target }) => handleChangeEmail(target.value) }
+          onChange={ (e) => handleChangeEmail(e) }
         />
         <input
           type="text"
           name={ password }
           data-testid="password-input"
           placeholder="password"
-          onChange={ ({ target }) => handleChangePassword(target.value) }
+          onChange={ (e) => handleChangePassword(e) }
         />
         <button
           type="button"
           data-testid="login-submit-btn"
+          disabled={ checkedPassword || !validatesEmail() }
+
         >
           Entrar
         </button>
