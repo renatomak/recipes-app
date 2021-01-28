@@ -8,7 +8,7 @@ function HeaderSearchBar(props) {
     setSearchTerm,
     setRadioButton,
     setSearchType,
-    // searchButtonApiResults,
+    searchButtonApiResults,
   } = useContext(RecipeAppContext);
 
   const { headerText } = props;
@@ -19,9 +19,8 @@ function HeaderSearchBar(props) {
     setSearchType('Bebidas');
   }
 
-  const handleClick = () => {
-    searchButtonAPIRequest();
-    // console.log(searchButtonApiResults);
+  const handleClick = async () => {
+    await searchButtonAPIRequest();
   };
 
   return (

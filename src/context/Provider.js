@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import RecipeAppContext from '.';
 
 const RecipeAppProvider = ({ children }) => {
-  const [searchButtonApiResults, setsearchButtonApiResults] = useState({});
+  const [searchButtonApiResults, setSearchButtonApiResults] = useState({});
   const [searchTerm, setSearchTerm] = useState('');
   const [radioButton, setRadioButton] = useState('');
   const [searchType, setSearchType] = useState('');
@@ -53,7 +53,9 @@ const RecipeAppProvider = ({ children }) => {
     if (radioButton === 'first-letter') {
       data = await caseFirstLetter(response);
     }
-    setsearchButtonApiResults(data);
+    console.log(data);
+    setSearchButtonApiResults(data);
+    console.log(searchButtonApiResults);
   };
 
   const context = {
