@@ -1,12 +1,26 @@
 import React, { useContext } from 'react';
 import RecipeAppContext from '../../context/index';
 
-function HeaderSearchBar() {
+function HeaderSearchBar(props) {
   const {
     searchButtonAPIRequest,
     setSearchTerm,
     setRadioButton,
+    setSearchType,
+    searchButtonApiResults,
   } = useContext(RecipeAppContext);
+
+  const { headerText } = props;
+  if (headerText === "Comidas") {
+    setSearchType("Comidas");
+  }
+  if (headerText === "Bebidas") {
+    setSearchType("Bebidas");
+  }
+
+  const handleClick = () => {
+    searchButtonAPIRequest();
+  }
 
   return (
     <div>
@@ -58,7 +72,7 @@ function HeaderSearchBar() {
       <button
         type="button"
         data-testid="exec-search-btn"
-        onClick={ searchButtonAPIRequest }
+        onClick={ handleClick }
       >
         Buscar
       </button>
