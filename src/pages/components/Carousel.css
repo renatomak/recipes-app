@@ -1,0 +1,12 @@
+.carousel-item-invisible {
+  visibility: hidden;
+}
+
+img {
+  width: 200px;
+}
+
+.iniciar-receita {
+  bottom: 0;
+  position: fixed;
+}

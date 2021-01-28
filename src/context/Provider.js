@@ -7,6 +7,11 @@ const RecipeAppProvider = ({ children }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [radioButton, setRadioButton] = useState('');
   const [searchType, setSearchType] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleChangeEmail = (value) => setEmail(value);
+  const handleChangePassword = (value) => setPassword(value);
 
   const caseIngredient = async (response) => {
     if (searchType === 'Comidas') {
@@ -58,6 +63,10 @@ const RecipeAppProvider = ({ children }) => {
   };
 
   const context = {
+    email,
+    handleChangeEmail,
+    password,
+    handleChangePassword,
     searchButtonApiResults,
     searchButtonAPIRequest,
     searchTerm,
@@ -65,7 +74,6 @@ const RecipeAppProvider = ({ children }) => {
     setRadioButton,
     setSearchType,
     setSearchButtonApiResults,
-  };
 
   return (
     <RecipeAppContext.Provider value={ context }>
