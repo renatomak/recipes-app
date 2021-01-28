@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import RecipeAppContext from '../../context/index';
 
@@ -8,9 +9,9 @@ function HeaderSearchBar(props) {
     setSearchTerm,
     setRadioButton,
     setSearchType,
-    searchButtonApiResults,
-    setSearchButtonApiResults,
   } = useContext(RecipeAppContext);
+
+  const history = useHistory();
 
   useEffect(() => {
     const { headerText } = props;
@@ -23,9 +24,16 @@ function HeaderSearchBar(props) {
   }, [setSearchType, props]);
 
   const handleClick = async () => {
+    const { headerText } = props;
     const data = await searchButtonAPIRequest();
-    await setSearchButtonApiResults(data);
-    console.log(searchButtonApiResults);
+    if (headerText === 'Comidas' && data.meals.length === 1) {
+      const id = data.meals[0].idMeal;
+      history.push(`/comidas/${id}`);
+    }
+    if (headerText === 'Bebidas' && data.drinks.length === 1) {
+      const id = data.drinks[0].idDrink;
+      history.push(`/bebidas/${id}`);
+    }
   };
 
   return (
