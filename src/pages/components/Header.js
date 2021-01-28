@@ -29,7 +29,7 @@ function Header(props) {
         </button>
       )}
       {searchBar && (
-        <HeaderSearchBar headerText={ headerText }/>
+        <HeaderSearchBar headerText={ headerText } />
       )}
     </div>
   );

@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
 import RecipeAppContext from '../../context/index';
 
 function HeaderSearchBar(props) {
@@ -11,16 +12,17 @@ function HeaderSearchBar(props) {
   } = useContext(RecipeAppContext);
 
   const { headerText } = props;
-  if (headerText === "Comidas") {
-    setSearchType("Comidas");
+  if (headerText === 'Comidas') {
+    setSearchType('Comidas');
   }
-  if (headerText === "Bebidas") {
-    setSearchType("Bebidas");
+  if (headerText === 'Bebidas') {
+    setSearchType('Bebidas');
   }
 
   const handleClick = () => {
     searchButtonAPIRequest();
-  }
+    console.log(searchButtonApiResults);
+  };
 
   return (
     <div>
@@ -82,3 +84,7 @@ function HeaderSearchBar(props) {
 }
 
 export default HeaderSearchBar;
+
+HeaderSearchBar.propTypes = {
+  headerText: PropTypes.string.isRequired,
+};
