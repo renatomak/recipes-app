@@ -54,8 +54,7 @@ const RecipeAppProvider = ({ children }) => {
       data = await caseFirstLetter(response);
     }
     console.log(data);
-    setSearchButtonApiResults(data);
-    console.log(searchButtonApiResults);
+    return data;
   };
 
   const context = {
@@ -65,6 +64,7 @@ const RecipeAppProvider = ({ children }) => {
     setSearchTerm,
     setRadioButton,
     setSearchType,
+    setSearchButtonApiResults,
   };
 
   return (

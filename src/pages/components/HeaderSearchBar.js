@@ -9,6 +9,7 @@ function HeaderSearchBar(props) {
     setRadioButton,
     setSearchType,
     searchButtonApiResults,
+    setSearchButtonApiResults
   } = useContext(RecipeAppContext);
 
   const { headerText } = props;
@@ -20,7 +21,9 @@ function HeaderSearchBar(props) {
   }
 
   const handleClick = async () => {
-    await searchButtonAPIRequest();
+    const data = await searchButtonAPIRequest();
+    await setSearchButtonApiResults(data);
+    console.log(searchButtonApiResults);
   };
 
   return (
@@ -84,6 +87,6 @@ function HeaderSearchBar(props) {
 
 export default HeaderSearchBar;
 
-HeaderSearchBar.propTypes = {
-  headerText: PropTypes.string.isRequired,
-};
+// HeaderSearchBar.propTypes = {
+//   headerText: PropTypes.string.isRequired,
+// };
