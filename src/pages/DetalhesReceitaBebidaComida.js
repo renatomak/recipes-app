@@ -1,38 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
+import { RecipeAppContext } from '../context/Provider';
 import CarouselRecipes from './components/Carousel';
+import HeaderReceitas from './components/HeaderReceitas';
+import IngredientesText from './components/IngredientesText';
+import IngredientesCheckbox from './components/IngredientesCheckbox';
 import {
   ChecaSeFoiFeita,
-  ChecaSeFavorita,
   ChecaSeEstaEmAndamento,
   irParaTeladeProgresso,
-  copyToClipboard,
   fetchReceitas,
   fetchRecomendacoes,
-  favoritarReceita,
 } from '../Auxiliares/FuncoesAuxiliares';
 
-import whiteHeart from '../images/whiteHeartIcon.svg';
-import blackHeart from '../images/blackHeartIcon.svg';
-
 function DetalhesReceitaBebidaComida(props) {
-  const [receita, setReceita] = useState({});
-  const [ingredientes, setIngredientes] = useState([]);
+  const {
+    receita,
+    ingredientes,
+    setReceita,
+    setIngredientes,
+  } = useContext(RecipeAppContext);
+
   const [youTubeCode, setYouTubeCode] = useState('');
   const [recomendations, setRecomendations] = useState([]);
-  const [copySuccess, setCopySuccess] = useState(false);
-  const [favorita, setFavorita] = useState(false);
 
-  const { match: { url, params: { id } }, history } = props;
-  const comidaOuBebida = url.split('/')[1];
+  const { match: { url, params: { id } }, history, recipeType, progresso } = props;
 
   const {
-    strMealThumb,
-    strDrinkThumb,
-    strMeal,
-    strDrink,
-    strCategory,
-    strAlcoholic,
     strInstructions,
     idMeal,
     idDrink,
@@ -41,70 +35,25 @@ function DetalhesReceitaBebidaComida(props) {
   useEffect(() => {
     let endpoint = '';
     let recomendationEndpoint = '';
-    if (comidaOuBebida === 'comidas') {
+    if (recipeType === 'Comidas') {
       endpoint = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
       recomendationEndpoint = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
-    } else if (comidaOuBebida === 'bebidas') {
+    } else if (recipeType === 'Bebidas') {
       endpoint = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
       recomendationEndpoint = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
     }
+
     fetchReceitas(endpoint, setReceita, setYouTubeCode, setIngredientes);
-    setFavorita(ChecaSeFavorita(idDrink || idMeal));
 
     fetchRecomendacoes(recomendationEndpoint, setRecomendations);
-  }, [comidaOuBebida, id, idDrink, idMeal]);
+  }, [recipeType, id, idDrink, idMeal, setReceita, setIngredientes]);
 
   return (
     <div className="detalhes">
-      <div className="header-receita">
-        <img
-          src={ strMealThumb || strDrinkThumb }
-          alt="detalhes da receita"
-          data-testid="recipe-photo"
-        />
+      <HeaderReceitas url={ url } />
 
-        <h2 data-testid="recipe-title">
-          {strMeal || strDrink}
-        </h2>
-
-        <button
-          type="button"
-          data-testid="share-btn"
-          onClick={ () => copyToClipboard(url, setCopySuccess) }
-        >
-          compartilhar
-        </button>
-
-        <span>
-          {copySuccess ? 'Link copiado!' : ''}
-        </span>
-
-        <input
-          type="image"
-          data-testid="favorite-btn"
-          alt="favorite button"
-          onClick={ () => favoritarReceita(receita, favorita, setFavorita) }
-          src={ favorita ? blackHeart : whiteHeart }
-        />
-
-        <p data-testid="recipe-category">
-          {' '}
-          {strAlcoholic || strCategory}
-          {' '}
-        </p>
-      </div>
-
-      <div className="ingredientes">
-        <p>Ingrdientes</p>
-        {ingredientes.map((ingrediente, index) => (
-          <p
-            key={ index }
-            data-testid={ `${index}-ingredient-name-and-measure` }
-          >
-            {`${ingrediente}`}
-          </p>
-        ))}
-      </div>
+      <IngredientesText ingredientes={ingredientes} />
+      <IngredientesCheckbox ingredientes={ingredientes} />
 
       <div
         data-testid="instructions"
@@ -113,7 +62,7 @@ function DetalhesReceitaBebidaComida(props) {
         {strInstructions}
       </div>
 
-      {comidaOuBebida === 'comidas' ? (
+      {recipeType === 'Comidas' ? (
         <iframe
           src={ `https://www.youtube.com/embed/${youTubeCode}` }
           data-testid="video"

@@ -24,8 +24,20 @@ function App() {
     <Provider>
       <BrowserRouter>
         <Switch>
-          <Route exact path="/comidas/:id" component={ DetalhesReceitaBebidaComida } />
-          <Route exact path="/bebidas/:id" component={ DetalhesReceitaBebidaComida } />
+          <Route exact path="/comidas/:id" render={ (props) => (
+            <DetalhesReceitaBebidaComida
+              { ...props }
+              progresso={false} 
+              recipeType="Comidas" 
+            />
+          ) } />
+          <Route exact path="/bebidas/:id" render={ (props) => (
+            <DetalhesReceitaBebidaComida
+              { ...props }
+              progresso={false} 
+              recipeType="Bebidas" 
+            />
+          ) } />
           <Route exact path="/" component={ Login } />
           <Route
             exact
@@ -39,13 +51,17 @@ function App() {
           />
           <Route
             path="/comidas/:id/in-progress"
-            render={ () => (<ReceitaEmProgresso
+            render={ (props) => (<ReceitaEmProgresso
+              { ...props }
+              progresso={true}
               recipeType="Comidas"
             />) }
           />
           <Route
             path="/bebidas/:id/in-progress"
-            render={ () => (<ReceitaEmProgresso
+            render={ (props) => (<ReceitaEmProgresso
+              { ...props }
+              progresso={true}
               recipeType="Bebidas"
             />) }
           />

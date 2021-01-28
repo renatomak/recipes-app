@@ -1,0 +1,19 @@
+import React from 'react';
+
+function IngredientesText({ingredientes}) {
+  return (
+    <div className="ingredientes">
+        <p>Ingrdientes</p>
+        {ingredientes.map((ingrediente, index) => (
+          <p
+            key={ index }
+            data-testid={ `${index}-ingredient-name-and-measure` }
+          >
+            {`${ingrediente}`}
+          </p>
+        ))}
+      </div>
+  );
+}
+
+export default IngredientesText;

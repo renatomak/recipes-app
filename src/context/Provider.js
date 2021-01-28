@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import RecipeAppContext from '.';
 
 const RecipeAppProvider = ({ children }) => {
-  const context = {};
+  const [receita, setReceita] = useState({});
+  const [ingredientes, setIngredientes] = useState([]);
+  const [favorita, setFavorita] = useState(false);
+
+  const context = {
+    receita,
+    ingredientes,
+    favorita,
+    setReceita,
+    setIngredientes,
+    setFavorita,
+  };
 
   return (
     <RecipeAppContext.Provider value={ context }>
