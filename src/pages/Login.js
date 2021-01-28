@@ -21,6 +21,14 @@ function Login() {
     if (password.length >= limitSize) setCheckedPassword(false);
   };
 
+  const submit = () => {
+    const emilObject = { email };
+    console.log(emilObject);
+    localStorage.setItem('mealsToken', '1');
+    localStorage.setItem('cocktailsToken', '1');
+    localStorage.setItem('user', JSON.stringify(emilObject));
+  };
+
   return (
     <div>
       <form>
@@ -43,7 +51,7 @@ function Login() {
           type="button"
           data-testid="login-submit-btn"
           disabled={ checkedPassword || !validatesEmail() }
-
+          onClick={ submit }
         >
           Entrar
         </button>
