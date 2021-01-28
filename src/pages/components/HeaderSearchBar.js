@@ -8,7 +8,7 @@ function HeaderSearchBar(props) {
     setSearchTerm,
     setRadioButton,
     setSearchType,
-    searchButtonApiResults,
+    // searchButtonApiResults,
   } = useContext(RecipeAppContext);
 
   const { headerText } = props;
