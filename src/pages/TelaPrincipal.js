@@ -6,6 +6,7 @@ import RecipeCard from './components/RecipeCard';
 
 function TelaPrincipal(props) {
   const { recipeType } = props;
+
   const {
     recipes,
   } = useContext(RecipeAppContext);
@@ -13,7 +14,9 @@ function TelaPrincipal(props) {
   return (
     <div>
       <Header headerText={ recipeType } showSearchButton="true" />
-      <RecipeCard recipe= index= recipeType={ recipeType }/>
+      {recipes.map((item, index) => (
+        <RecipeCard key= {index} recipes={ recipes } index={ index } recipeType={ recipeType }/>
+      ))}
     </div>
   );
 }

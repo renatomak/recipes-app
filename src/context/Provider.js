@@ -75,6 +75,7 @@ const RecipeAppProvider = ({ children }) => {
     setRadioButton,
     setSearchType,
     setSearchButtonApiResults,
+    recipes,
     setRecipes,
   };
 

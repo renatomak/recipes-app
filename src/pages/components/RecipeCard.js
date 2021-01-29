@@ -2,20 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function RecipeCard(props) {
-  const { recipe, index, recipeType } = props;
+  const { recipes, index, recipeType } = props;
   let cardImage = '';
   let cardName = '';
   if (recipeType === "Comidas") {
-    cardImage = recipe.strMealThumb;
-    cardName = recipe.strMeal;
+    cardImage = recipes[index].strMealThumb;
+    cardName = recipes[index].strMeal;
   }
   if (recipeType === "Bebidas") {
-    cardImage = recipe.strDrinkThumb;
-    cardName = recipe.strDrink;
+    cardImage = recipes[index].strDrinkThumb;
+    cardName = recipes[index].strDrink;
   }
 
   return (
-    <div datatest-id={`${index}-recipe-card`}>
+    <div data-testid={ `${index}-recipe-card` }>
       <img data-testid={`${index}-card-img`} src={ cardImage } alt='card' />
       <p data-testid={`${index}-card-name`}>{ cardName }</p>
     </div>
@@ -25,7 +25,11 @@ function RecipeCard(props) {
 export default RecipeCard;
 
 RecipeCard.propTypes = {
-  recipe: PropTypes.shape(PropTypes.string.isRequired).isRequired,
+  recipes: PropTypes.arrayOf(PropTypes
+    .shape(PropTypes.string
+      .isRequired)
+    .isRequired)
+    .isRequired,
   index: PropTypes.number.isRequired,
   recipeType: PropTypes.string.isRequired,
 };
