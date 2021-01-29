@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ReactRouterPropTypes from 'react-router-prop-types';
+import PropTypes from 'prop-types';
 
 function Login(props) {
   const [email, setEmail] = useState('');
@@ -63,9 +63,11 @@ function Login(props) {
     </div>
   );
 }
-/** FONTE: https://www.npmjs.com/package/react-router-prop-types */
+
 Login.propTypes = {
-  history: ReactRouterPropTypes.history.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 export default Login;
