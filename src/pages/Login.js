@@ -1,12 +1,37 @@
 import React, { useState } from 'react';
+import ReactRouterPropTypes from 'react-router-prop-types';
 
-function Login() {
+function Login(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [checkedPassword, setCheckedPassword] = useState(true);
 
-  const handleChangeEmail = ({ target: { value } }) => setEmail(value);
+  const validatesEmail = () => {
+    const emailRegex = /[\w.-]+@[\w-]+\.[\w-.]+/gi;
+    return emailRegex.test(email);
+  };
 
-  const handleChangePassword = ({ target: { value } }) => setPassword(value);
+  const handleChangeEmail = ({ target: { value } }) => {
+    setEmail(value);
+  };
+
+  const handleChangePassword = ({ target: { value } }) => {
+    setPassword(value);
+    console.log(password.length);
+    const limitSize = 6;
+    if (password.length >= limitSize) setCheckedPassword(false);
+  };
+
+  const submit = () => {
+    const { history } = props;
+
+    const emilObject = { email };
+    console.log(emilObject);
+    localStorage.setItem('mealsToken', '1');
+    localStorage.setItem('cocktailsToken', '1');
+    localStorage.setItem('user', JSON.stringify(emilObject));
+    history.push('/comidas');
+  };
 
   return (
     <div>
@@ -29,7 +54,8 @@ function Login() {
         <button
           type="button"
           data-testid="login-submit-btn"
-
+          disabled={ checkedPassword || !validatesEmail() }
+          onClick={ submit }
         >
           Entrar
         </button>
@@ -37,4 +63,9 @@ function Login() {
     </div>
   );
 }
+/** FONTE: https://www.npmjs.com/package/react-router-prop-types */
+Login.propTypes = {
+  history: ReactRouterPropTypes.history.isRequired,
+};
+
 export default Login;

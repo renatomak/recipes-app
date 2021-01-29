@@ -6,6 +6,11 @@ const RecipeAppProvider = ({ children }) => {
   const [receita, setReceita] = useState({});
   const [ingredientes, setIngredientes] = useState([]);
   const [favorita, setFavorita] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleChangeEmail = (value) => setEmail(value);
+  const handleChangePassword = (value) => setPassword(value);
 
   const context = {
     receita,
@@ -14,6 +19,10 @@ const RecipeAppProvider = ({ children }) => {
     setReceita,
     setIngredientes,
     setFavorita,
+    email,
+    handleChangeEmail,
+    password,
+    handleChangePassword,
   };
 
   return (
