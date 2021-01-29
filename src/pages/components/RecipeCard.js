@@ -5,19 +5,19 @@ function RecipeCard(props) {
   const { recipes, index, recipeType } = props;
   let cardImage = '';
   let cardName = '';
-  if (recipeType === "Comidas") {
+  if (recipeType === 'Comidas') {
     cardImage = recipes[index].strMealThumb;
     cardName = recipes[index].strMeal;
   }
-  if (recipeType === "Bebidas") {
+  if (recipeType === 'Bebidas') {
     cardImage = recipes[index].strDrinkThumb;
     cardName = recipes[index].strDrink;
   }
 
   return (
     <div data-testid={ `${index}-recipe-card` }>
-      <img data-testid={`${index}-card-img`} src={ cardImage } alt='card' />
-      <p data-testid={`${index}-card-name`}>{ cardName }</p>
+      <img data-testid={ `${index}-card-img` } src={ cardImage } alt="card" />
+      <p data-testid={ `${index}-card-name` }>{ cardName }</p>
     </div>
   );
 }

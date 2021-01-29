@@ -26,22 +26,20 @@ function HeaderSearchBar(props) {
 
   const showRecipes = (data) => {
     const { headerText } = props;
-    let recipes = [];
-    for (let index = 0; index < 12; index++) {
-      if (headerText === 'Comidas') {
-        if (data.meals[index]) {
-          recipes.push(data.meals[index]);
-        }
+    const recipes = [];
+    const zero = 0;
+    const twelve = 12;
+    for (let index = zero; index < twelve; index += 1) {
+      if (headerText === 'Comidas' && data.meals[index]) {
+        recipes.push(data.meals[index]);
       }
-      if (headerText === 'Bebidas') {
-        if (data.drinks[index]) {
-          recipes.push(data.drinks[index]);
-        }
+      if (headerText === 'Bebidas' && data.drinks[index]) {
+        recipes.push(data.drinks[index]);
       }
     }
     console.log(recipes);
     setRecipes(recipes);
-  }
+  };
 
   const handleClick = async () => {
     const { headerText } = props;

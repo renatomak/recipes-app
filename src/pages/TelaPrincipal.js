@@ -15,7 +15,12 @@ function TelaPrincipal(props) {
     <div>
       <Header headerText={ recipeType } showSearchButton="true" />
       {recipes.map((item, index) => (
-        <RecipeCard key= {index} recipes={ recipes } index={ index } recipeType={ recipeType }/>
+        <RecipeCard
+          key={ index }
+          recipes={ recipes }
+          index={ index }
+          recipeType={ recipeType }
+        />
       ))}
     </div>
   );
