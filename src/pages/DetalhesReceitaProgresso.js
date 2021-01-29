@@ -23,7 +23,7 @@ function DetalhesReceitaBebidaComida(props) {
 
   const [youTubeCode, setYouTubeCode] = useState('');
   const [recomendations, setRecomendations] = useState([]);
-
+  const [finalizada, setFinalizada] = useState(false);
   const { match: { url, params: { id } }, history, recipeType, progresso } = props;
 
   const {
@@ -54,7 +54,7 @@ function DetalhesReceitaBebidaComida(props) {
       <HeaderReceitas url={ url } />
 
       {progresso && ingredientes.length !== emptyArray
-        ? <IngredientesCheckbox ingredientes={ ingredientes } />
+        ? <IngredientesCheckbox setFinalizada={ setFinalizada } />
         : <IngredientesText ingredientes={ ingredientes } />}
 
       <div
@@ -64,22 +64,27 @@ function DetalhesReceitaBebidaComida(props) {
         {strInstructions}
       </div>
 
-      {recipeType === 'Comidas' ? (
-        <iframe
-          src={ `https://www.youtube.com/embed/${youTubeCode}` }
-          data-testid="video"
-          className="video"
-          title="video da receita"
-        />
-      ) : null}
-
-      <CarouselRecipes recomendations={ recomendations } />
+      {recipeType === 'Comidas' && !progresso
+        ? (
+          <iframe
+            src={ `https://www.youtube.com/embed/${youTubeCode}` }
+            data-testid="video"
+            className="video"
+            title="video da receita"
+          />
+        ) : null}
+      {
+        progresso
+          ? ''
+          : <CarouselRecipes recomendations={ recomendations } />
+      }
 
       { progresso
         ? (
           <button
             type="button"
             data-testid="finish-recipe-btn"
+            disabled={ !finalizada }
           >
             Finalizar Receita
           </button>

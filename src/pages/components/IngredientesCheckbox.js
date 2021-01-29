@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import PropTypes from 'prop-types';
 import { RecipeAppContext } from '../../context/Provider';
 
 import './IngredientesCheckbox.css';
@@ -44,7 +45,7 @@ function createInProgessRecipesStorage() {
   return false;
 }
 
-function IngredientesCheckbox() {
+function IngredientesCheckbox({ setFinalizada }) {
   const { ingredientes, receita } = useContext(RecipeAppContext);
   const [checkIngrediente, setCheckIngrediente] = useState([]);
   const [carregando, setCarregando] = useState(true);
@@ -81,6 +82,15 @@ function IngredientesCheckbox() {
     setCarregando(false);
   }, [receita, ingredientes]);
 
+  useEffect(() => {
+    const estaFinalizada = checkIngrediente.every((check) => check === true);
+    if (estaFinalizada && checkIngrediente.length) {
+      setFinalizada(estaFinalizada);
+    } else {
+      setFinalizada(false);
+    }
+  }, [checkIngrediente, setFinalizada]);
+
   if (carregando) {
     return <p>Carregando</p>;
   }
@@ -89,18 +99,16 @@ function IngredientesCheckbox() {
     <div className="ingredientes">
       <p>Ingrdientes</p>
       {ingredientes.map((ingrediente, index) => (
-        <label
+        <div
           data-testid={ `${index}-ingredient-step` }
-          htmlFor={ `${index}-ingrediente` }
           className="ingrediente"
           key={ index }
         >
           <input
             type="checkbox"
             id={ `${index}-ingrediente` }
-            // data-testid={`${index}-ingredient-step`}
             checked={ checkIngrediente[index] }
-            onClick={ () => checkboxSet(
+            onChange={ () => checkboxSet(
               receita,
               setCheckIngrediente,
               checkIngrediente,
@@ -112,10 +120,14 @@ function IngredientesCheckbox() {
           >
             {ingrediente}
           </span>
-        </label>
+        </div>
       ))}
     </div>
   );
 }
 
 export default IngredientesCheckbox;
+
+IngredientesCheckbox.propTypes = {
+  setFinalizada: PropTypes.func.isRequired,
+};
