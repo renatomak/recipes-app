@@ -47,13 +47,15 @@ function DetalhesReceitaBebidaComida(props) {
 
     fetchRecomendacoes(recomendationEndpoint, setRecomendations);
   }, [recipeType, id, idDrink, idMeal, setReceita, setIngredientes]);
+  const emptyArray = 0;
 
   return (
     <div className="detalhes">
       <HeaderReceitas url={ url } />
 
-      <IngredientesText ingredientes={ingredientes} />
-      <IngredientesCheckbox ingredientes={ingredientes} />
+      {progresso && ingredientes.length !== emptyArray
+        ? <IngredientesCheckbox ingredientes={ ingredientes } />
+        : <IngredientesText ingredientes={ ingredientes } />}
 
       <div
         data-testid="instructions"
@@ -73,19 +75,30 @@ function DetalhesReceitaBebidaComida(props) {
 
       <CarouselRecipes recomendations={ recomendations } />
 
-      <button
-        type="button"
-        data-testid="start-recipe-btn"
-        className="iniciar-receita"
-        hidden={ ChecaSeFoiFeita(idDrink || idMeal) }
-        onClick={ () => { irParaTeladeProgresso(history, idDrink, idMeal); } }
-      >
-        {
-          ChecaSeEstaEmAndamento(idDrink || idMeal)
-            ? 'Continuar Receita'
-            : 'Iniciar receita'
-        }
-      </button>
+      { progresso
+        ? (
+          <button
+            type="button"
+            data-testid="finish-recipe-btn"
+          >
+            Finalizar Receita
+          </button>
+        )
+        : (
+          <button
+            type="button"
+            data-testid="start-recipe-btn"
+            className="iniciar-receita"
+            hidden={ ChecaSeFoiFeita(idDrink || idMeal) }
+            onClick={ () => { irParaTeladeProgresso(history, idDrink, idMeal); } }
+          >
+            {
+              ChecaSeEstaEmAndamento(idDrink || idMeal)
+                ? 'Continuar Receita'
+                : 'Iniciar receita'
+            }
+          </button>
+        )}
     </div>
   );
 }
@@ -102,4 +115,6 @@ DetalhesReceitaBebidaComida.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
+  recipeType: PropTypes.string.isRequired,
+  progresso: PropTypes.bool.isRequired,
 };

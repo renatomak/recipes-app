@@ -3,41 +3,43 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Provider } from './context/Provider';
 import './App.css';
 import TelaPrincipal from './pages/TelaPrincipal';
-import DetalhesReceitaBebidaComida from './pages/DetalhesReceitaBebidaComida';
+import DetalhesReceitaProgresso from './pages/DetalhesReceitaProgresso';
 import Explorar from './pages/Explorar';
 import ExplorarBebidasComidas from './pages/ExplorarBebidasComidas';
-import ExplorarIngrediente from
-  './pages/ExplorarIngrediente';
-import ExplorarComidasArea from
-  './pages/ExplorarComidasArea';
+import ExplorarIngrediente from './pages/ExplorarIngrediente';
+import ExplorarComidasArea from './pages/ExplorarComidasArea';
 import Login from './pages/Login';
 import Perfil from './pages/Perfil';
-import ReceitaEmProgresso from
-  './pages/ReceitaEmProgresso';
-import ReceitasFavoritas from
-  './pages/ReceitasFavoritas';
-import ReceitasFeitas from
-  './pages/ReceitasFeitas';
+import ReceitasFavoritas from './pages/ReceitasFavoritas';
+import ReceitasFeitas from './pages/ReceitasFeitas';
 
 function App() {
   return (
     <Provider>
       <BrowserRouter>
         <Switch>
-          <Route exact path="/comidas/:id" render={ (props) => (
-            <DetalhesReceitaBebidaComida
-              { ...props }
-              progresso={false} 
-              recipeType="Comidas" 
-            />
-          ) } />
-          <Route exact path="/bebidas/:id" render={ (props) => (
-            <DetalhesReceitaBebidaComida
-              { ...props }
-              progresso={false} 
-              recipeType="Bebidas" 
-            />
-          ) } />
+          <Route
+            exact
+            path="/comidas/:id"
+            render={ (props) => (
+              <DetalhesReceitaProgresso
+                { ...props }
+                progresso={ false }
+                recipeType="Comidas"
+              />
+            ) }
+          />
+          <Route
+            exact
+            path="/bebidas/:id"
+            render={ (props) => (
+              <DetalhesReceitaProgresso
+                { ...props }
+                progresso={ false }
+                recipeType="Bebidas"
+              />
+            ) }
+          />
           <Route exact path="/" component={ Login } />
           <Route
             exact
@@ -51,17 +53,17 @@ function App() {
           />
           <Route
             path="/comidas/:id/in-progress"
-            render={ (props) => (<ReceitaEmProgresso
+            render={ (props) => (<DetalhesReceitaProgresso
               { ...props }
-              progresso={true}
+              progresso
               recipeType="Comidas"
             />) }
           />
           <Route
             path="/bebidas/:id/in-progress"
-            render={ (props) => (<ReceitaEmProgresso
+            render={ (props) => (<DetalhesReceitaProgresso
               { ...props }
-              progresso={true}
+              progresso
               recipeType="Bebidas"
             />) }
           />
