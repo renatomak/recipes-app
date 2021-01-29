@@ -94,21 +94,22 @@ const RecipeAppProvider = ({ children }) => {
   );
 
   const showInitialCards = useCallback(
-  async () => {
-    let data = {};
-    if (searchType === 'Comidas') {
-      console.log('testando');
-      const response = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
-      data = await response.json();
-      console.log(data);
-    }
-    if (searchType === 'Bebidas') {
-      const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
-      data = await response.json();
-    }
-    recipesCards(data);
-  }, [ searchType,
-    recipesCards,]);
+    async () => {
+      let data = {};
+      if (searchType === 'Comidas') {
+        console.log('testando');
+        const response = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
+        data = await response.json();
+        console.log(data);
+      }
+      if (searchType === 'Bebidas') {
+        const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
+        data = await response.json();
+      }
+      recipesCards(data);
+    }, [searchType,
+      recipesCards],
+  );
 
   const context = {
     receita,
