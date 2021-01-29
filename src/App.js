@@ -13,7 +13,17 @@ import Perfil from './pages/Perfil';
 import ReceitasFavoritas from './pages/ReceitasFavoritas';
 import ReceitasFeitas from './pages/ReceitasFeitas';
 
+function criarLocalStorage() {
+  const localStorageDoneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
+  if (localStorageDoneRecipes) return true;
+
+  localStorage.setItem('doneRecipes', JSON.stringify([]));
+
+  return false;
+}
+
 function App() {
+  criarLocalStorage();
   return (
     <Provider>
       <BrowserRouter>

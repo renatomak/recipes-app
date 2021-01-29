@@ -13,6 +13,46 @@ import {
   fetchRecomendacoes,
 } from '../Auxiliares/FuncoesAuxiliares';
 
+function redirecionarParaFeitas(history, receita) {
+  const {
+    strMealThumb,
+    strDrinkThumb,
+    strMeal,
+    strDrink,
+    strCategory,
+    strAlcoholic,
+    idMeal,
+    idDrink,
+    strArea,
+    strTags,
+  } = receita;
+  const tags = strTags || '';
+  const id = idMeal || idDrink;
+  const tipo = idMeal ? 'meals' : 'cocktails';
+  const date = new Date();
+
+  const localStorageInProgress = {
+    ...JSON.parse(localStorage.getItem('inProgressRecipes')),
+  };
+  const localStorageDoneRecipes = [...JSON.parse(localStorage.getItem('doneRecipes'))];
+
+  localStorageDoneRecipes.push({
+    id: idMeal || idDrink,
+    type: idMeal ? 'comida' : 'bebida',
+    area: strArea || '',
+    category: strCategory || '',
+    alcoholicOrNot: strAlcoholic || '',
+    name: strMeal || strDrink,
+    image: strMealThumb || strDrinkThumb,
+    doneDate: date.toLocaleDateString(),
+    tags: tags.split(','),
+  });
+  localStorage.setItem('doneRecipes', JSON.stringify(localStorageDoneRecipes));
+  delete localStorageInProgress[tipo][id];
+  localStorage.setItem('inProgressRecipes', JSON.stringify(localStorageInProgress));
+  history.push('/receitas-feitas');
+}
+
 function DetalhesReceitaBebidaComida(props) {
   const {
     receita,
@@ -85,6 +125,7 @@ function DetalhesReceitaBebidaComida(props) {
             type="button"
             data-testid="finish-recipe-btn"
             disabled={ !finalizada }
+            onClick={ () => redirecionarParaFeitas(history, receita) }
           >
             Finalizar Receita
           </button>
