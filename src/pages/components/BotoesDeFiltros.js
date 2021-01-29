@@ -1,11 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-function BotoesDeFiltros() {
+function BotoesDeFiltros({ setFilter }) {
   return (
     <div className="botoes-filtros">
       <button
         type="button"
         data-testid="filter-by-all-btn"
+        onClick={ () => setFilter('all') }
       >
         All
       </button>
@@ -13,6 +15,7 @@ function BotoesDeFiltros() {
       <button
         type="button"
         data-testid="filter-by-food-btn"
+        onClick={ () => setFilter('comida') }
       >
         Food
       </button>
@@ -20,6 +23,7 @@ function BotoesDeFiltros() {
       <button
         type="button"
         data-testid="filter-by-drink-btn"
+        onClick={ () => setFilter('bebida') }
       >
         Drinks
       </button>
@@ -28,3 +32,7 @@ function BotoesDeFiltros() {
 }
 
 export default BotoesDeFiltros;
+
+BotoesDeFiltros.propTypes = {
+  setFilter: PropTypes.func.isRequired,
+};
