@@ -9,6 +9,7 @@ const RecipeAppProvider = ({ children }) => {
   const [searchType, setSearchType] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [recipes, setRecipes] = useState([]);
 
   const handleChangeEmail = (value) => setEmail(value);
   const handleChangePassword = (value) => setPassword(value);
@@ -74,6 +75,7 @@ const RecipeAppProvider = ({ children }) => {
     setRadioButton,
     setSearchType,
     setSearchButtonApiResults,
+    setRecipes,
   };
 
   return (
