@@ -74,6 +74,7 @@ const RecipeAppProvider = ({ children }) => {
     setRadioButton,
     setSearchType,
     setSearchButtonApiResults,
+  };
 
   return (
     <RecipeAppContext.Provider value={ context }>
