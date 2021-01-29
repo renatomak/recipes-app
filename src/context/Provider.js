@@ -63,10 +63,10 @@ const RecipeAppProvider = ({ children }) => {
     const zero = 0;
     const twelve = 12;
     for (let index = zero; index < twelve; index += 1) {
-      if (searchType === 'Comidas' && data.meals) {
+      if (searchType === 'Comidas' && data.meals[index]) {
         recipesList.push(data.meals[index]);
       }
-      if (searchType === 'Bebidas' && data.drinks) {
+      if (searchType === 'Bebidas' && data.drinks[index]) {
         recipesList.push(data.drinks[index]);
       }
     }
@@ -90,12 +90,12 @@ const RecipeAppProvider = ({ children }) => {
       caseName,
       radioButton,
       recipesCards,
-      searchType,
-      searchTerm,
     ],
   );
 
-  const showInitialCards = () => {
+  const showInitialCards = useCallback(
+  async () => {
+    let data = {};
     if (searchType === 'Comidas') {
       console.log('testando');
       const response = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
@@ -106,9 +106,9 @@ const RecipeAppProvider = ({ children }) => {
       const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
       data = await response.json();
     }
-  }
-  recipesCards(data);
-  }
+    recipesCards(data);
+  }, [ searchType,
+    recipesCards,]);
 
   const context = {
     receita,
