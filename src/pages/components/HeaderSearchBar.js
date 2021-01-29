@@ -9,7 +9,6 @@ function HeaderSearchBar(props) {
     setSearchTerm,
     setRadioButton,
     setSearchType,
-    setRecipes,
   } = useContext(RecipeAppContext);
 
   const history = useHistory();
@@ -24,23 +23,6 @@ function HeaderSearchBar(props) {
     }
   }, [setSearchType, props]);
 
-  const showRecipes = (data) => {
-    const { headerText } = props;
-    const recipes = [];
-    const zero = 0;
-    const twelve = 12;
-    for (let index = zero; index < twelve; index += 1) {
-      if (headerText === 'Comidas' && data.meals[index]) {
-        recipes.push(data.meals[index]);
-      }
-      if (headerText === 'Bebidas' && data.drinks[index]) {
-        recipes.push(data.drinks[index]);
-      }
-    }
-    console.log(recipes);
-    setRecipes(recipes);
-  };
-
   const handleClick = async () => {
     const { headerText } = props;
     const data = await searchButtonAPIRequest();
@@ -52,8 +34,6 @@ function HeaderSearchBar(props) {
     } else if (headerText === 'Bebidas' && data.drinks.length === 1) {
       const id = data.drinks[0].idDrink;
       history.push(`/bebidas/${id}`);
-    } else {
-      showRecipes(data);
     }
   };
 

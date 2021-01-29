@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Header from './components/Header';
 import RecipeAppContext from '../context/index';
@@ -9,7 +9,24 @@ function TelaPrincipal(props) {
 
   const {
     recipes,
+    setSearchType,
+    showInitialCards,
   } = useContext(RecipeAppContext);
+
+  useEffect(() => {
+    if (recipeType === 'Comidas') {
+      setSearchType('Comidas');
+    }
+    if (recipeType === 'Bebidas') {
+      setSearchType('Bebidas');
+    }
+  }, [setSearchType, recipeType, props]);
+
+  console.log(recipes);
+
+  useEffect(() => {
+    showInitialCards();
+  }, [showInitialCards]);
 
   return (
     <div>
