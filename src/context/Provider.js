@@ -7,6 +7,9 @@ const RecipeAppProvider = ({ children }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [radioButton, setRadioButton] = useState('');
   const [searchType, setSearchType] = useState('');
+  const [receita, setReceita] = useState({});
+  const [ingredientes, setIngredientes] = useState([]);
+  const [favorita, setFavorita] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [recipes, setRecipes] = useState([]);
@@ -64,6 +67,12 @@ const RecipeAppProvider = ({ children }) => {
   };
 
   const context = {
+    receita,
+    ingredientes,
+    favorita,
+    setReceita,
+    setIngredientes,
+    setFavorita,
     email,
     handleChangeEmail,
     password,

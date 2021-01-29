@@ -52,7 +52,8 @@ export function irParaTeladeProgresso(history, idDrink, idMeal) {
 }
 
 export function copyToClipboard(url, setMessage) {
-  navigator.clipboard.writeText(`http://localhost:3000${url}`);
+  const urlSplited = url.split('/');
+  navigator.clipboard.writeText(`http://localhost:3000/${urlSplited[1]}/${urlSplited[2]}`);
   setMessage(true);
   const delay = 5000;
   setTimeout(() => { setMessage(false); }, delay);
