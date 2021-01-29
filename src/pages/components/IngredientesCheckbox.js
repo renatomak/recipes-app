@@ -47,6 +47,7 @@ function createInProgessRecipesStorage() {
 function IngredientesCheckbox() {
   const { ingredientes, receita } = useContext(RecipeAppContext);
   const [checkIngrediente, setCheckIngrediente] = useState([]);
+  const [carregando, setCarregando] = useState(true);
   useEffect(() => {
     // array vazio para controle dos checkboxs
     const checkList = [];
@@ -77,7 +78,12 @@ function IngredientesCheckbox() {
         [tipo]: newItem,
       }));
     }
+    setCarregando(false);
   }, [receita, ingredientes]);
+
+  if (carregando) {
+    return <p>Carregando</p>;
+  }
 
   return (
     <div className="ingredientes">
