@@ -14,7 +14,9 @@ function Footer() {
       <Link to="/explorar">
         <img src={ exploreIcon } data-testid="explore-bottom-btn" alt="Explore" />
       </Link>
-      <img src={ mealIcon } data-testid="food-bottom-btn" alt="Food" />
+      <Link to="/comidas">
+        <img src={ mealIcon } data-testid="food-bottom-btn" alt="Food" />
+      </Link>
 
     </footer>
   );
