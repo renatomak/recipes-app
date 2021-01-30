@@ -16,7 +16,7 @@ function Perfil(props) {
   const exitPage = () => {
     localStorage.clear();
     history.push('/');
-  }
+  };
 
   return (
     <div>
