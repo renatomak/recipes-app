@@ -11,8 +11,11 @@ function Footer() {
       <Link to="/bebidas">
         <img src={ drinkIcon } data-testid="drinks-bottom-btn" alt="drinks" />
       </Link>
-      <img src={ exploreIcon } data-testid="explore-bottom-btn" alt="Explore" />
+      <Link to="/explorar">
+        <img src={ exploreIcon } data-testid="explore-bottom-btn" alt="Explore" />
+      </Link>
       <img src={ mealIcon } data-testid="food-bottom-btn" alt="Food" />
+
     </footer>
   );
 }
