@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactRouterPropTypes from 'react-router-prop-types';
 import Header from './components/Header';
 
 function recuperarEmail() {
@@ -7,16 +8,23 @@ function recuperarEmail() {
   return email;
 }
 
-function Perfil() {
+function Perfil(props) {
   const { email } = recuperarEmail();
+  const { history } = props;
   console.log(email);
 
   return (
     <div>
       <Header headerText="Perfil" showSearchButton="false" />
       <div>
-        <span data-testid="profile-email"> {email} </span>
-        <button type="button" data-testid="profile-done-btn">Receitas Feitas</button>
+        <span data-testid="profile-email">{ email }</span>
+        <button
+          type="button"
+          data-testid="profile-done-btn"
+          onClick={ () => history.push('/receitas-feitas') }
+        >
+          Receitas Feitas
+        </button>
         <button
           type="button"
           data-testid="profile-favorite-btn"
@@ -30,3 +38,7 @@ function Perfil() {
 }
 
 export default Perfil;
+
+Perfil.propTypes = {
+  history: ReactRouterPropTypes.history.isRequired,
+};
