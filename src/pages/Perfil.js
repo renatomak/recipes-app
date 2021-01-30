@@ -13,6 +13,11 @@ function Perfil(props) {
   const { history } = props;
   console.log(email);
 
+  const exitPage = () => {
+    localStorage.clear();
+    history.push('/');
+  }
+
   return (
     <div>
       <Header headerText="Perfil" showSearchButton="false" />
@@ -35,6 +40,7 @@ function Perfil(props) {
         <button
           type="button"
           data-testid="profile-logout-btn"
+          onClick={ exitPage }
         >
           Sair
         </button>
