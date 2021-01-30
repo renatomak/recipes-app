@@ -28,10 +28,16 @@ function Perfil(props) {
         <button
           type="button"
           data-testid="profile-favorite-btn"
+          onClick={ () => history.push('/receitas-favoritas') }
         >
           Receitas Favoritas
         </button>
-        <button type="button" data-testid="profile-logout-btn">Sair</button>
+        <button
+          type="button"
+          data-testid="profile-logout-btn"
+        >
+          Sair
+        </button>
       </div>
     </div>
   );
