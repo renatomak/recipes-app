@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Header from './components/Header';
 import RecipeAppContext from '../context/index';
 import RecipeCard from './components/RecipeCard';
+import Footer from './components/Footer';
 
 function TelaPrincipal(props) {
   const { recipeType } = props;
@@ -22,6 +23,7 @@ function TelaPrincipal(props) {
           recipeType={ recipeType }
         />
       ))}
+      <Footer />
     </div>
   );
 }
