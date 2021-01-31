@@ -1,38 +1,27 @@
 import React from 'react';
-import ReactRouterPropTypes from 'react-router-prop-types';
 import PropTypes from 'prop-types';
 import './Explorar.css';
 import Header from './components/Header';
+import Button from './components/Button';
 
 function ExplorarBebidasComidas(props) {
-  const { recipeType, history } = props;
+  const { recipeType } = props;
+
+  if (recipeType === 'Comidas') {
+    return (
+      <div>
+        <Header headerText={ `Explorar ${recipeType}` } showSearchButton="false" />
+        <Button value="Por ingredientes" dataTestid="explore-by-ingredient" />
+        <Button value="Por Local de Origem" dataTestid="explore-by-area" />
+        <Button value="Me Surpreenda!" dataTestid="explore-surprise" />
+      </div>
+    );
+  }
   return (
     <div>
       <Header headerText={ `Explorar ${recipeType}` } showSearchButton="false" />
-
-      <button
-        type="button"
-        data-testid="explore-by-ingredient"
-        onClick={ () => history.push('/explorar/comidas/ingredientes') }
-      >
-        Por Ingredientes
-      </button>
-
-      <button
-        type="button"
-        className={ `button-${recipeType}` }
-        data-testid="explore-by-area"
-        onClick={ () => history.push('/explorar/comidas/area') }
-      >
-        Por Local de Origem
-      </button>
-
-      <button
-        type="button"
-        data-testid="explore-surprise"
-      >
-        Me Surpreenda!
-      </button>
+      <Button value="Por ingredientes" dataTestid="explore-by-ingredient" />
+      <Button value="Me Surpreenda!" dataTestid="explore-surprise" />
     </div>
   );
 }
@@ -41,5 +30,4 @@ export default ExplorarBebidasComidas;
 
 ExplorarBebidasComidas.propTypes = {
   recipeType: PropTypes.string.isRequired,
-  history: ReactRouterPropTypes.history.isRequired,
 };
