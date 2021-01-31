@@ -11,17 +11,17 @@ function ExplorarBebidasComidas(props) {
     return (
       <div>
         <Header headerText={ `Explorar ${recipeType}` } showSearchButton="false" />
-        <Button value="Por Ingredientes" dataTestid="explore-by-ingredient" />
-        <Button value="Por Local de Origem" dataTestid="explore-by-area" />
-        <Button value="Me Surpreenda!" dataTestid="explore-surprise" />
+        <Button value="Por Ingredientes" dataTestid="explore-by-ingredient" path="/explorar/comidas/ingredientes" />
+        <Button value="Por Local de Origem" dataTestid="explore-by-area" path="/explorar/comidas/area" />
+        <Button value="Me Surpreenda!" dataTestid="explore-surprise" path="" />
       </div>
     );
   }
   return (
     <div>
       <Header headerText={ `Explorar ${recipeType}` } showSearchButton="false" />
-      <Button value="Por Ingredientes" dataTestid="explore-by-ingredient" />
-      <Button value="Me Surpreenda!" dataTestid="explore-surprise" />
+      <Button value="Por Ingredientes" dataTestid="explore-by-ingredient" path="/explorar/bebidas/ingredientes" />
+      <Button value="Me Surpreenda!" dataTestid="explore-surprise" path="" />
     </div>
   );
 }

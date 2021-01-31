@@ -1,25 +1,24 @@
 import React from 'react';
-import ReactRouterPropTypes from 'react-router-prop-types';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 function Button(props) {
-  const { history, recipeType, value, dataTestid } = props;
+  const { path, value, dataTestid } = props;
+
   return (
-    <button
-      type="button"
+    <Link
+      to={ path }
       data-testid={ dataTestid }
-      onClick={ () => history.push(`/explorar/${recipeType}/ingredientes`) }
     >
       {value}
-    </button>
+    </Link>
   );
 }
 
 export default Button;
 
 Button.propTypes = {
-  recipeType: PropTypes.string.isRequired,
-  history: ReactRouterPropTypes.history.isRequired,
   value: PropTypes.string.isRequired,
   dataTestid: PropTypes.string.isRequired,
+  path: PropTypes.string.isRequired,
 };
