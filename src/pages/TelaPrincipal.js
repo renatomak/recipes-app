@@ -33,22 +33,21 @@ function TelaPrincipal(props) {
         if (selectedCategory === '') {
           const result = await response.json();
           data = result.meals;
-        }
-        else {
+        } else {
           console.log(selectedCategory);
-          const result = await response.json();
-          data = result.meals.filter((meal) => meal.strCategory === selectedCategory);
+          const api = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${selectedCategory}`);
+          const result = await api.json();
+          data = result.meals;
         }
-      }
-      else if (recipeType === 'Bebidas') {
+      } else if (recipeType === 'Bebidas') {
         const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
         if (selectedCategory === '') {
           const result = await response.json();
           data = result.drinks;
-        }
-        else {
-          const result = await response.json();
-          data = result.drinks.filter((drink) => drink.strCategory === selectedCategory);
+        } else {
+          const api = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${selectedCategory}`);
+          const result = await api.json();
+          data = result.drinks;
         }
       }
       recipesCards(data);
@@ -102,8 +101,10 @@ function TelaPrincipal(props) {
           key={ category }
           type="button"
           data-testid={ `${category}-category-filter` }
-          onClick={() => { setSelectedCategory(category);
-            showInitialCards(); }}
+          onClick={ () => {
+            setSelectedCategory(category);
+            showInitialCards();
+          } }
         >
           { `${category}` }
         </button>

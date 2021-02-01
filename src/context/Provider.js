@@ -50,7 +50,8 @@ const RecipeAppProvider = ({ children }) => {
         response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchTerm}`);
       }
       return response.json();
-  }, [searchTerm, searchType]);
+    }, [searchTerm, searchType],
+  );
 
   const caseFirstLetter = useCallback(
     async () => {
@@ -91,8 +92,7 @@ const RecipeAppProvider = ({ children }) => {
           const result = await caseFirstLetter();
           data = result.meals;
         }
-      }
-      else if (searchType === 'Comidas') {
+      } else if (searchType === 'Bebidas') {
         if (radioButton === 'ingredient') {
           const result = await caseIngredient();
           data = result.drinks;
