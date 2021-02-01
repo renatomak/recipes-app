@@ -20,6 +20,7 @@ function Perfil(props) {
 
   return (
     <div>
+      <p>Perfil</p>
       <Header headerText="Perfil" showSearchButton="false" />
       <div>
         <span data-testid="profile-email">{ email }</span>

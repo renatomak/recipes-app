@@ -8,7 +8,6 @@ function ReceitasFeitasFavoritas({ history: { push }, telaAtual }) {
   const [filter, setFilter] = useState('all');
   const [updateFavorites, setUpdateFavorites] = useState(false);
   const [loading, setLoading] = useState(true);
-
   const messageTelaAtual = telaAtual === 'feitas'
     ? 'Receitas Feitas'
     : 'Receitas Favoritas';
@@ -24,7 +23,7 @@ function ReceitasFeitasFavoritas({ history: { push }, telaAtual }) {
   }, [data]);
 
   return (
-    <div>
+    <div data-testid="tela-receitas-feitas-favoritas">
       <Header headerText={ messageTelaAtual } showSearchButton="false" />
       <BotoesDeFiltros setFilter={ setFilter } />
       {!loading && data

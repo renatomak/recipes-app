@@ -25,8 +25,10 @@ function App() {
   criarLocalStorage();
   return (
     <Provider>
-      <BrowserRouter>
+      <h1>Teste</h1>
         <Switch>
+          <h1>Switch</h1>
+
           <Route
             exact
             path="/comidas/:id"
@@ -113,8 +115,8 @@ function App() {
               <ReceitasFeitasFavoritas { ...props } telaAtual="favoritas" />
             ) }
           />
+          <Route render={()=> <p>Falsa</p>} />
         </Switch>
-      </BrowserRouter>
     </Provider>
   );
 }
