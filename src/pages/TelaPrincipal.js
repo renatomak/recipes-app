@@ -103,9 +103,14 @@ function TelaPrincipal(props) {
           type="button"
           data-testid={ `${category}-category-filter` }
           onClick={ () => {
-            setFilterIsSelected(!filterIsSelected);
-            setSelectedCategory(category);
-            showInitialCards();
+            if (selectedCategory !== category) {
+              setFilterIsSelected(true);
+              setSelectedCategory(category);
+              showInitialCards();
+            } else if (selectedCategory === category) {
+              setFilterIsSelected(!filterIsSelected);
+              showInitialCards();
+            }
           } }
         >
           { `${category}` }
