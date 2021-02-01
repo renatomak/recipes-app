@@ -8,6 +8,7 @@ function TelaPrincipal(props) {
   const { recipeType } = props;
   const [isLoading, setIsLoading] = useState(true);
   const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState('');
 
   const {
     recipes,
@@ -29,14 +30,29 @@ function TelaPrincipal(props) {
       let data = {};
       if (recipeType === 'Comidas') {
         const response = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
-        data = await response.json();
+        if (selectedCategory === '') {
+          const result = await response.json();
+          data = result.meals;
+        }
+        else {
+          console.log(selectedCategory);
+          const result = await response.json();
+          data = result.meals.filter((meal) => meal.strCategory === selectedCategory);
+        }
       }
-      if (recipeType === 'Bebidas') {
+      else if (recipeType === 'Bebidas') {
         const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
-        data = await response.json();
+        if (selectedCategory === '') {
+          const result = await response.json();
+          data = result.drinks;
+        }
+        else {
+          const result = await response.json();
+          data = result.drinks.filter((drink) => drink.strCategory === selectedCategory);
+        }
       }
       recipesCards(data);
-    }, [recipesCards, recipeType],
+    }, [recipesCards, recipeType, selectedCategory],
   );
 
   useEffect(() => {
@@ -86,6 +102,8 @@ function TelaPrincipal(props) {
           key={ category }
           type="button"
           data-testid={ `${category}-category-filter` }
+          onClick={() => { setSelectedCategory(category);
+            showInitialCards(); }}
         >
           { `${category}` }
         </button>

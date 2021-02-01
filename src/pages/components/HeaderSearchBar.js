@@ -26,13 +26,13 @@ function HeaderSearchBar(props) {
   const handleClick = async () => {
     const { headerText } = props;
     const data = await searchButtonAPIRequest();
-    if (data.meals === null || data.drinks === null) {
+    if (data === null) {
       alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
-    } else if (headerText === 'Comidas' && data.meals.length === 1) {
-      const id = data.meals[0].idMeal;
+    } else if (headerText === 'Comidas' && data.length === 1) {
+      const id = data[0].idMeal;
       history.push(`/comidas/${id}`);
-    } else if (headerText === 'Bebidas' && data.drinks.length === 1) {
-      const id = data.drinks[0].idDrink;
+    } else if (headerText === 'Bebidas' && data.length === 1) {
+      const id = data[0].idDrink;
       history.push(`/bebidas/${id}`);
     }
   };

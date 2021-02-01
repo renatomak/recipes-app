@@ -41,15 +41,16 @@ const RecipeAppProvider = ({ children }) => {
     return response.json();
   };
 
-  const caseName = async (response) => {
-    if (searchType === 'Comidas') {
-      response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchTerm}`);
-    }
-    if (searchType === 'Bebidas') {
-      response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchTerm}`);
-    }
-    return response.json();
-  };
+  const caseName = useCallback(
+    async (response) => {
+      if (searchType === 'Comidas') {
+        response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchTerm}`);
+      }
+      if (searchType === 'Bebidas') {
+        response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchTerm}`);
+      }
+      return response.json();
+  }, [searchTerm, searchType]);
 
   const caseFirstLetter = useCallback(
     async () => {
@@ -70,26 +71,38 @@ const RecipeAppProvider = ({ children }) => {
     const recipesList = [];
     const zero = 0;
     const twelve = 12;
-    for (let index = zero; index < twelve; index += 1) {
-      if (searchType === 'Comidas' && data.meals[index]) {
-        recipesList.push(data.meals[index]);
-      }
-      if (searchType === 'Bebidas' && data.drinks[index]) {
-        recipesList.push(data.drinks[index]);
-      }
+    for (let index = zero; (index < twelve && index < data.length); index += 1) {
+      recipesList.push(data[index]);
     }
     setRecipes(recipesList);
-  }, [searchType]);
+  }, []);
 
   const searchButtonAPIRequest = useCallback(
     async () => {
       let data = {};
-      if (radioButton === 'ingredient') {
-        data = await caseIngredient();
-      } else if (radioButton === 'name') {
-        data = await caseName();
-      } else if (radioButton === 'first-letter') {
-        data = await caseFirstLetter();
+      if (searchType === 'Comidas') {
+        if (radioButton === 'ingredient') {
+          const result = await caseIngredient();
+          data = result.meals;
+        } else if (radioButton === 'name') {
+          const result = await caseName();
+          data = result.meals;
+        } else if (radioButton === 'first-letter') {
+          const result = await caseFirstLetter();
+          data = result.meals;
+        }
+      }
+      else if (searchType === 'Comidas') {
+        if (radioButton === 'ingredient') {
+          const result = await caseIngredient();
+          data = result.drinks;
+        } else if (radioButton === 'name') {
+          const result = await caseName();
+          data = result.drinks;
+        } else if (radioButton === 'first-letter') {
+          const result = await caseFirstLetter();
+          data = result.drinks;
+        }
       }
       recipesCards(data);
       return data;
@@ -98,6 +111,7 @@ const RecipeAppProvider = ({ children }) => {
       caseName,
       radioButton,
       recipesCards,
+      searchType,
     ],
   );
 
