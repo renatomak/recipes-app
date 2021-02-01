@@ -4,12 +4,12 @@ import Header from './components/Header';
 
 function recuperarEmail() {
   const user = localStorage.getItem('user');
-  const email = JSON.parse(user);
+  const { email } = JSON.parse(user);
   return email;
 }
 
 function Perfil(props) {
-  const { email } = recuperarEmail();
+  const email = localStorage.getItem('user') ? recuperarEmail() : '';
   const { history } = props;
   console.log(email);
 

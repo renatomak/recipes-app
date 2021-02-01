@@ -106,7 +106,6 @@ export function favoritarReceita(receita, favorita, setFavorita) {
     const receitasFavoritas = JSON.parse(localStorage.getItem('favoriteRecipes'));
     const idExist = idMeal || idDrink;
     const arrayDesfavoritado = receitasFavoritas.filter(({ id }) => id !== idExist);
-    console.log(arrayDesfavoritado);
     localStorage.setItem('favoriteRecipes', JSON.stringify(arrayDesfavoritado));
   } else if (!favorita) {
     // favoritar
@@ -125,4 +124,14 @@ export function favoritarReceita(receita, favorita, setFavorita) {
     );
   }
   setFavorita(!favorita);
+}
+
+export function desfavoritarReceita(id, setUpdateFavorites) {
+  const receitasFavoritas = JSON.parse(localStorage.getItem('favoriteRecipes'));
+  const arrayDesfavoritado = receitasFavoritas
+    .filter(({ id: idFavorite }) => idFavorite !== id);
+  localStorage.setItem('favoriteRecipes', JSON.stringify(arrayDesfavoritado));
+  setUpdateFavorites(true);
+  const delay = 5000;
+  setTimeout(() => { setUpdateFavorites(false); }, delay);
 }
