@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
-import './Explorar.css';
 import { RecipeAppContext } from '../context/Provider';
 import Header from './components/Header';
 import Button from './components/Button';

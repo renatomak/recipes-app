@@ -35,7 +35,6 @@ const RecipeAppProvider = ({ children }) => {
     if (searchType === 'Bebidas') {
       response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php');
     }
-    console.log('tipo', searchType)
     return response.json();
   };
 
@@ -78,13 +77,6 @@ const RecipeAppProvider = ({ children }) => {
     return data;
   };
 
-  /**
-   * const key = Object.keys(json)[0];
-          const obj = json[key][0];
-          const keyType = Object.keys(obj)[0];
-          idValue = obj[keyType];
-          initialPath = `${path}${idValue}`;
-   */
   const searchIDRandon = async () => {
     const response = [];
     const data = await recipeRandon(response);
