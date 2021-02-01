@@ -5,46 +5,56 @@ import RecipeAppContext from '../context/index';
 import RecipeCard from './components/RecipeCard';
 
 function TelaPrincipal(props) {
-  const { recipeType } = props;
+const { recipeType } = props;
 
-  const {
-    recipes,
-    setSearchType,
-    showInitialCards,
-  } = useContext(RecipeAppContext);
+const {
+  recipes,
+  setSearchType,
+  showInitialCards,
+  categories,
+} = useContext(RecipeAppContext);
 
-  useEffect(() => {
-    if (recipeType === 'Comidas') {
-      setSearchType('Comidas');
-    }
-    if (recipeType === 'Bebidas') {
-      setSearchType('Bebidas');
-    }
-  }, [setSearchType, recipeType, props]);
+useEffect(() => {
+  if (recipeType === 'Comidas') {
+    setSearchType('Comidas');
+  }
+  if (recipeType === 'Bebidas') {
+    setSearchType('Bebidas');
+  }
+}, [setSearchType, recipeType, props]);
 
-  console.log(recipes);
+useEffect(() => {
+  showInitialCards();
+}, [showInitialCards]);
 
-  useEffect(() => {
-    showInitialCards();
-  }, [showInitialCards]);
+/* useEffect(() => {
+  const categories = categoryButtonAPIRequest();
+  return categories;
+}, [categoryButtonAPIRequest]); */
 
-  return (
-    <div>
-      <Header headerText={ recipeType } showSearchButton="true" />
-      {recipes.map((item, index) => (
-        <RecipeCard
-          key={ index }
-          recipes={ recipes }
-          index={ index }
-          recipeType={ recipeType }
-        />
-      ))}
-    </div>
-  );
+/* const categories =  categoryButtonAPIRequest(); */
+console.log(categories);
+
+return (
+  <div>
+    <Header headerText={ recipeType } showSearchButton="true" />
+    {categories.map((category) => (
+      <button type="button" data-testid={`${category.strCategory}-category-filter`}>{ category.strCategory }</button>
+    ))}
+    {recipes.map((item, index) => (
+      <RecipeCard
+        key={ index }
+        recipes={ recipes }
+        index={ index }
+        recipeType={ recipeType }
+      />
+    ))}
+  </div>
+);
 }
 
 export default TelaPrincipal;
 
 TelaPrincipal.propTypes = {
-  recipeType: PropTypes.string.isRequired,
+recipeType: PropTypes.string.isRequired,
 };
