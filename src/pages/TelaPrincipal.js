@@ -15,6 +15,7 @@ function TelaPrincipal(props) {
   return (
     <div>
       <Header headerText={ recipeType } showSearchButton="true" />
+      {console.log(recipes)}
       {recipes.map((item, index) => (
         <RecipeCard
           key={ index }
