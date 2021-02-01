@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import Header from './components/Header';
+import Footer from './components/Footer';
 
 function recuperarEmail() {
   const user = localStorage.getItem('user');
@@ -21,6 +22,7 @@ function Perfil(props) {
   return (
     <div>
       <Header headerText="Perfil" showSearchButton="false" />
+      <Footer />
       <div>
         <span data-testid="profile-email">{ email }</span>
         <button
