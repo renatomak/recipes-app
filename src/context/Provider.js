@@ -13,6 +13,7 @@ const RecipeAppProvider = ({ children }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [recipes, setRecipes] = useState([]);
+  const [idRandon, setIdRandon] = useState('');
 
   const handleChangeEmail = (value) => setEmail(value);
   const handleChangePassword = (value) => setPassword(value);
@@ -24,6 +25,17 @@ const RecipeAppProvider = ({ children }) => {
     if (searchType === 'Bebidas') {
       response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${searchTerm}`);
     }
+    return response.json();
+  };
+
+  const recipeRandon = async (response) => {
+    if (searchType === 'Comidas') {
+      response = await fetch('https://www.themealdb.com/api/json/v1/1/random.php');
+    }
+    if (searchType === 'Bebidas') {
+      response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php');
+    }
+    console.log('tipo', searchType)
     return response.json();
   };
 
@@ -66,6 +78,23 @@ const RecipeAppProvider = ({ children }) => {
     return data;
   };
 
+  /**
+   * const key = Object.keys(json)[0];
+          const obj = json[key][0];
+          const keyType = Object.keys(obj)[0];
+          idValue = obj[keyType];
+          initialPath = `${path}${idValue}`;
+   */
+  const searchIDRandon = async () => {
+    const response = [];
+    const data = await recipeRandon(response);
+    const key = Object.keys(data)[0];
+    const obj = data[key][0];
+    const keyType = Object.keys(obj)[0];
+    const idValue = obj[keyType];
+    return idValue;
+  };
+
   const context = {
     receita,
     ingredientes,
@@ -86,6 +115,9 @@ const RecipeAppProvider = ({ children }) => {
     setSearchButtonApiResults,
     recipes,
     setRecipes,
+    idRandon,
+    setIdRandon,
+    searchIDRandon,
   };
 
   return (

@@ -4,7 +4,6 @@ import Header from './components/Header';
 
 function Explorar(props) {
   const { history } = props;
-  console.log(history)
   return (
     <div>
       <Header headerText="Explorar" showSearchButton="false" />

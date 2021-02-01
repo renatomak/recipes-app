@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 function Button(props) {
   const { path, value, dataTestid } = props;
-
+console.log('path', path)
   return (
     <Link
       to={ path }
