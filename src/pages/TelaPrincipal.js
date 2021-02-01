@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import Header from './components/Header';
 import RecipeAppContext from '../context/index';
@@ -6,12 +6,13 @@ import RecipeCard from './components/RecipeCard';
 
 function TelaPrincipal(props) {
   const { recipeType } = props;
+  const [isLoading, setIsLoading] = useState(true);
+  const [categories, setCategories] = useState([]);
 
   const {
     recipes,
+    recipesCards,
     setSearchType,
-    showInitialCards,
-    categories,
   } = useContext(RecipeAppContext);
 
   useEffect(() => {
@@ -23,28 +24,70 @@ function TelaPrincipal(props) {
     }
   }, [setSearchType, recipeType, props]);
 
+  const showInitialCards = useCallback(
+    async () => {
+      let data = {};
+      if (recipeType === 'Comidas') {
+        const response = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
+        data = await response.json();
+      }
+      if (recipeType === 'Bebidas') {
+        const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
+        data = await response.json();
+      }
+      recipesCards(data);
+    }, [recipesCards, recipeType],
+  );
+
   useEffect(() => {
     showInitialCards();
   }, [showInitialCards]);
 
-  /* useEffect(() => {
-  const categories = categoryButtonAPIRequest();
-  return categories;
-}, [categoryButtonAPIRequest]); */
+  const categoryButtonAPIRequest = useCallback(
+    async () => {
+      setIsLoading(true);
+      let data = [];
+      const allCategories = [];
+      if (recipeType === 'Comidas') {
+        const response = await fetch('https://www.themealdb.com/api/json/v1/1/list.php?c=list');
+        data = await response.json();
+        data.meals.map((meal) => {
+          allCategories.push(meal.strCategory);
+          return allCategories;
+        });
+      } else if (recipeType === 'Bebidas') {
+        const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list');
+        data = await response.json();
+        data.drinks.map((drink) => {
+          allCategories.push(drink.strCategory);
+          return allCategories;
+        });
+      }
+      const fiveCategories = [];
+      const five = 5;
+      const zero = 0;
+      for (let i = zero; i < five; i += 1) {
+        fiveCategories.push(allCategories[i]);
+      }
+      setCategories(fiveCategories);
+      setIsLoading(false);
+    }, [recipeType],
+  );
 
-  /* const categories =  categoryButtonAPIRequest(); */
-  console.log(categories);
+  useEffect(() => {
+    categoryButtonAPIRequest();
+  }, [categoryButtonAPIRequest]);
 
   return (
     <div>
       <Header headerText={ recipeType } showSearchButton="true" />
-      {categories.map((category) => (
+      {!isLoading && categories.map((category) => (
         <button
           key={ category }
           type="button"
-          data-testid={ `${category.strCategory}-category-filter` }
+          data-testid={ `${category}-category-filter` }
         >
-          { category.strCategory }
+          { `${category}` }
         </button>
       ))}
       {recipes.map((item, index) => (

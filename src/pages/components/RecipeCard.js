@@ -22,8 +22,6 @@ function RecipeCard(props) {
     type = 'bebidas';
   }
 
-  console.log(recipes);
-
   return (
     <Link to={ `/${type}/${id}` }>
       <div data-testid={ `${index}-recipe-card` }>

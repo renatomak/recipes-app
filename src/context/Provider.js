@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import RecipeAppContext from '.';
 
@@ -13,45 +13,9 @@ const RecipeAppProvider = ({ children }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [recipes, setRecipes] = useState([]);
-  const [categories, setCategories] = useState([]);
 
   const handleChangeEmail = (value) => setEmail(value);
   const handleChangePassword = (value) => setPassword(value);
-
-  const categoryButtonAPIRequest = useCallback(
-    async () => {
-      let data = [];
-      const allCategories = [];
-      if (searchType === 'Comidas') {
-        const response = await fetch('https://www.themealdb.com/api/json/v1/1/list.php?c=list');
-        data = await response.json();
-        data.meals.map((meal) => {
-          allCategories.push(meal.strCategory);
-          console.log(allCategories);
-          return allCategories;
-        });
-      } else if (searchType === 'Bebidas') {
-        const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list');
-        data = await response.json();
-        data.drinks.map((drink) => {
-          allCategories.push(drink.strCategory);
-          return allCategories;
-        });
-      }
-      const fiveCategories = [];
-      const five = 5;
-      const zero = 0;
-      for (let i = zero; i < five; i += 1) {
-        fiveCategories.push(allCategories[i]);
-      }
-      console.log(fiveCategories);
-      setCategories(fiveCategories);
-    }, [searchType],
-  );
-
-  useEffect(() => {
-    categoryButtonAPIRequest();
-  }, [searchType, categoryButtonAPIRequest]);
 
   const caseIngredient = useCallback(
     async () => {
@@ -129,24 +93,6 @@ const RecipeAppProvider = ({ children }) => {
     ],
   );
 
-  const showInitialCards = useCallback(
-    async () => {
-      let data = {};
-      if (searchType === 'Comidas') {
-        console.log('testando');
-        const response = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
-        data = await response.json();
-        console.log(data);
-      }
-      if (searchType === 'Bebidas') {
-        const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
-        data = await response.json();
-      }
-      recipesCards(data);
-    }, [searchType,
-      recipesCards],
-  );
-
   const context = {
     receita,
     ingredientes,
@@ -168,8 +114,6 @@ const RecipeAppProvider = ({ children }) => {
     recipes,
     setRecipes,
     recipesCards,
-    showInitialCards,
-    categories,
   };
 
   return (
