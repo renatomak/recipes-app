@@ -116,6 +116,19 @@ function TelaPrincipal(props) {
           { `${category}` }
         </button>
       ))}
+      {!isLoading && (
+        <button
+          type="button"
+          data-testid="All-category-filter"
+          onClick={ () => {
+            setFilterIsSelected(false);
+            setSelectedCategory('');
+            showInitialCards();
+          } }
+        >
+          All
+        </button>
+      )}
       {recipes.map((item, index) => (
         <RecipeCard
           key={ index }
