@@ -10,8 +10,7 @@ import ExplorarIngrediente from './pages/ExplorarIngrediente';
 import ExplorarComidasArea from './pages/ExplorarComidasArea';
 import Login from './pages/Login';
 import Perfil from './pages/Perfil';
-import ReceitasFavoritas from './pages/ReceitasFavoritas';
-import ReceitasFeitas from './pages/ReceitasFeitas';
+import ReceitasFeitasFavoritas from './pages/ReceitasFeitasFavoritas';
 
 function criarLocalStorage() {
   const localStorageDoneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
@@ -102,8 +101,18 @@ function App() {
           />
           <Route path="/explorar/comidas/area" component={ ExplorarComidasArea } />
           <Route path="/perfil" component={ Perfil } />
-          <Route path="/receitas-feitas" component={ ReceitasFeitas } />
-          <Route path="/receitas-favoritas" component={ ReceitasFavoritas } />
+          <Route
+            path="/receitas-feitas"
+            render={ (props) => (
+              <ReceitasFeitasFavoritas { ...props } telaAtual="feitas" />
+            ) }
+          />
+          <Route
+            path="/receitas-favoritas"
+            render={ (props) => (
+              <ReceitasFeitasFavoritas { ...props } telaAtual="favoritas" />
+            ) }
+          />
         </Switch>
       </BrowserRouter>
     </Provider>

@@ -13,6 +13,7 @@ const RecipeAppProvider = ({ children }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [recipes, setRecipes] = useState([]);
+  const [idRandon, setIdRandon] = useState('');
 
   const handleChangeEmail = (value) => setEmail(value);
   const handleChangePassword = (value) => setPassword(value);
@@ -30,18 +31,25 @@ const RecipeAppProvider = ({ children }) => {
     }, [searchTerm, searchType],
   );
 
-  const caseName = useCallback(
-    async () => {
-      let response = [];
-      if (searchType === 'Comidas') {
-        response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchTerm}`);
-      } else if (searchType === 'Bebidas') {
-        response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchTerm}`);
-      }
-      const data = await response.json();
-      return data;
-    }, [searchTerm, searchType],
-  );
+  const recipeRandon = async (response) => {
+    if (searchType === 'Comidas') {
+      response = await fetch('https://www.themealdb.com/api/json/v1/1/random.php');
+    }
+    if (searchType === 'Bebidas') {
+      response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php');
+    }
+    return response.json();
+  };
+
+  const caseName = async (response) => {
+    if (searchType === 'Comidas') {
+      response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchTerm}`);
+    }
+    if (searchType === 'Bebidas') {
+      response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchTerm}`);
+    }
+    return response.json();
+  };
 
   const caseFirstLetter = useCallback(
     async () => {
@@ -93,6 +101,16 @@ const RecipeAppProvider = ({ children }) => {
     ],
   );
 
+  const searchIDRandon = async () => {
+    const response = [];
+    const data = await recipeRandon(response);
+    const key = Object.keys(data)[0];
+    const obj = data[key][0];
+    const keyType = Object.keys(obj)[0];
+    const idValue = obj[keyType];
+    return idValue;
+  };
+
   const context = {
     receita,
     ingredientes,
@@ -114,6 +132,9 @@ const RecipeAppProvider = ({ children }) => {
     recipes,
     setRecipes,
     recipesCards,
+    idRandon,
+    setIdRandon,
+    searchIDRandon,
   };
 
   return (
