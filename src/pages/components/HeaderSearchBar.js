@@ -9,7 +9,6 @@ function HeaderSearchBar(props) {
     setSearchTerm,
     setRadioButton,
     setSearchType,
-    setRecipes,
   } = useContext(RecipeAppContext);
 
   const history = useHistory();
@@ -24,36 +23,18 @@ function HeaderSearchBar(props) {
     }
   }, [setSearchType, props]);
 
-  const showRecipes = (data) => {
-    const { headerText } = props;
-    const recipes = [];
-    const zero = 0;
-    const twelve = 12;
-    for (let index = zero; index < twelve; index += 1) {
-      if (headerText === 'Comidas' && data.meals[index]) {
-        recipes.push(data.meals[index]);
-      }
-      if (headerText === 'Bebidas' && data.drinks[index]) {
-        recipes.push(data.drinks[index]);
-      }
-    }
-    console.log(recipes);
-    setRecipes(recipes);
-  };
-
   const handleClick = async () => {
     const { headerText } = props;
     const data = await searchButtonAPIRequest();
-    if (data.meals === null || data.drinks === null) {
+    console.log(data);
+    if (data === null) {
       alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
-    } else if (headerText === 'Comidas' && data.meals.length === 1) {
-      const id = data.meals[0].idMeal;
+    } else if (headerText === 'Comidas' && data.length === 1) {
+      const id = data[0].idMeal;
       history.push(`/comidas/${id}`);
-    } else if (headerText === 'Bebidas' && data.drinks.length === 1) {
-      const id = data.drinks[0].idDrink;
+    } else if (headerText === 'Bebidas' && data.length === 1) {
+      const id = data[0].idDrink;
       history.push(`/bebidas/${id}`);
-    } else {
-      showRecipes(data);
     }
   };
 

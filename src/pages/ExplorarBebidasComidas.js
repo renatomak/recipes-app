@@ -14,7 +14,7 @@ function ExplorarBebidasComidas(props) {
 
   useEffect(() => {
     setSearchType(recipeType);
-  }, []);
+  }, [recipeType, setSearchType]);
 
   const handleSurprise = async () => {
     const id = await searchIDRandon();
