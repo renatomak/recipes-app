@@ -20,32 +20,34 @@ const RecipeAppProvider = ({ children }) => {
 
   const categoryButtonAPIRequest = useCallback(
     async () => {
-    let data = [];
-    let allCategories = [];
-    if (searchType === 'Comidas') {
-      const response = await fetch("https://www.themealdb.com/api/json/v1/1/list.php?c=list");
-      data = await response.json();
-      data.meals.map((meal) => {
-        allCategories.push(meal.strCategory);
-        console.log(allCategories)
-        return allCategories;
-      })
-    }
-    else if (searchType === 'Bebidas') {
-      const response = await fetch("https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list");
-      data = await response.json();
-      data.drinks.map((drink) => {
-        allCategories.push(drink.strCategory);
-        return allCategories;
-      })
-    }
-    let fiveCategories = [];
-    for (let i = 0; i < 5; i += 1) {
-      fiveCategories.push(allCategories[i]);
-    }
-    console.log(fiveCategories);
-    setCategories(fiveCategories);
-  }, [searchType]);
+      let data = [];
+      const allCategories = [];
+      if (searchType === 'Comidas') {
+        const response = await fetch('https://www.themealdb.com/api/json/v1/1/list.php?c=list');
+        data = await response.json();
+        data.meals.map((meal) => {
+          allCategories.push(meal.strCategory);
+          console.log(allCategories);
+          return allCategories;
+        });
+      } else if (searchType === 'Bebidas') {
+        const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list');
+        data = await response.json();
+        data.drinks.map((drink) => {
+          allCategories.push(drink.strCategory);
+          return allCategories;
+        });
+      }
+      const fiveCategories = [];
+      const five = 5;
+      const zero = 0;
+      for (let i = zero; i < five; i += 1) {
+        fiveCategories.push(allCategories[i]);
+      }
+      console.log(fiveCategories);
+      setCategories(fiveCategories);
+    }, [searchType],
+  );
 
   useEffect(() => {
     categoryButtonAPIRequest();
