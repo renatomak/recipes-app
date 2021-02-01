@@ -6,7 +6,6 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Button from './components/Button';
 
-
 function ExplorarBebidasComidas(props) {
   const { recipeType } = props;
   const [isRedirect, setIsRedirect] = useState(false);
