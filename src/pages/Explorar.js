@@ -1,6 +1,6 @@
 import React from 'react';
-import Footer from './components/Footer';
 import ReactRouterPropTypes from 'react-router-prop-types';
+import Footer from './components/Footer';
 import Header from './components/Header';
 
 function Explorar(props) {
@@ -8,7 +8,6 @@ function Explorar(props) {
   return (
     <div>
       <Header headerText="Explorar" showSearchButton="false" />
-      <Footer />
       <button
         type="button"
         data-testid="explore-food"
@@ -23,6 +22,7 @@ function Explorar(props) {
       >
         Explorar Bebidas
       </button>
+      <Footer />
     </div>
   );
 }

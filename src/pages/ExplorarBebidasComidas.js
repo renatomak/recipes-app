@@ -52,7 +52,7 @@ function ExplorarBebidasComidas(props) {
         >
           Me Surpreenda!
         </button>
-
+        <Footer />
       </div>
     );
   }
@@ -60,7 +60,6 @@ function ExplorarBebidasComidas(props) {
   return (
     <div>
       <Header headerText={ `Explorar ${recipeType}` } showSearchButton="false" />
-      <Footer />
       <Button
         value="Por Ingredientes"
         dataTestid="explore-by-ingredient"
@@ -73,6 +72,7 @@ function ExplorarBebidasComidas(props) {
       >
         Me Surpreenda!
       </button>
+      <Footer />
     </div>
   );
 }
