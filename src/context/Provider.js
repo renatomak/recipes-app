@@ -104,7 +104,9 @@ const RecipeAppProvider = ({ children }) => {
           data = result.drinks;
         }
       }
-      recipesCards(data);
+      if (data !== null) {
+        recipesCards(data);
+      }
       return data;
     }, [caseFirstLetter,
       caseIngredient,

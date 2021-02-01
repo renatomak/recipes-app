@@ -26,6 +26,7 @@ function HeaderSearchBar(props) {
   const handleClick = async () => {
     const { headerText } = props;
     const data = await searchButtonAPIRequest();
+    console.log(data);
     if (data === null) {
       alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
     } else if (headerText === 'Comidas' && data.length === 1) {
