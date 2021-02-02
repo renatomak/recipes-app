@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
+import Footer from './components/Footer';
 import Header from './components/Header';
 
 function Explorar(props) {
@@ -21,6 +22,7 @@ function Explorar(props) {
       >
         Explorar Bebidas
       </button>
+      <Footer />
     </div>
   );
 }

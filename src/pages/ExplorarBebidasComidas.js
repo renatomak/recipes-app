@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { RecipeAppContext } from '../context/Provider';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import Button from './components/Button';
 
 function ExplorarBebidasComidas(props) {
@@ -13,7 +14,7 @@ function ExplorarBebidasComidas(props) {
 
   useEffect(() => {
     setSearchType(recipeType);
-  }, []);
+  }, [recipeType, setSearchType]);
 
   const handleSurprise = async () => {
     const id = await searchIDRandon();
@@ -51,7 +52,7 @@ function ExplorarBebidasComidas(props) {
         >
           Me Surpreenda!
         </button>
-
+        <Footer />
       </div>
     );
   }
@@ -71,6 +72,7 @@ function ExplorarBebidasComidas(props) {
       >
         Me Surpreenda!
       </button>
+      <Footer />
     </div>
   );
 }

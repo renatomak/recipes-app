@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import RecipeAppContext from '.';
 
@@ -18,15 +18,18 @@ const RecipeAppProvider = ({ children }) => {
   const handleChangeEmail = (value) => setEmail(value);
   const handleChangePassword = (value) => setPassword(value);
 
-  const caseIngredient = async (response) => {
-    if (searchType === 'Comidas') {
-      response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchTerm}`);
-    }
-    if (searchType === 'Bebidas') {
-      response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${searchTerm}`);
-    }
-    return response.json();
-  };
+  const caseIngredient = useCallback(
+    async () => {
+      let response = [];
+      if (searchType === 'Comidas') {
+        response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchTerm}`);
+      } else if (searchType === 'Bebidas') {
+        response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${searchTerm}`);
+      }
+      const data = await response.json();
+      return data;
+    }, [searchTerm, searchType],
+  );
 
   const recipeRandon = async (response) => {
     if (searchType === 'Comidas') {
@@ -38,44 +41,81 @@ const RecipeAppProvider = ({ children }) => {
     return response.json();
   };
 
-  const caseName = async (response) => {
-    if (searchType === 'Comidas') {
-      response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchTerm}`);
-    }
-    if (searchType === 'Bebidas') {
-      response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchTerm}`);
-    }
-    return response.json();
-  };
+  const caseName = useCallback(
+    async (response) => {
+      if (searchType === 'Comidas') {
+        response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchTerm}`);
+      }
+      if (searchType === 'Bebidas') {
+        response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchTerm}`);
+      }
+      return response.json();
+    }, [searchTerm, searchType],
+  );
 
-  const caseFirstLetter = async (response) => {
-    if (searchTerm.length > 1) {
-      alert('Sua busca deve conter somente 1 (um) caracter');
-    }
-    if (searchType === 'Comidas') {
-      response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${searchTerm}`);
-    }
-    if (searchType === 'Bebidas') {
-      response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${searchTerm}`);
-    }
-    return response.json();
-  };
+  const caseFirstLetter = useCallback(
+    async () => {
+      let response = [];
+      if (searchTerm.length > 1) {
+        alert('Sua busca deve conter somente 1 (um) caracter');
+      } else if (searchType === 'Comidas') {
+        response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${searchTerm}`);
+      } else if (searchType === 'Bebidas') {
+        response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${searchTerm}`);
+      }
+      const data = await response.json();
+      return data;
+    }, [searchTerm, searchType],
+  );
 
-  const searchButtonAPIRequest = async () => {
-    const response = [];
-    let data = {};
-    if (radioButton === 'ingredient') {
-      data = await caseIngredient(response);
+  const recipesCards = useCallback((data) => {
+    const recipesList = [];
+    const zero = 0;
+    const twelve = 12;
+    for (let index = zero; (index < twelve && index < data.length); index += 1) {
+      recipesList.push(data[index]);
     }
-    if (radioButton === 'name') {
-      data = await caseName(response);
-    }
-    if (radioButton === 'first-letter') {
-      data = await caseFirstLetter(response);
-    }
-    console.log(data);
-    return data;
-  };
+    setRecipes(recipesList);
+  }, []);
+
+  const searchButtonAPIRequest = useCallback(
+    async () => {
+      let data = {};
+      if (searchType === 'Comidas') {
+        if (radioButton === 'ingredient') {
+          const result = await caseIngredient();
+          data = result.meals;
+        } else if (radioButton === 'name') {
+          const result = await caseName();
+          data = result.meals;
+        } else if (radioButton === 'first-letter') {
+          const result = await caseFirstLetter();
+          data = result.meals;
+        }
+      } else if (searchType === 'Bebidas') {
+        if (radioButton === 'ingredient') {
+          const result = await caseIngredient();
+          data = result.drinks;
+        } else if (radioButton === 'name') {
+          const result = await caseName();
+          data = result.drinks;
+        } else if (radioButton === 'first-letter') {
+          const result = await caseFirstLetter();
+          data = result.drinks;
+        }
+      }
+      if (data !== null) {
+        recipesCards(data);
+      }
+      return data;
+    }, [caseFirstLetter,
+      caseIngredient,
+      caseName,
+      radioButton,
+      recipesCards,
+      searchType,
+    ],
+  );
 
   const searchIDRandon = async () => {
     const response = [];
@@ -107,6 +147,7 @@ const RecipeAppProvider = ({ children }) => {
     setSearchButtonApiResults,
     recipes,
     setRecipes,
+    recipesCards,
     idRandon,
     setIdRandon,
     searchIDRandon,
