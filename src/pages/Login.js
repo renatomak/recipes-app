@@ -8,6 +8,7 @@ function Login(props) {
 
   const validatesEmail = () => {
     const emailRegex = /[\w.-]+@[\w-]+\.[\w-.]+/gi;
+    console.log('email validado')
     return emailRegex.test(email);
   };
 
@@ -17,7 +18,6 @@ function Login(props) {
 
   const handleChangePassword = ({ target: { value } }) => {
     setPassword(value);
-    console.log(password.length);
     const limitSize = 6;
     if (password.length >= limitSize) setCheckedPassword(false);
   };
@@ -26,7 +26,6 @@ function Login(props) {
     const { history } = props;
 
     const emilObject = { email };
-    console.log(emilObject);
     localStorage.setItem('mealsToken', '1');
     localStorage.setItem('cocktailsToken', '1');
     localStorage.setItem('user', JSON.stringify(emilObject));
@@ -46,7 +45,8 @@ function Login(props) {
         />
         <input
           type="text"
-          name={ password }
+          value={ password }
+          name="password"
           data-testid="password-input"
           placeholder="password"
           onChange={ (e) => handleChangePassword(e) }

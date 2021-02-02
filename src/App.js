@@ -25,10 +25,7 @@ function App() {
   criarLocalStorage();
   return (
     <Provider>
-      <h1>Teste</h1>
         <Switch>
-          <h1>Switch</h1>
-
           <Route
             exact
             path="/comidas/:id"
