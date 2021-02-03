@@ -8,7 +8,6 @@ function Login(props) {
 
   const validatesEmail = () => {
     const emailRegex = /[\w.-]+@[\w-]+\.[\w-.]+/gi;
-    console.log('email validado')
     return emailRegex.test(email);
   };
 

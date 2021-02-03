@@ -25,6 +25,7 @@ function App() {
   criarLocalStorage();
   return (
     <Provider>
+      <BrowserRouter>
         <Switch>
           <Route
             exact
@@ -52,12 +53,12 @@ function App() {
           <Route
             exact
             path="/comidas"
-            render={ () => <TelaPrincipal recipeType="Comidas" /> }
+            render={ (props) => <TelaPrincipal recipeType="Comidas" /> }
           />
           <Route
             exact
             path="/bebidas"
-            render={ () => <TelaPrincipal recipeType="Bebidas" /> }
+            render={ (props) => <TelaPrincipal recipeType="Bebidas" /> }
           />
           <Route
             path="/comidas/:id/in-progress"
@@ -114,6 +115,7 @@ function App() {
           />
           <Route render={()=> <p>Falsa</p>} />
         </Switch>
+      </BrowserRouter>
     </Provider>
   );
 }
