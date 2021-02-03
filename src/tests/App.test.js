@@ -6,13 +6,13 @@ import renderWithRouter from './renderWithRouter';
 
 describe('APP - verificação das rotas', () => {
   test('se as rotas carregam os componentes corretos', () => {
-    const { getByTestId } = renderWithRouter(<App />);
+    const { getByTestId } = renderWithRouter(<App />, '/');
 
     const inputLogin = getByTestId('email-input');
     expect(inputLogin).toBeInTheDocument();
   });
   test('receitas favoritas está na tela', () => {
-    const { getByTestId, findByTestId } = renderWithRouter(<App />);
+    const { getByTestId, findByTestId } = renderWithRouter(<App />, '/');
 
     const inputLogin = getByTestId('email-input');
     const passwordInput = getByTestId('password-input');

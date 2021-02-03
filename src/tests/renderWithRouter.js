@@ -1,13 +1,13 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom'
+import { MemoryRouter } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import { Provider } from '../context/Provider';
 
-const renderWithRouter = (component) => {
+const renderWithRouter = (component, rota) => {
   return ({
     ...render(
       <Provider>
-        <MemoryRouter >{component}</MemoryRouter>
+        <MemoryRouter initialEntries={[rota]} >{component}</MemoryRouter>
       </Provider>
     ),
   });

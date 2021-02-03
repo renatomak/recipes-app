@@ -16,7 +16,6 @@ function ReceitasFeitasFavoritas({ history: { push }, telaAtual }) {
   const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
 
   const data = telaAtual === 'feitas' ? doneRecipes : favoriteRecipes;
-  console.log(telaAtual);
 
   useEffect(() => {
     if (data) setLoading(false);

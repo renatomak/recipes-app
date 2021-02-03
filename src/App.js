@@ -24,8 +24,8 @@ function criarLocalStorage() {
 function App() {
   criarLocalStorage();
   return (
-    <Provider>
-      <BrowserRouter>
+    // <Provider>
+    //   <BrowserRouter>
         <Switch>
           <Route
             exact
@@ -115,8 +115,8 @@ function App() {
           />
           <Route render={()=> <p>Falsa</p>} />
         </Switch>
-      </BrowserRouter>
-    </Provider>
+    //   </BrowserRouter>
+    // </Provider>
   );
 }
 
