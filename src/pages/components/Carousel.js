@@ -32,7 +32,7 @@ function CarouselRecipes({ recomendations }) {
           key={ recomendationIndex }
         >
           <img
-            className="d-block w-100"
+            className="carousel-image"
             src={ strDrinkThumb || strMealThumb }
             alt="recomendation"
           />
@@ -45,7 +45,7 @@ function CarouselRecipes({ recomendations }) {
             </h3>
           </Carousel.Caption>
         </Carousel.Item>
-
+      
       ))}
     </Carousel>
   );

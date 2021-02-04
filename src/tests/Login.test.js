@@ -16,7 +16,7 @@ describe('Login', () => {
   });
 
   test('testa se os inputs habilitam o botão e vai para a rota /comidas', async () => {
-    const { getByTestId, findByTestId } = renderWithRouter(<App />, '/');
+    const { getByTestId } = renderWithRouter(<App />, '/');
 
     const inputLogin = getByTestId('email-input');
     const passwordInput = getByTestId('password-input');

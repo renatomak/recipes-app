@@ -41,7 +41,7 @@ function TelaPrincipal(props) {
           const result = await api.json();
           data = result.meals;
         }
-      } else if (recipeType === 'Bebidas') {
+      } else {
         const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
         if (selectedCategory === '' || filterIsSelected === false) {
           const result = await response.json();
@@ -72,7 +72,7 @@ function TelaPrincipal(props) {
           allCategories.push(meal.strCategory);
           return allCategories;
         });
-      } else if (recipeType === 'Bebidas') {
+      } else {
         const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list');
         data = await response.json();
         data.drinks.map((drink) => {
@@ -108,7 +108,7 @@ function TelaPrincipal(props) {
               setFilterIsSelected(true);
               setSelectedCategory(category);
               showInitialCards();
-            } else if (selectedCategory === category) {
+            } else {
               setFilterIsSelected(!filterIsSelected);
               showInitialCards();
             }
