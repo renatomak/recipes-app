@@ -25,6 +25,8 @@ const drinksByIngredient = require('../mocks/drinksByIngredient');
 const areas = require('../mocks/areas');
 const japaneseMeals = require('../mocks/japaneseMeals');
 const italianMeals = require('../mocks/italianMeals');
+const lemon = require('../mocks/lemon');
+const drinkWithA = require('../mocks/drinkWithA');
 
 const fetch = (url) => Promise.resolve({
   status: 200,
@@ -115,6 +117,12 @@ const fetch = (url) => Promise.resolve({
 
     if (url === 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=')
       return Promise.resolve(drinks);
+
+    if (url === 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=lemon')
+      return Promise.resolve(lemon);
+
+    if (url === 'https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a')
+      return Promise.resolve(drinkWithA);
 
     return Promise.resolve(meals);
   },

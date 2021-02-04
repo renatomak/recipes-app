@@ -78,7 +78,7 @@ function DetalhesReceitaBebidaComida(props) {
     if (recipeType === 'Comidas') {
       endpoint = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
       recomendationEndpoint = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
-    } else if (recipeType === 'Bebidas') {
+    } else {
       endpoint = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
       recomendationEndpoint = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
     }

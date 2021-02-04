@@ -36,9 +36,10 @@ export function ChecaSeEstaEmAndamento(idReceita) {
   if (localStorage.getItem('inProgressRecipes')) {
     const receitasEmProgresso = JSON.parse(localStorage.getItem('inProgressRecipes'));
     const { cocktails, meals } = receitasEmProgresso;
-    const inProgress = cocktails || meals;
 
-    return Object.keys(inProgress)[0] === idReceita;
+    if (cocktails[idReceita]) return true;
+    if (meals[idReceita]) return true;
+    return false;
   }
   return false;
 }
