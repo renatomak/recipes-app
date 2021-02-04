@@ -1,0 +1,53 @@
+.myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  min-width: 100%; 
+  min-height: 100%;
+}
+
+.content-main {
+  margin-top: 120px;
+}
+
+.item-search {
+  display: flex;
+  justify-content: flex-end;
+  width: 20%;
+}
+
+.txtBusca {
+  float:left;
+  background-color: transparent;
+  padding-left:5px;
+  font-size:18px;
+  border:solid 5px #440074;
+  border-radius:10px 0 0 10px;
+  height:32px;
+  width: 220px;
+}
+
+.btnBusca{
+  border:none;
+  float:left;
+  height:32px;
+  border-radius:0 7px 7px 0;
+  width:70px;
+  font-weight:bold;
+  background: #440074;
+}
+.divBusca {
+  border-radius:10px;
+  width:300px;
+  height:32px;
+}
+
+.header-search-bar {
+  display: flex;
+  flex-direction: column;
+}
+.header-radio {
+  display: flex;
+  justify-content: space-between;
+}

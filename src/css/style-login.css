@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Lato");
 
-body {
+.body-login {
   background-image: url("../images/overHooked.jpeg");
   margin: 0;
   padding: 0;
