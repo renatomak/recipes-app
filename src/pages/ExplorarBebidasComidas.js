@@ -5,6 +5,7 @@ import { RecipeAppContext } from '../context/Provider';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Button from './components/Button';
+import backgroundVideo from '../video/MA-Smaller_1.webm';
 
 function ExplorarBebidasComidas(props) {
   const { recipeType } = props;
@@ -35,23 +36,29 @@ function ExplorarBebidasComidas(props) {
     return (
       <div>
         <Header headerText={ `Explorar ${recipeType}` } showSearchButton="false" />
-        <Button
-          value="Por Ingredientes"
-          dataTestid="explore-by-ingredient"
-          path="/explorar/comidas/ingredientes"
-        />
-        <Button
-          value="Por Local de Origem"
-          dataTestid="explore-by-area"
-          path="/explorar/comidas/area"
-        />
-        <button
-          type="button"
-          onClick={ handleSurprise }
-          data-testid="explore-surprise"
-        >
-          Me Surpreenda!
-        </button>
+        <video autoPlay muted loop className="backgroun-video">
+          <source src={ backgroundVideo } type="video/webm" />
+        </video>
+        <div className="contant-main-buttons">
+          <Button
+            value="Por Ingredientes"
+            dataTestid="explore-by-ingredient"
+            path="/explorar/comidas/ingredientes"
+          />
+          <Button
+            value="Por Local de Origem"
+            dataTestid="explore-by-area"
+            path="/explorar/comidas/area"
+          />
+          <button
+            type="button"
+            className="btn btn-explorar"
+            onClick={ handleSurprise }
+            data-testid="explore-surprise"
+          >
+            Me Surpreenda!
+          </button>
+        </div>
         <Footer />
       </div>
     );

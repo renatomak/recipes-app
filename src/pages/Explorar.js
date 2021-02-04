@@ -2,26 +2,35 @@ import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import Footer from './components/Footer';
 import Header from './components/Header';
+import backgroundVideo from '../video/Crown-Trick-Smaller1.webm';
+import '../css/style-main.css';
 
 function Explorar(props) {
   const { history } = props;
   return (
-    <div>
+    <div className="main-explorar">
       <Header headerText="Explorar" showSearchButton="false" />
-      <button
-        type="button"
-        data-testid="explore-food"
-        onClick={ () => history.push('/explorar/comidas') }
-      >
-        Explorar Comidas
-      </button>
-      <button
-        type="button"
-        data-testid="explore-drinks"
-        onClick={ () => history.push('/explorar/bebidas') }
-      >
-        Explorar Bebidas
-      </button>
+      <video autoPlay muted loop className="backgroun-video">
+        <source src={ backgroundVideo } type="video/webm" />
+      </video>
+      <div className="contant-main-buttons">
+        <button
+          type="button"
+          className="btn btn-explorar"
+          data-testid="explore-food"
+          onClick={ () => history.push('/explorar/comidas') }
+        >
+          Explorar Comidas
+        </button>
+        <button
+          type="button"
+          className="btn btn-explorar"
+          data-testid="explore-drinks"
+          onClick={ () => history.push('/explorar/bebidas') }
+        >
+          Explorar Bebidas
+        </button>
+      </div>
       <Footer />
     </div>
   );

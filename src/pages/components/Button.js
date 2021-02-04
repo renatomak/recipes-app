@@ -8,8 +8,11 @@ function Button(props) {
     <Link
       to={ path }
       data-testid={ dataTestid }
+      className="btn "
     >
-      {value}
+      <div className="btn-link">
+        {value}
+      </div>
     </Link>
   );
 }

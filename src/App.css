@@ -1,10 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');
+
+/* FONTE: www.devmedia.com.br na gia de CSS. O acesso só é restrito a usuários PRO */
+* {
+  box-sizing: border-box;
+  font-family: Concert One;
+}
+
 .meals {
   align-items: center;
   background: #0fa36b;
   color: #464646;
   display: flex;
   flex-direction: column;
-  font-family: sans-serif;
   height: 100vh;
   justify-content: center;
   width: 100%;
@@ -29,10 +36,21 @@
 }
 */
 
+.btn {
+  background: #440074;
+  border: none;
+  border-radius: 10px;
+  color: white;
+}
+
+.btn:hover {
+  background: #cc6835;
+  color: black;
+}
+
 .meals > .logo {
   animation: shake 1.5s infinite ease;
   color: aliceblue;
-  font-family: Montserrat , sans-serif;
   font-size: 3em;
   font-weight: 900;
 }

@@ -1,11 +1,13 @@
 import React, { useState, useContext, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
+import { Button } from '@material-ui/core';
 import Header from './components/Header';
 import RecipeAppContext from '../context/index';
 import RecipeCard from './components/RecipeCard';
 import Footer from './components/Footer';
 import backgroundVideo from '../video/AYCE-Smaller_1.webm';
 import '../css/style-main.css';
+import '../css/recipeCard.css';
 
 function TelaPrincipal(props) {
   const { recipeType } = props;
@@ -99,51 +101,61 @@ function TelaPrincipal(props) {
 
   return (
     <div>
-      <video autoPlay muted loop className="myVideo">
+      <video autoPlay muted loop className="backgroun-video">
         <source src={ backgroundVideo } type="video/webm" />
       </video>
       <Header headerText={ recipeType } showSearchButton="true" />
       <div className="content-main">
-        {!isLoading && categories.map((category) => (
-          <button
-            key={ category }
-            type="button"
-            data-testid={ `${category}-category-filter` }
-            onClick={ () => {
-              if (selectedCategory !== category) {
-                setFilterIsSelected(true);
-                setSelectedCategory(category);
+        <div className="contant-main-buttons">
+          {!isLoading && categories.map((category) => (
+            <Button
+              key={ category }
+              color="secondary"
+              variant="contained"
+              className="btn-category"
+              type="button"
+              data-testid={ `${category}-category-filter` }
+              onClick={ () => {
+                if (selectedCategory !== category) {
+                  setFilterIsSelected(true);
+                  setSelectedCategory(category);
+                  showInitialCards();
+                } else if (selectedCategory === category) {
+                  setFilterIsSelected(!filterIsSelected);
+                  showInitialCards();
+                }
+              } }
+            >
+              { `${category}` }
+            </Button>
+          ))}
+          {!isLoading && (
+            <Button
+              color="secondary"
+              className="btn-category"
+              variant="contained"
+              type="button"
+              data-testid="All-category-filter"
+              onClick={ () => {
+                setFilterIsSelected(false);
+                setSelectedCategory('');
                 showInitialCards();
-              } else if (selectedCategory === category) {
-                setFilterIsSelected(!filterIsSelected);
-                showInitialCards();
-              }
-            } }
-          >
-            { `${category}` }
-          </button>
-        ))}
-        {!isLoading && (
-          <button
-            type="button"
-            data-testid="All-category-filter"
-            onClick={ () => {
-              setFilterIsSelected(false);
-              setSelectedCategory('');
-              showInitialCards();
-            } }
-          >
-            All
-          </button>
-        )}
-        {recipes.map((item, index) => (
-          <RecipeCard
-            key={ index }
-            recipes={ recipes }
-            index={ index }
-            recipeType={ recipeType }
-          />
-        ))}
+              } }
+            >
+              All
+            </Button>
+          )}
+        </div>
+        <div className="wrapper">
+          {recipes.map((item, index) => (
+            <RecipeCard
+              key={ index }
+              recipes={ recipes }
+              index={ index }
+              recipeType={ recipeType }
+            />
+          ))}
+        </div>
       </div>
       <Footer />
     </div>
