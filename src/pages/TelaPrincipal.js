@@ -4,6 +4,8 @@ import Header from './components/Header';
 import RecipeAppContext from '../context/index';
 import RecipeCard from './components/RecipeCard';
 import Footer from './components/Footer';
+import backgroundVideo from '../video/AYCE-Smaller_1.webm';
+import '../css/style-main.css';
 
 function TelaPrincipal(props) {
   const { recipeType } = props;
@@ -97,47 +99,52 @@ function TelaPrincipal(props) {
 
   return (
     <div>
+      <video autoPlay muted loop className="myVideo">
+        <source src={ backgroundVideo } type="video/webm" />
+      </video>
       <Header headerText={ recipeType } showSearchButton="true" />
-      {!isLoading && categories.map((category) => (
-        <button
-          key={ category }
-          type="button"
-          data-testid={ `${category}-category-filter` }
-          onClick={ () => {
-            if (selectedCategory !== category) {
-              setFilterIsSelected(true);
-              setSelectedCategory(category);
+      <div className="content-main">
+        {!isLoading && categories.map((category) => (
+          <button
+            key={ category }
+            type="button"
+            data-testid={ `${category}-category-filter` }
+            onClick={ () => {
+              if (selectedCategory !== category) {
+                setFilterIsSelected(true);
+                setSelectedCategory(category);
+                showInitialCards();
+              } else if (selectedCategory === category) {
+                setFilterIsSelected(!filterIsSelected);
+                showInitialCards();
+              }
+            } }
+          >
+            { `${category}` }
+          </button>
+        ))}
+        {!isLoading && (
+          <button
+            type="button"
+            data-testid="All-category-filter"
+            onClick={ () => {
+              setFilterIsSelected(false);
+              setSelectedCategory('');
               showInitialCards();
-            } else {
-              setFilterIsSelected(!filterIsSelected);
-              showInitialCards();
-            }
-          } }
-        >
-          { `${category}` }
-        </button>
-      ))}
-      {!isLoading && (
-        <button
-          type="button"
-          data-testid="All-category-filter"
-          onClick={ () => {
-            setFilterIsSelected(false);
-            setSelectedCategory('');
-            showInitialCards();
-          } }
-        >
-          All
-        </button>
-      )}
-      {recipes.map((item, index) => (
-        <RecipeCard
-          key={ index }
-          recipes={ recipes }
-          index={ index }
-          recipeType={ recipeType }
-        />
-      ))}
+            } }
+          >
+            All
+          </button>
+        )}
+        {recipes.map((item, index) => (
+          <RecipeCard
+            key={ index }
+            recipes={ recipes }
+            index={ index }
+            recipeType={ recipeType }
+          />
+        ))}
+      </div>
       <Footer />
     </div>
   );

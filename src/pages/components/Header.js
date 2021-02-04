@@ -4,34 +4,38 @@ import { Link } from 'react-router-dom';
 import profileIcon from '../../images/profileIcon.svg';
 import searchIcon from '../../images/searchIcon.svg';
 import HeaderSearchBar from './HeaderSearchBar';
+import '../../css/header.css';
 
 function Header(props) {
   const { headerText, showSearchButton } = props;
   const [searchBar, setSearchBar] = useState(false);
   return (
-    <div>
-      <Link
+    <div className="header-content">
+      <a
         type="button"
         data-testid="profile-top-btn"
         src={ profileIcon }
         to="/perfil"
       >
         <img src={ profileIcon } alt="Profile icon" />
-      </Link>
+      </a>
       <h1 data-testid="page-title">{ headerText }</h1>
-      {JSON.parse(showSearchButton) && (
-        <button
-          type="button"
-          data-testid="search-top-btn"
-          src={ searchIcon }
-          onClick={ () => setSearchBar(!searchBar) }
-        >
-          <img src={ searchIcon } alt="Search icon" />
-        </button>
-      )}
-      {searchBar && (
-        <HeaderSearchBar headerText={ headerText } />
-      )}
+      <div className="item-search">
+        {searchBar && (
+          <HeaderSearchBar headerText={ headerText } />
+        )}
+        {JSON.parse(showSearchButton) && (
+          <button
+            className="search-top-btn"
+            type="button"
+            data-testid="search-top-btn"
+            src={ searchIcon }
+            onClick={ () => setSearchBar(!searchBar) }
+          >
+            <img src={ searchIcon } alt="Search icon" />
+          </button>
+        )}
+      </div>
     </div>
   );
 }
