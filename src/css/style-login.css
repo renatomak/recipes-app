@@ -1,53 +1,53 @@
 @import url("https://fonts.googleapis.com/css?family=Lato");
 
 body {
-    padding: 0;
-    margin: 0;
-    background-image: url('../images/overHooked.jpeg');
+  background-image: url("../images/overHooked.jpeg");
+  margin: 0;
+  padding: 0;
 }
+
 .container {
-    width: 100vw;
-    height: 100vh;
-    
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
 }
 
 .form-box {
-    width: 300px;
-    background: rgba(255, 255, 128, .5);
-    font-family: Lato;
-    text-align: center;
-    padding: 20px;
-    box-sizing: border-box;
-    border-top: 10px solid #1BA39C 
+  background: rgba(255, 255, 128, 0.5);
+  border-top: 10px solid #1ba39c;
+  box-sizing: border-box;
+  font-family: Lato;
+  text-align: center;
+  padding: 20px;
+  width: 300px;
 }
 
 .form-box .form-input {
-    border: none;
-    background: #eee;
-    width: 100%;
-    height: 50px;
-    text-align: center;
-    font-size: large;
-    margin-bottom: 10px
+  background: #eee;
+  border: none;
+  font-size: large;
+  height: 50px;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 100%;
 }
 
 .form-box .form-btn {
-    border: none;
-    background: #191970;
-    width: 100%;
-    height: 50px;
-    font-size: large;
-    color: #fff;
-    margin-bottom: 10px
+  background: #191970;
+  border: none;
+  color: #fff;
+  font-size: large;
+  height: 50px;
+  margin-bottom: 10px; 
+  width: 100%;
 }
 
-@media screen and (max-width:340px){
-    .form-box {
-        width: 100vw;
-        height: 100vh
-    }
+@media screen and (max-width: 340px) {
+  .form-box {
+    height: 100vh;
+    width: 100vw;
+  }
 }
