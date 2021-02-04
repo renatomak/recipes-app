@@ -31,24 +31,23 @@ function TelaPrincipal(props) {
     async () => {
       let data = {};
       if (recipeType === 'Comidas') {
-        const response = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
         if (selectedCategory === '' || filterIsSelected === false) {
+          const response = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
           const result = await response.json();
           data = result.meals;
         } else {
-          console.log(selectedCategory);
-          const api = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${selectedCategory}`);
-          const result = await api.json();
+          const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${selectedCategory}`);
+          const result = await response.json();
           data = result.meals;
         }
       } else if (recipeType === 'Bebidas') {
-        const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
         if (selectedCategory === '' || filterIsSelected === false) {
+          const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
           const result = await response.json();
           data = result.drinks;
         } else {
-          const api = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${selectedCategory}`);
-          const result = await api.json();
+          const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${selectedCategory}`);
+          const result = await response.json();
           data = result.drinks;
         }
       }
