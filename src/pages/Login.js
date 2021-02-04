@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import TitleLogin from './components/TitleLogin';
+import '../css/style-login.css';
 
 function Login(props) {
   const [email, setEmail] = useState('');
@@ -34,32 +36,38 @@ function Login(props) {
   };
 
   return (
-    <div>
-      <form>
-        <input
-          type="text"
-          name="email"
-          value={ email }
-          data-testid="email-input"
-          placeholder="user@trybe.com"
-          onChange={ (e) => handleChangeEmail(e) }
-        />
-        <input
-          type="text"
-          name={ password }
-          data-testid="password-input"
-          placeholder="password"
-          onChange={ (e) => handleChangePassword(e) }
-        />
-        <button
-          type="button"
-          data-testid="login-submit-btn"
-          disabled={ checkedPassword || !validatesEmail() }
-          onClick={ submit }
-        >
-          Entrar
-        </button>
-      </form>
+    <div className="container">
+      <TitleLogin />
+      <div className="form-box">
+        <form>
+          <input
+            type="text"
+            className="form-input"
+            name="email"
+            value={ email }
+            data-testid="email-input"
+            placeholder="user@trybe.com"
+            onChange={ (e) => handleChangeEmail(e) }
+          />
+          <input
+            type="text"
+            className="form-input"
+            name={ password }
+            data-testid="password-input"
+            placeholder="password"
+            onChange={ (e) => handleChangePassword(e) }
+          />
+          <button
+            type="button"
+            className="form-btn"
+            data-testid="login-submit-btn"
+            disabled={ checkedPassword || !validatesEmail() }
+            onClick={ submit }
+          >
+            Entrar
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
