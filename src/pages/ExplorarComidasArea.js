@@ -15,15 +15,15 @@ function ExplorarComidasArea() {
   } = useContext(RecipeAppContext);
 
   const showCards = useCallback(
-    async (selectedArea) => {
+    async (parameter) => {
       let data = {};
       setIsLoading(true);
-      if (selectedArea === 'All' || selectedArea === undefined) {
+      if (parameter === 'All' || parameter === undefined) {
         const response = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
         const result = await response.json();
         data = result.meals;
       } else {
-        const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${selectedArea}`);
+        const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${parameter}`);
         const result = await response.json();
         data = result.meals;
       }
@@ -40,14 +40,14 @@ function ExplorarComidasArea() {
     async () => {
       setIsLoading(true);
       let data = [];
-      const areas = [];
+      const allAreas = [];
       const response = await fetch('https://www.themealdb.com/api/json/v1/1/list.php?a=list');
       data = await response.json();
       data.meals.map((meal) => {
-        areas.push(meal.strArea);
-        return areas;
+        allAreas.push(meal.strArea);
+        return allAreas;
       });
-      setAreas(areas);
+      setAreas(allAreas);
       setIsLoading(false);
     }, [],
   );
@@ -64,9 +64,9 @@ function ExplorarComidasArea() {
       )}
       {!isLoading && (
         <select
-          value={selectedArea}
+          value={ selectedArea }
           data-testid="explore-by-area-dropdown"
-          onChange={ ({ target  }) => {
+          onChange={ ({ target }) => {
             showCards(target.value);
             setSelectedArea(target.value);
           } }
@@ -87,15 +87,15 @@ function ExplorarComidasArea() {
             </option>
           ))}
         </select>)}
-        {!isLoading && (
-          recipes.map((item, index) => (
+      {!isLoading && (
+        recipes.map((item, index) => (
           <RecipeCard
             key={ index }
             recipes={ recipes }
             index={ index }
             recipeType="Comidas"
           />
-      )))}
+        )))}
       <Footer />
     </div>
   );
