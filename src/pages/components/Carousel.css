@@ -3,7 +3,7 @@
 }
 
 .iniciar-receita {
-  bottom: 0;
+  bottom: 10px;
   position: fixed;
 }
 
@@ -11,7 +11,32 @@
   width: 100px;
 }
 
-.carousel-control-next {
+/* .carousel-control-next {
   left: 150px;
   position: relative;
+} */
+
+.carousel-inner {
+  display: flex;
+}
+
+.carousel-item {
+  margin: 0 5px;
+}
+
+.recomendações {
+  display: flex;
+  width: 360px;
+  justify-content: center;
+}
+.recomendações :nth-child(1) { order: 2; }
+.recomendações :nth-child(2) { order: 1; }
+.recomendações :nth-child(3) { order: 3; }
+
+.carousel-control-prev {
+  align-self: center;
+}
+
+.carousel-control-next {
+  align-self: center;
 }

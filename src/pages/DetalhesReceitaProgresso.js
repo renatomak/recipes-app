@@ -12,7 +12,7 @@ import {
   fetchReceitas,
   fetchRecomendacoes,
 } from '../Auxiliares/FuncoesAuxiliares';
-import '../css/headerReceitas.css';
+import '../css/detalhesProgresso.css';
 import '../css/recipeCard.css';
 
 function redirecionarParaFeitas(history, receita) {
@@ -116,7 +116,10 @@ function DetalhesReceitaBebidaComida(props) {
         data-testid="instructions"
         className="instructions"
       >
+        <p>Instruções</p>
+
         {strInstructions}
+        
       </div>
 
       {recipeType === 'Comidas' && !progresso

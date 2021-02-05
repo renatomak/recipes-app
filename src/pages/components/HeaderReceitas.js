@@ -9,6 +9,7 @@ import {
 
 import whiteHeart from "../../images/whiteHeartIcon.svg";
 import blackHeart from "../../images/blackHeartIcon.svg";
+import shareIcon from '../../images/shareIcon.svg';
 
 function HeaderReceitas({ url }) {
   const [copySuccess, setCopySuccess] = useState(false);
@@ -41,26 +42,28 @@ function HeaderReceitas({ url }) {
       </div>
 
       <h2 data-testid="recipe-title">{strMeal || strDrink}</h2>
+      <p data-testid="recipe-category"> Categoria: {strAlcoholic || strCategory}</p>
 
-      <button
-        type="button"
-        data-testid="share-btn"
-        onClick={ () => copyToClipboard(url, setCopySuccess) }
-      >
-        compartilhar
-      </button>
-
-      <span>{copySuccess ? "Link copiado!" : ""}</span>
-
+      <div className='botões-interacoes'>
+        <input
+          type="image"
+          src={ shareIcon }
+          data-testid="share-btn"
+          onClick={ () => copyToClipboard(url, setCopySuccess) }
+          alt="compartilhar"
+          className="botao-compartilhar"
+        />
+        <span>{copySuccess ? "Link copiado!" : ""}</span>
       <input
         type="image"
         data-testid="favorite-btn"
         alt="favorite button"
         onClick={() => favoritarReceita(receita, favorita, setFavorita)}
         src={favorita ? blackHeart : whiteHeart}
+        className="botao-favoritar"
       />
+      </div>
 
-      <p data-testid="recipe-category">{strAlcoholic || strCategory}</p>
     </div>
   );
 }
