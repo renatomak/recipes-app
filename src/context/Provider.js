@@ -93,17 +93,15 @@ const RecipeAppProvider = ({ children }) => {
           const result = await caseFirstLetter();
           data = result.meals;
         }
+      } else if (radioButton === 'ingredient') {
+        const result = await caseIngredient();
+        data = result.drinks;
+      } else if (radioButton === 'name') {
+        const result = await caseName();
+        data = result.drinks;
       } else {
-        if (radioButton === 'ingredient') {
-          const result = await caseIngredient();
-          data = result.drinks;
-        } else if (radioButton === 'name') {
-          const result = await caseName();
-          data = result.drinks;
-        } else {
-          const result = await caseFirstLetter();
-          data = result.drinks;
-        }
+        const result = await caseFirstLetter();
+        data = result.drinks;
       }
       if (data !== null) {
         recipesCards(data);
