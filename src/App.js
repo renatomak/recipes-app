@@ -90,11 +90,15 @@ function App() {
       <Route exact path="/explorar" component={ Explorar } />
       <Route
         path="/explorar/comidas/ingredientes"
-        component={ ExplorarIngrediente }
+        render={ () => (<ExplorarIngrediente
+          recipeType="Comidas"
+        />) }
       />
       <Route
         path="/explorar/bebidas/ingredientes"
-        component={ ExplorarIngrediente }
+        render={ () => (<ExplorarIngrediente
+          recipeType="Bebidas"
+        />) }
       />
       <Route path="/explorar/comidas/area" component={ ExplorarComidasArea } />
       <Route path="/perfil" component={ Perfil } />
