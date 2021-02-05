@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import '../css/style-main.css';
+import '../css/Login.css';
 
 function Login(props) {
   const [email, setEmail] = useState('');

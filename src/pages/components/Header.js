@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import profileIcon from '../../images/profileIcon.svg';
 import searchIcon from '../../images/searchIcon.svg';
 import HeaderSearchBar from './HeaderSearchBar';
@@ -16,7 +15,7 @@ function Header(props) {
         className="btn btn-login"
         data-testid="profile-top-btn"
         src={ profileIcon }
-        to="/perfil"
+        href="/perfil"
       >
         <img src={ profileIcon } alt="Profile icon" />
       </a>
