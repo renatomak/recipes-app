@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useContext, useCallback } from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
+import RecipeAppContext from '../../context/index';
 
 function IngredientCard(props) {
   const { ingredients, index, recipeType } = props;
+  const {
+    recipesCards,
+    setIngredient,
+  } = useContext(RecipeAppContext);
+  const history = useHistory();
 
   let cardImage = '';
   let cardName = '';
@@ -15,26 +22,36 @@ function IngredientCard(props) {
     cardName = ingredients[index].strIngredient1;
   }
 
-  /*   const handleClick = async (ingredient) => {
-    let data = [];
-    if (recipeType === 'Comidas') {
-      const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`);
-      data = response.json();
-    }
-    if (recipeType === 'Bebidas') {
-      const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient}`);
-      data = response.json();
-    }
-  }; */
+  const handleClick = useCallback(
+    async (ingredient) => {
+      setIngredient(true);
+      let data = [];
+      if (recipeType === 'Comidas') {
+        const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient.strIngredient}`);
+        data = await response.json();
+        const recipes = data.meals;
+        recipesCards(recipes);
+        history.push('/comidas');
+      }
+      if (recipeType === 'Bebidas') {
+        const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient.strIngredient1}`);
+        data = await response.json();
+        const recipes = data.drinks;
+        recipesCards(recipes);
+        history.push('/bebidas');
+      }
+    }, [],
+  );
 
   return (
-    <div
+    <button
+      type="button"
       data-testid={ `${index}-ingredient-card` }
-      /*       onClick={ () => { handleClick(ingredients[index]); } } */
+      onClick={ () => { handleClick(ingredients[index]); } }
     >
       <img data-testid={ `${index}-card-img` } src={ cardImage } alt="card" />
       <p data-testid={ `${index}-card-name` }>{ cardName }</p>
-    </div>
+    </button>
   );
 }
 

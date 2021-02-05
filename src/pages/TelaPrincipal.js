@@ -16,6 +16,8 @@ function TelaPrincipal(props) {
     recipes,
     recipesCards,
     setSearchType,
+    ingredient,
+    setIngredient,
   } = useContext(RecipeAppContext);
 
   useEffect(() => {
@@ -54,7 +56,12 @@ function TelaPrincipal(props) {
   );
 
   useEffect(() => {
-    showInitialCards();
+    if (!ingredient) {
+      showInitialCards();
+    }
+    if (ingredient) {
+      setIngredient(false);
+    }
   }, [showInitialCards]);
 
   const categoryButtonAPIRequest = useCallback(

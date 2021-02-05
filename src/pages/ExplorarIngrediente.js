@@ -13,7 +13,6 @@ function ExplorarIngrediente(props) {
     let ingredientsList = [];
     const zero = 0;
     const twelve = 12;
-    console.log(data.meals);
     if (recipeType === 'Comidas') {
       ingredientsList = data.meals.slice(zero, twelve);
     } else if (recipeType === 'Bebidas') {
