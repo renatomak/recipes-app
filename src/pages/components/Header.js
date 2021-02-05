@@ -13,20 +13,21 @@ function Header(props) {
     <div className="header-content">
       <a
         type="button"
+        className="btn btn-login"
         data-testid="profile-top-btn"
         src={ profileIcon }
         to="/perfil"
       >
         <img src={ profileIcon } alt="Profile icon" />
       </a>
-      <h1 data-testid="page-title">{ headerText }</h1>
+      <h1 data-testid="page-title" className="page-title">{ headerText }</h1>
       <div className="item-search">
         {searchBar && (
           <HeaderSearchBar headerText={ headerText } />
         )}
         {JSON.parse(showSearchButton) && (
           <button
-            className="search-top-btn"
+            className="btn search-top-btn"
             type="button"
             data-testid="search-top-btn"
             src={ searchIcon }

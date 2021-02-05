@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import TitleLogin from './components/TitleLogin';
-import '../css/style-login.css';
+import '../css/style-main.css';
 
 function Login(props) {
   const [email, setEmail] = useState('');
@@ -35,7 +34,9 @@ function Login(props) {
 
   return (
     <div className="body-login">
-      <TitleLogin />
+      <div className="container-title">
+        <h1 className="title-login">OverHooked</h1>
+      </div>
       <div className="container">
         <div className="form-box">
           <form>
@@ -50,7 +51,7 @@ function Login(props) {
               onChange={ (e) => handleChangeEmail(e) }
             />
             <input
-              type="text"
+              type="password"
               className="form-input"
               name={ password }
               data-testid="password-input"
@@ -59,7 +60,7 @@ function Login(props) {
             />
             <button
               type="button"
-              className="form-btn"
+              className="btn form-btn"
               data-testid="login-submit-btn"
               disabled={ checkedPassword || !validatesEmail() }
               onClick={ submit }

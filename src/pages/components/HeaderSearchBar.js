@@ -39,16 +39,16 @@ function HeaderSearchBar(props) {
 
   return (
     <div className="header-search-bar">
-      <div className="divBusca">
+      <div className="container-serch">
         <input
           type="text"
-          className="txtBusca"
+          className="search-input"
           data-testid="search-input"
           onChange={ ({ target }) => setSearchTerm(target.value) }
         />
         <button
           type="button"
-          className="btnBusca"
+          className="search-btn"
           data-testid="exec-search-btn"
           onClick={ handleClick }
         >

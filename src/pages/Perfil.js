@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
+import { Button } from '@material-ui/core';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import backgroundVideo from '../video/MS_Launch_1080_X_1080_Video_03.webm';
 
 function recuperarEmail() {
   const user = localStorage.getItem('user');
@@ -23,31 +25,45 @@ function Perfil(props) {
     <div>
       <p>Perfil</p>
       <Header headerText="Perfil" showSearchButton="false" />
-      <Footer />
-      <div>
-        <span data-testid="profile-email">{ email }</span>
-        <button
-          type="button"
-          data-testid="profile-done-btn"
-          onClick={ () => history.push('/receitas-feitas') }
-        >
-          Receitas Feitas
-        </button>
-        <button
-          type="button"
-          data-testid="profile-favorite-btn"
-          onClick={ () => history.push('/receitas-favoritas') }
-        >
-          Receitas Favoritas
-        </button>
-        <button
-          type="button"
-          data-testid="profile-logout-btn"
-          onClick={ exitPage }
-        >
-          Sair
-        </button>
+      <video autoPlay muted loop className="backgroun-video">
+        <source src={ backgroundVideo } type="video/webm" />
+      </video>
+      <span data-testid="profile-email" className="span-email">{ email }</span>
+      <div className="content-main">
+        <div className="contant-main-buttons">
+          <Button
+            type="button"
+            color="secondary"
+            variant="contained"
+            className="btn-category"
+            data-testid="profile-done-btn"
+            onClick={ () => history.push('/receitas-feitas') }
+          >
+            Receitas Feitas
+          </Button>
+          <Button
+            type="button"
+            color="secondary"
+            variant="contained"
+            className="btn-category"
+            data-testid="profile-favorite-btn"
+            onClick={ () => history.push('/receitas-favoritas') }
+          >
+            Receitas Favoritas
+          </Button>
+          <Button
+            type="button"
+            color="secondary"
+            variant="contained"
+            className="btn-category"
+            data-testid="profile-logout-btn"
+            onClick={ exitPage }
+          >
+            Sair
+          </Button>
+        </div>
       </div>
+      <Footer />
     </div>
   );
 }

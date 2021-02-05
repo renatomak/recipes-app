@@ -1,6 +1,12 @@
 .footer {
+  background: rgba(204, 104, 53, 0.8);
   bottom: 0;
   position: fixed;
   text-align: center;
   width: 100%;
+}
+
+.container-footer-img {
+  display: flex;
+  justify-content: space-around;
 }

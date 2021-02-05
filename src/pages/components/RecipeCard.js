@@ -23,12 +23,16 @@ function RecipeCard(props) {
   }
 
   return (
-    <Link to={ `/${type}/${id}` }>
-      <div data-testid={ `${index}-recipe-card` }>
+    <div className="card" data-testid={ `${index}-recipe-card` }>
+      <div className="card-img">
         <img data-testid={ `${index}-card-img` } src={ cardImage } alt="card" />
-        <p data-testid={ `${index}-card-name` }>{ cardName }</p>
       </div>
-    </Link>
+      <div className="card-link">
+        <Link to={ `/${type}/${id}` }>
+          <p data-testid={ `${index}-card-name` }>{ cardName }</p>
+        </Link>
+      </div>
+    </div>
   );
 }
 
