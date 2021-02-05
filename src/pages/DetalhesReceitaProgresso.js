@@ -42,7 +42,7 @@ function redirecionarParaFeitas(history, receita) {
     id: idMeal || idDrink,
     type: idMeal ? 'comida' : 'bebida',
     area: strArea || '',
-    category: strCategory || '',
+    category: strCategory,
     alcoholicOrNot: strAlcoholic || '',
     name: strMeal || strDrink,
     image: strMealThumb || strDrinkThumb,
@@ -53,6 +53,19 @@ function redirecionarParaFeitas(history, receita) {
   delete localStorageInProgress[tipo][id];
   localStorage.setItem('inProgressRecipes', JSON.stringify(localStorageInProgress));
   history.push('/receitas-feitas');
+}
+
+function returnEndpoint(recipeType, id) {
+  if (recipeType === 'Comidas') {
+    return `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
+  }
+  return `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
+}
+function retunrRecomendationEndPoint(recipeType) {
+  if (recipeType === 'Comidas') {
+    return 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
+  }
+  return 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
 }
 
 function DetalhesReceitaBebidaComida(props) {
@@ -66,6 +79,7 @@ function DetalhesReceitaBebidaComida(props) {
   const [youTubeCode, setYouTubeCode] = useState('');
   const [recomendations, setRecomendations] = useState([]);
   const [finalizada, setFinalizada] = useState(false);
+  const [loading, setLoading] = useState(true);
   const { match: { url, params: { id } }, history, recipeType, progresso } = props;
 
   const {
@@ -75,21 +89,20 @@ function DetalhesReceitaBebidaComida(props) {
   } = receita;
 
   useEffect(() => {
-    let endpoint = '';
-    let recomendationEndpoint = '';
-    if (recipeType === 'Comidas') {
-      endpoint = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
-      recomendationEndpoint = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
-    } else if (recipeType === 'Bebidas') {
-      endpoint = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
-      recomendationEndpoint = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
-    }
+    const endpoint = returnEndpoint(recipeType, id);
+    const recomendationEndpoint = retunrRecomendationEndPoint(recipeType);
 
     fetchReceitas(endpoint, setReceita, setYouTubeCode, setIngredientes);
 
     fetchRecomendacoes(recomendationEndpoint, setRecomendations);
   }, [recipeType, id, idDrink, idMeal, setReceita, setIngredientes]);
   const emptyArray = 0;
+
+  useEffect(() => {
+    if (recomendations.length !== emptyArray && (idMeal || idDrink)) setLoading(false);
+  }, [recomendations, receita]);
+
+  if (loading) return '...Carregando';
 
   return (
     <div className="detalhes">
@@ -142,7 +155,7 @@ function DetalhesReceitaBebidaComida(props) {
             onClick={ () => { irParaTeladeProgresso(history, idDrink, idMeal); } }
           >
             {
-              ChecaSeEstaEmAndamento(idDrink || idMeal)
+              ChecaSeEstaEmAndamento(idDrink, idMeal)
                 ? 'Continuar Receita'
                 : 'Iniciar receita'
             }

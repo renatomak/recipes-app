@@ -45,7 +45,7 @@ function CarouselRecipes({ recomendations }) {
             </h3>
           </Carousel.Caption>
         </Carousel.Item>
-      
+
       ))}
     </Carousel>
   );
