@@ -1,23 +1,19 @@
-import React, { useContext, useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { RecipeAppContext } from '../../context/Provider';
+import React, { useContext, useState, useEffect } from "react";
+import PropTypes from "prop-types";
+import { RecipeAppContext } from "../../context/Provider";
 import {
   copyToClipboard,
   favoritarReceita,
   ChecaSeFavorita,
-} from '../../Auxiliares/FuncoesAuxiliares';
+} from "../../Auxiliares/FuncoesAuxiliares";
 
-import whiteHeart from '../../images/whiteHeartIcon.svg';
-import blackHeart from '../../images/blackHeartIcon.svg';
+import whiteHeart from "../../images/whiteHeartIcon.svg";
+import blackHeart from "../../images/blackHeartIcon.svg";
 
 function HeaderReceitas({ url }) {
   const [copySuccess, setCopySuccess] = useState(false);
 
-  const {
-    receita,
-    favorita,
-    setFavorita,
-  } = useContext(RecipeAppContext);
+  const { receita, favorita, setFavorita } = useContext(RecipeAppContext);
 
   const {
     strMealThumb,
@@ -36,15 +32,15 @@ function HeaderReceitas({ url }) {
 
   return (
     <div className="header-receita">
-      <img
-        src={ strMealThumb || strDrinkThumb }
-        alt="detalhes da receita"
-        data-testid="recipe-photo"
-      />
+      <div className="card">
+        <img
+          src={ strMealThumb || strDrinkThumb }
+          alt="detalhes da receita"
+          data-testid="recipe-photo"
+        />
+      </div>
 
-      <h2 data-testid="recipe-title">
-        {strMeal || strDrink}
-      </h2>
+      <h2 data-testid="recipe-title">{strMeal || strDrink}</h2>
 
       <button
         type="button"
@@ -54,21 +50,17 @@ function HeaderReceitas({ url }) {
         compartilhar
       </button>
 
-      <span>
-        {copySuccess ? 'Link copiado!' : ''}
-      </span>
+      <span>{copySuccess ? "Link copiado!" : ""}</span>
 
       <input
         type="image"
         data-testid="favorite-btn"
         alt="favorite button"
-        onClick={ () => favoritarReceita(receita, favorita, setFavorita) }
-        src={ favorita ? blackHeart : whiteHeart }
+        onClick={() => favoritarReceita(receita, favorita, setFavorita)}
+        src={favorita ? blackHeart : whiteHeart}
       />
 
-      <p data-testid="recipe-category">
-        {strAlcoholic || strCategory}
-      </p>
+      <p data-testid="recipe-category">{strAlcoholic || strCategory}</p>
     </div>
   );
 }

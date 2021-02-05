@@ -7,8 +7,16 @@
   width: 100%;
 }
 
+.card-img img {
+  border-radius: 10px 10px 0 0;
+}
+
+.card, .card-link {
+  border-radius: 10px;
+}
+
 .card {
-  border: 1px solid #440074;
+  border: 5px solid #440074;
   box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
@@ -26,15 +34,13 @@
   width: 100%;
 }
 
-.card-link {
-  border-bottom: 1px solid #ccc;
-  border-top: 1px solid #ccc;
-}
 
 .card-link p {
   color: antiquewhite;
-  font-size: 15px;
-  font-weight: 700;
+  font-size: 20px;
+  font-weight: 300;
+  padding: 0;
+  margin: 0;
 }
 
 .card-link a {

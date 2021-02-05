@@ -12,6 +12,8 @@ import {
   fetchReceitas,
   fetchRecomendacoes,
 } from '../Auxiliares/FuncoesAuxiliares';
+import '../css/headerReceitas.css';
+import '../css/recipeCard.css';
 
 function redirecionarParaFeitas(history, receita) {
   const {
@@ -123,6 +125,7 @@ function DetalhesReceitaBebidaComida(props) {
         ? (
           <button
             type="button"
+            className="btn"
             data-testid="finish-recipe-btn"
             disabled={ !finalizada }
             onClick={ () => redirecionarParaFeitas(history, receita) }
@@ -134,7 +137,7 @@ function DetalhesReceitaBebidaComida(props) {
           <button
             type="button"
             data-testid="start-recipe-btn"
-            className="iniciar-receita"
+            className="iniciar-receita btn"
             hidden={ ChecaSeFoiFeita(idDrink || idMeal) }
             onClick={ () => { irParaTeladeProgresso(history, idDrink, idMeal); } }
           >
