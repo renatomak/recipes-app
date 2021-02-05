@@ -21,6 +21,7 @@ function Perfil(props) {
 
   return (
     <div>
+      <p>Perfil</p>
       <Header headerText="Perfil" showSearchButton="false" />
       <Footer />
       <div>

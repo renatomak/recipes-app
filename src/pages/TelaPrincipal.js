@@ -40,16 +40,14 @@ function TelaPrincipal(props) {
           const result = await response.json();
           data = result.meals;
         }
-      } else if (recipeType === 'Bebidas') {
-        if (selectedCategory === '' || filterIsSelected === false) {
-          const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
-          const result = await response.json();
-          data = result.drinks;
-        } else {
-          const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${selectedCategory}`);
-          const result = await response.json();
-          data = result.drinks;
-        }
+      } else if (selectedCategory === '' || filterIsSelected === false) {
+        const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
+        const result = await response.json();
+        data = result.drinks;
+      } else {
+        const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${selectedCategory}`);
+        const result = await response.json();
+        data = result.drinks;
       }
       recipesCards(data);
     }, [recipesCards, recipeType, selectedCategory, filterIsSelected],
@@ -71,7 +69,7 @@ function TelaPrincipal(props) {
           allCategories.push(meal.strCategory);
           return allCategories;
         });
-      } else if (recipeType === 'Bebidas') {
+      } else {
         const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list');
         data = await response.json();
         data.drinks.map((drink) => {
@@ -107,7 +105,7 @@ function TelaPrincipal(props) {
               setFilterIsSelected(true);
               setSelectedCategory(category);
               showInitialCards();
-            } else if (selectedCategory === category) {
+            } else {
               setFilterIsSelected(!filterIsSelected);
               showInitialCards();
             }

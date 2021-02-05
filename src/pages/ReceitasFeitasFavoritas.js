@@ -8,7 +8,6 @@ function ReceitasFeitasFavoritas({ history: { push }, telaAtual }) {
   const [filter, setFilter] = useState('all');
   const [updateFavorites, setUpdateFavorites] = useState(false);
   const [loading, setLoading] = useState(true);
-
   const messageTelaAtual = telaAtual === 'feitas'
     ? 'Receitas Feitas'
     : 'Receitas Favoritas';
@@ -17,14 +16,13 @@ function ReceitasFeitasFavoritas({ history: { push }, telaAtual }) {
   const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
 
   const data = telaAtual === 'feitas' ? doneRecipes : favoriteRecipes;
-  console.log(telaAtual);
 
   useEffect(() => {
     if (data) setLoading(false);
   }, [data]);
 
   return (
-    <div>
+    <div data-testid="tela-receitas-feitas-favoritas">
       <Header headerText={ messageTelaAtual } showSearchButton="false" />
       <BotoesDeFiltros setFilter={ setFilter } />
       {!loading && data

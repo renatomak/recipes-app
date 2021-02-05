@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import profileIcon from '../../images/profileIcon.svg';
 import searchIcon from '../../images/searchIcon.svg';
 import HeaderSearchBar from './HeaderSearchBar';
@@ -9,14 +10,14 @@ function Header(props) {
   const [searchBar, setSearchBar] = useState(false);
   return (
     <div>
-      <a
+      <Link
         type="button"
         data-testid="profile-top-btn"
         src={ profileIcon }
-        href="/perfil"
+        to="/perfil"
       >
         <img src={ profileIcon } alt="Profile icon" />
-      </a>
+      </Link>
       <h1 data-testid="page-title">{ headerText }</h1>
       {JSON.parse(showSearchButton) && (
         <button

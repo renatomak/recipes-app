@@ -32,7 +32,6 @@ function CardFeitasFavoritas({
     doneDate,
     tags,
   } = receita;
-  console.log(receita);
 
   const URL = `/${type}s/${id}`;
 
@@ -57,7 +56,6 @@ function CardFeitasFavoritas({
         type="button"
         data-testid={ `${index}-horizontal-name` }
         onClick={ () => redirecionarParaDetalhes(URL, push) }
-        onKeyDown={ () => redirecionarParaDetalhes(URL, push) }
       >
         {name}
       </button>
