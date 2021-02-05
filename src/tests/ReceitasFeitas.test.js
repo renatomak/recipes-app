@@ -49,7 +49,7 @@ describe('Tela de Receitas Feitas', () => {
     const drinkButton = await findByTestId('filter-by-drink-btn');
     const nomeReceita0 = await findByTestId('0-horizontal-name');
     const nomeReceita1 = await findByTestId('1-horizontal-name');
-    const imageReceita0 = await findByTestId('0-horizontal-image')
+    const imageReceita0 = await findByTestId('0-horizontal-image');
 
     expect(tituloPagina).toContainHTML('Receitas Feitas');
     expect(allButton).toBeInTheDocument();
@@ -60,7 +60,7 @@ describe('Tela de Receitas Feitas', () => {
     expect(nomeReceita1).toContainHTML('Aquamarine');
 
     userEvent.click(imageReceita0);
-    const receitaTitile = await findByTestId('recipe-title')
+    const receitaTitile = await findByTestId('recipe-title');
     expect(receitaTitile).toContainHTML(spicyArrabiata);
   });
 

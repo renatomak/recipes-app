@@ -40,17 +40,14 @@ function TelaPrincipal(props) {
           const result = await response.json();
           data = result.meals;
         }
-      } else {
+      } else if (selectedCategory === '' || filterIsSelected === false) {
         const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
-        if (selectedCategory === '' || filterIsSelected === false) {
-          const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
-          const result = await response.json();
-          data = result.drinks;
-        } else {
-          const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${selectedCategory}`);
-          const result = await response.json();
-          data = result.drinks;
-        }
+        const result = await response.json();
+        data = result.drinks;
+      } else {
+        const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${selectedCategory}`);
+        const result = await response.json();
+        data = result.drinks;
       }
       recipesCards(data);
     }, [recipesCards, recipeType, selectedCategory, filterIsSelected],

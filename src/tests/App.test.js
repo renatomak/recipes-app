@@ -26,27 +26,27 @@ describe('APP - verificação das rotas', () => {
     expect(comidas).toBeInTheDocument();
   });
 
-  test('bebida/:id está na tela', () => {
-    const { getByTestId } = renderWithRouter(<App />, '/bebidas/178319');
-    const bebidaTitulo = getByTestId(recipeTitle);
+  test('bebida/:id está na tela', async () => {
+    const { findByTestId } = renderWithRouter(<App />, '/bebidas/178319');
+    const bebidaTitulo = await findByTestId(recipeTitle);
     expect(bebidaTitulo).toBeInTheDocument();
   });
 
-  test('comida/:id está na tela', () => {
-    const { getByTestId } = renderWithRouter(<App />, '/comidas/52771');
-    const comidaTitulo = getByTestId(recipeTitle);
+  test('comida/:id está na tela', async () => {
+    const { findByTestId } = renderWithRouter(<App />, '/comidas/52771');
+    const comidaTitulo = await findByTestId(recipeTitle);
     expect(comidaTitulo).toBeInTheDocument();
   });
 
-  test('bebida/:id/in-progress está na tela', () => {
-    const { getByTestId } = renderWithRouter(<App />, '/bebidas/178319/in-progress');
-    const bebidaTituloProgresso = getByTestId(recipeTitle);
+  test('bebida/:id/in-progress está na tela', async () => {
+    const { findByTestId } = renderWithRouter(<App />, '/bebidas/178319/in-progress');
+    const bebidaTituloProgresso = await findByTestId(recipeTitle);
     expect(bebidaTituloProgresso).toBeInTheDocument();
   });
 
-  test('comida/:id/in-progress está na tela', () => {
-    const { getByTestId } = renderWithRouter(<App />, '/comidas/52771/in-progress');
-    const comidaTituloProgresso = getByTestId(recipeTitle);
+  test('comida/:id/in-progress está na tela', async () => {
+    const { findByTestId } = renderWithRouter(<App />, '/comidas/52771/in-progress');
+    const comidaTituloProgresso = await findByTestId(recipeTitle);
     expect(comidaTituloProgresso).toBeInTheDocument();
   });
 

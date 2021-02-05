@@ -1,13 +1,12 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
-import waitForExpect from 'wait-for-expect';
 import App from '../App';
 import renderWithRouter from './renderWithRouter';
 
 describe('Perfil', () => {
   beforeEach(() => {
     localStorage.setItem('user', JSON.stringify(
-      {"email":"vitor_rc1@outlook.com"},
+      { email: 'vitor_rc1@outlook.com' },
     ));
   });
   test('testa se os elementos estão na tela e vai para a tela de feitas', async () => {
@@ -26,7 +25,7 @@ describe('Perfil', () => {
     expect(userEmail).toContainHTML('vitor_rc1@outlook.com');
 
     userEvent.click(receitasFeitasBtn);
-    const receitasFeitasTitle = await findByTestId('page-title')
+    const receitasFeitasTitle = await findByTestId('page-title');
     expect(receitasFeitasTitle).toContainHTML('Receitas Feitas');
   });
 
@@ -38,7 +37,7 @@ describe('Perfil', () => {
     const receitasfavoritasBtn = await findByTestId('profile-favorite-btn');
 
     userEvent.click(receitasfavoritasBtn);
-    const receitasFavoritasTitle = await findByTestId('page-title')
+    const receitasFavoritasTitle = await findByTestId('page-title');
     expect(receitasFavoritasTitle).toContainHTML('Receitas Favoritas');
   });
 
@@ -50,7 +49,7 @@ describe('Perfil', () => {
     const sairBtn = await findByTestId('profile-logout-btn');
 
     userEvent.click(sairBtn);
-    const emailInput = await findByTestId('email-input')
+    const emailInput = await findByTestId('email-input');
     expect(emailInput).toBeInTheDocument();
   });
-})
+});

@@ -58,7 +58,8 @@ const RecipeAppProvider = ({ children }) => {
       let response = [];
       if (searchTerm.length > 1) {
         alert('Sua busca deve conter somente 1 (um) caracter');
-      } else if (searchType === 'Comidas') {
+        return { meals: [], drinks: [] };
+      } if (searchType === 'Comidas') {
         response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${searchTerm}`);
       } else if (searchType === 'Bebidas') {
         response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${searchTerm}`);

@@ -110,4 +110,25 @@ describe('Tela de detalhes e progresso', () => {
     const startRecipeBtn = await findByTestId(comecarReceita);
     expect(startRecipeBtn).toContainHTML('Continuar Receita');
   });
+
+  test('se ja foi feita', async () => {
+    localStorage.setItem('doneRecipes', JSON.stringify(
+      [
+        {
+          id: '52771',
+          type: 'comida',
+          area: 'Italian',
+          category: 'Vegetarian',
+          alcoholicOrNot: '',
+          name: 'Spicy Arrabiata Penne',
+          image: 'https://www.themealdb.com/images/media/meals/ustsqw1468250014.jpg',
+          doneDate: '04/02/2021',
+          tags: ['Pasta', 'Curry'],
+        },
+      ],
+    ));
+    const { findByTestId } = renderWithRouter(<App />, comidasID);
+    const finishBtn = await findByTestId('start-recipe-btn');
+    expect(finishBtn.hidden).toBe(true);
+  });
 });

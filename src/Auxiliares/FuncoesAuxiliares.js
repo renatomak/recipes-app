@@ -17,11 +17,8 @@ export function filtraIngredientes(items) {
 }
 
 export function ChecaSeFoiFeita(idReceita) {
-  if (localStorage.getItem('doneRecipes')) {
-    const receitasFeitas = JSON.parse(localStorage.getItem('doneRecipes'));
-    return receitasFeitas.some(({ id }) => id === idReceita);
-  }
-  return false;
+  const receitasFeitas = JSON.parse(localStorage.getItem('doneRecipes'));
+  return receitasFeitas.some(({ id }) => id === idReceita);
 }
 
 export function ChecaSeFavorita(idReceita) {
@@ -32,14 +29,16 @@ export function ChecaSeFavorita(idReceita) {
   return false;
 }
 
-export function ChecaSeEstaEmAndamento(idReceita) {
+export function ChecaSeEstaEmAndamento(idDrink, idMeal) {
   if (localStorage.getItem('inProgressRecipes')) {
     const receitasEmProgresso = JSON.parse(localStorage.getItem('inProgressRecipes'));
     const { cocktails, meals } = receitasEmProgresso;
-
-    if (cocktails[idReceita]) return true;
-    if (meals[idReceita]) return true;
-    return false;
+    if (idDrink && cocktails) {
+      const keysDrinks = Object.keys(cocktails).some((key) => key === String(idDrink));
+      return keysDrinks;
+    }
+    const keysMeals = Object.keys(meals).some((key) => key === String(idMeal));
+    return keysMeals;
   }
   return false;
 }
@@ -47,7 +46,7 @@ export function ChecaSeEstaEmAndamento(idReceita) {
 export function irParaTeladeProgresso(history, idDrink, idMeal) {
   if (idDrink) {
     history.push(`/bebidas/${idDrink}/in-progress`);
-  } else if (idMeal) {
+  } else {
     history.push(`/comidas/${idMeal}/in-progress`);
   }
 }
@@ -108,14 +107,14 @@ export function favoritarReceita(receita, favorita, setFavorita) {
     const idExist = idMeal || idDrink;
     const arrayDesfavoritado = receitasFavoritas.filter(({ id }) => id !== idExist);
     localStorage.setItem('favoriteRecipes', JSON.stringify(arrayDesfavoritado));
-  } else if (!favorita) {
+  } else {
     // favoritar
     const receitasFavoritas = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
     const novaReceitaFavorita = {
       id: idMeal || idDrink,
       type: idMeal ? 'comida' : 'bebida',
       area: strArea || '',
-      category: strCategory || '',
+      category: strCategory,
       alcoholicOrNot: strAlcoholic || '',
       name: strMeal || strDrink,
       image: strMealThumb || strDrinkThumb,

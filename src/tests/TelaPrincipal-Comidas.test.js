@@ -9,6 +9,9 @@ const two = 2;
 const cardImg = '0-card-img';
 const searchTopBtn = 'search-top-btn';
 const firstRecipeImageComida = 'https://www.themealdb.com/images/media/meals/58oia61564916529.jpg';
+const searchInputString = 'search-input';
+const execSearchButton = 'exec-search-btn';
+
 describe('Tela principal', () => {
   beforeEach(() => { global.fetch = jest.fn((url) => fetchMock(url)); });
 
@@ -80,11 +83,11 @@ describe('Tela principal', () => {
     const showSearchBar = getByTestId(searchTopBtn);
     userEvent.click(showSearchBar);
 
-    const searchInput = await findByTestId('search-input');
+    const searchInput = await findByTestId(searchInputString);
     const searchRadioIngredient = await findByTestId('ingredient-search-radio');
     const searchRadioName = await findByTestId('name-search-radio');
     const searchRadioFirstLetter = await findByTestId('first-letter-search-radio');
-    const searchButton = await findByTestId('exec-search-btn');
+    const searchButton = await findByTestId(execSearchButton);
 
     expect(searchInput).toBeInTheDocument();
     expect(searchRadioIngredient).toBeInTheDocument();
@@ -117,18 +120,36 @@ describe('Tela principal', () => {
     userEvent.click(searchButton);
   });
 
-  test('mostra um alert se nenhuma receita é encontrada', async () => {
+  test('mostra um alert se nenhuma receita é encontrada por nome', async () => {
     const { getByTestId, findByTestId } = renderWithRouter(
       <App />, '/comidas',
     );
     const showSearchBar = getByTestId(searchTopBtn);
     userEvent.click(showSearchBar);
-    const searchInput = await findByTestId('search-input');
+    const searchInput = await findByTestId(searchInputString);
     const searchRadioName = await findByTestId('name-search-radio');
-    const searchButton = await findByTestId('exec-search-btn');
+    const searchButton = await findByTestId(execSearchButton);
 
     userEvent.type(searchInput, 'xablau');
     userEvent.click(searchRadioName);
+    userEvent.click(searchButton);
+    waitForExpect(() => {
+      expect(window.alert).toHaveBeenCalled();
+    });
+  });
+
+  test('mostra um alert se mais de uma letra é digitada ao buscar', async () => {
+    const { getByTestId, findByTestId } = renderWithRouter(
+      <App />, '/comidas',
+    );
+    const showSearchBar = getByTestId(searchTopBtn);
+    userEvent.click(showSearchBar);
+    const searchInput = await findByTestId(searchInputString);
+    const searchRadioFirstLetter = await findByTestId('first-letter-search-radio');
+    const searchButton = await findByTestId(execSearchButton);
+
+    userEvent.type(searchInput, 'as');
+    userEvent.click(searchRadioFirstLetter);
     userEvent.click(searchButton);
     waitForExpect(() => {
       expect(window.alert).toHaveBeenCalled();

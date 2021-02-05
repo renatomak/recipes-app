@@ -45,76 +45,77 @@ function App() {
             progresso={ false }
             recipeType="Bebidas"
           />) }
-          />
-          <Route exact path="/" component={ Login } />
-          <Route
-            exact
-            path="/comidas"
-            render={ () => <TelaPrincipal recipeType="Comidas" /> }
-          />
-          <Route
-            exact
-            path="/bebidas"
-            render={ () => <TelaPrincipal recipeType="Bebidas" /> }
-          />
-          <Route
-            path="/comidas/:id/in-progress"
-            render={ (props) => (<DetalhesReceitaProgresso
-              { ...props }
-              progresso
-              recipeType="Comidas"
-            />) }
-          />
-          <Route
-            path="/bebidas/:id/in-progress"
-            render={ (props) => (<DetalhesReceitaProgresso
-              { ...props }
-              progresso
-              recipeType="Bebidas"
-            />) }
-          />
-          <Route
-            exact
-            path="/explorar/comidas"
-            render={ () => (<ExplorarBebidasComidas
-              recipeType="Comidas"
-            />) }
-          />
-          <Route
-            exact
-            path="/explorar/bebidas"
-            render={ () => (<ExplorarBebidasComidas
-              recipeType="Bebidas"
-            />) }
-          />
-          <Route exact path="/explorar" component={ Explorar } />
-          <Route
-            path="/explorar/comidas/ingredientes"
-            component={ ExplorarIngrediente }
-          />
-          <Route
-            path="/explorar/bebidas/ingredientes"
-            component={ ExplorarIngrediente }
-          />
-          <Route path="/explorar/comidas/area" component={ ExplorarComidasArea } />
-          <Route path="/perfil" component={ Perfil } />
-          <Route
-            path="/receitas-feitas"
-            render={ (props) => (
-              <ReceitasFeitasFavoritas { ...props } telaAtual="feitas" />
-            ) }
-          />
-          <Route
-            path="/receitas-favoritas"
-            render={ (props) => (
-              <ReceitasFeitasFavoritas { ...props } telaAtual="favoritas" />
-            ) }
-          />
-          <Route
-            path="/explorar/bebidas/area"
-            component={ NotFound }
-          />
-        </Switch>
+      />
+      <Route exact path="/" component={ Login } />
+      <Route
+        exact
+        path="/comidas"
+        render={ () => <TelaPrincipal recipeType="Comidas" /> }
+      />
+      <Route
+        exact
+        path="/bebidas"
+        render={ () => <TelaPrincipal recipeType="Bebidas" /> }
+      />
+      <Route
+        path="/comidas/:id/in-progress"
+        render={ (props) => (<DetalhesReceitaProgresso
+          { ...props }
+          progresso
+          recipeType="Comidas"
+        />) }
+      />
+      <Route
+        path="/bebidas/:id/in-progress"
+        render={ (props) => (<DetalhesReceitaProgresso
+          { ...props }
+          progresso
+          recipeType="Bebidas"
+        />) }
+      />
+      <Route
+        exact
+        path="/explorar/comidas"
+        render={ () => (<ExplorarBebidasComidas
+          recipeType="Comidas"
+        />) }
+      />
+      <Route
+        exact
+        path="/explorar/bebidas"
+        render={ () => (<ExplorarBebidasComidas
+          recipeType="Bebidas"
+        />) }
+      />
+      <Route exact path="/explorar" component={ Explorar } />
+      <Route
+        path="/explorar/comidas/ingredientes"
+        component={ ExplorarIngrediente }
+      />
+      <Route
+        path="/explorar/bebidas/ingredientes"
+        component={ ExplorarIngrediente }
+      />
+      <Route path="/explorar/comidas/area" component={ ExplorarComidasArea } />
+      <Route path="/perfil" component={ Perfil } />
+      <Route
+        path="/receitas-feitas"
+        render={ (props) => (
+          <ReceitasFeitasFavoritas { ...props } telaAtual="feitas" />
+        ) }
+      />
+      <Route
+        path="/receitas-favoritas"
+        render={ (props) => (
+          <ReceitasFeitasFavoritas { ...props } telaAtual="favoritas" />
+        ) }
+      />
+      <Route
+        path="/explorar/bebidas/area"
+        component={ NotFound }
+      />
+      <Route render={ () => <p data-testid="not-found">Pagina não encontrada</p> } />
+    </Switch>
   );
 }
 
