@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import '../css/style-main.css';
+import '../css/Login.css';
 
 function Login(props) {
   const [email, setEmail] = useState('');
@@ -18,7 +18,6 @@ function Login(props) {
 
   const handleChangePassword = ({ target: { value } }) => {
     setPassword(value);
-    console.log(password.length);
     const limitSize = 6;
     if (password.length >= limitSize) setCheckedPassword(false);
   };
@@ -27,7 +26,6 @@ function Login(props) {
     const { history } = props;
 
     const emilObject = { email };
-    console.log(emilObject);
     localStorage.setItem('mealsToken', '1');
     localStorage.setItem('cocktailsToken', '1');
     localStorage.setItem('user', JSON.stringify(emilObject));

@@ -20,17 +20,3 @@
   background-color: rgba(68, 0, 116, 0.6);
   max-height: 30px;
 }
-
-.btn-login {
-  max-height: 37px;
-}
-
-.page-title {
-  margin: 0;
-}
-
-.body-login {
-  background-image: url('../images/overHooked.jpeg');
-  margin: 0;
-  padding: 0;
-}

@@ -6,3 +6,12 @@
   bottom: 0;
   position: fixed;
 }
+
+.carousel-image {
+  width: 100px;
+}
+
+.carousel-control-next{
+  position: relative;
+  left: 150px;
+}

@@ -23,6 +23,7 @@ function Perfil(props) {
 
   return (
     <div>
+      <p>Perfil</p>
       <Header headerText="Perfil" showSearchButton="false" />
       <video autoPlay muted loop className="backgroun-video">
         <source src={ backgroundVideo } type="video/webm" />
