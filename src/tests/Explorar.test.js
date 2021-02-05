@@ -78,7 +78,7 @@ describe(explorarComidasString, () => {
     expect(dropdownArea.value).toBe('American');
   });
 
-  test('me surpreeenda ', async () => {
+  test('me surpreeenda comidas', async () => {
     const { findByTestId } = renderWithRouter(
       <App />, rotaExplorarComida,
     );
@@ -110,7 +110,7 @@ describe(explorarComidasString, () => {
     expect(titulo).toContainHTML('Explorar Ingredientes');
   });
 
-  test('me surpreeenda ', async () => {
+  test('me surpreeenda bebidas', async () => {
     const { findByTestId } = renderWithRouter(
       <App />, '/explorar/bebidas',
     );
@@ -119,5 +119,13 @@ describe(explorarComidasString, () => {
     userEvent.click(surpreendaBtn);
     const titulo = await findByTestId('recipe-title');
     expect(titulo).toBeInTheDocument();
+  });
+
+  test('me surpreeenda bebidas', async () => {
+    const { findByText } = renderWithRouter(
+      <App />, '/explorar/bebidas/area',
+    );
+    const notFound = await findByText('Not Found');
+    expect(notFound).toBeInTheDocument();
   });
 });

@@ -23,7 +23,7 @@ const RecipeAppProvider = ({ children }) => {
       let response = [];
       if (searchType === 'Comidas') {
         response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchTerm}`);
-      } else if (searchType === 'Bebidas') {
+      } else {
         response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${searchTerm}`);
       }
       const data = await response.json();
@@ -61,7 +61,7 @@ const RecipeAppProvider = ({ children }) => {
         return { meals: [], drinks: [] };
       } if (searchType === 'Comidas') {
         response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${searchTerm}`);
-      } else if (searchType === 'Bebidas') {
+      } else {
         response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${searchTerm}`);
       }
       const data = await response.json();
@@ -89,18 +89,18 @@ const RecipeAppProvider = ({ children }) => {
         } else if (radioButton === 'name') {
           const result = await caseName();
           data = result.meals;
-        } else if (radioButton === 'first-letter') {
+        } else {
           const result = await caseFirstLetter();
           data = result.meals;
         }
-      } else if (searchType === 'Bebidas') {
+      } else {
         if (radioButton === 'ingredient') {
           const result = await caseIngredient();
           data = result.drinks;
         } else if (radioButton === 'name') {
           const result = await caseName();
           data = result.drinks;
-        } else if (radioButton === 'first-letter') {
+        } else {
           const result = await caseFirstLetter();
           data = result.drinks;
         }
