@@ -67,18 +67,24 @@ function ExplorarBebidasComidas(props) {
   return (
     <div>
       <Header headerText={ `Explorar ${recipeType}` } showSearchButton="false" />
-      <Button
-        value="Por Ingredientes"
-        dataTestid="explore-by-ingredient"
-        path="/explorar/bebidas/ingredientes"
-      />
-      <button
-        type="button"
-        onClick={ handleSurprise }
-        data-testid="explore-surprise"
-      >
-        Me Surpreenda!
-      </button>
+      <video autoPlay muted loop className="backgroun-video">
+        <source src={ backgroundVideo } type="video/webm" />
+      </video>
+      <div className="contant-main-buttons">
+        <Button
+          value="Por Ingredientes"
+          dataTestid="explore-by-ingredient"
+          path="/explorar/bebidas/ingredientes"
+        />
+        <button
+          type="button"
+          className="btn btn-explorar"
+          onClick={ handleSurprise }
+          data-testid="explore-surprise"
+        >
+          Me Surpreenda!
+        </button>
+      </div>
       <Footer />
     </div>
   );

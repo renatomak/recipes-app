@@ -19,7 +19,10 @@ function Header(props) {
       >
         <img src={ profileIcon } alt="Profile icon" />
       </a>
-      <h1 data-testid="page-title" className="page-title">{ headerText }</h1>
+      <div className="content-title">
+        <h1 data-testid="page-title" className="page-title">{ headerText }</h1>
+      </div>
+
       <div className="item-search">
         {searchBar && (
           <HeaderSearchBar headerText={ headerText } />

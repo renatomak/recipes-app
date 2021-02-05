@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap') ;
 
 /* FONTE: www.devmedia.com.br na gia de CSS. O acesso só é restrito a usuários PRO */
 * {
   box-sizing: border-box;
-  font-family: Concert One;
+  font-family: "Concert One";
 }
 
 .meals {

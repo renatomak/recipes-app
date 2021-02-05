@@ -1,5 +1,5 @@
 .header-content {
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(235, 80, 8, 0.6);
   color: #f1f1f1;
   display: flex;
   height: 70px;
@@ -7,6 +7,12 @@
   padding: 10px;
   position: fixed;
   top: 0;
+  width: 100%;
+}
+
+.content-title {
+  display: flex;
+  justify-content: center;
   width: 100%;
 }
 
