@@ -1,11 +1,11 @@
-import React, { useContext, useState, useEffect } from "react";
-import PropTypes from "prop-types";
-import { RecipeAppContext } from "../../context/Provider";
+import React, { useContext, useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { RecipeAppContext } from '../../context/Provider';
 import {
   copyToClipboard,
   favoritarReceita,
   ChecaSeFavorita,
-} from "../../Auxiliares/FuncoesAuxiliares";
+} from '../../Auxiliares/FuncoesAuxiliares';
 
 import whiteHeart from "../../images/whiteHeartIcon.svg";
 import blackHeart from "../../images/blackHeartIcon.svg";
