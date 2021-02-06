@@ -93,7 +93,7 @@
   left: 75px;
   position: fixed;
   right: 75px;
-  top: 35%;
+  top: 70px;
   z-index: 3;
 }
 
@@ -101,27 +101,6 @@
   display: flex;
   justify-content: flex-end;
   width: 20%;
-}
-
-.search-input {
-  background-color: transparent;
-  border: solid 5px #440074;
-  border-radius: 10px 0 0 10px;
-  float: left;
-  font-size: 18px;
-  height: 32px;
-  padding-left: 5px;
-  width: 220px;
-}
-
-.search-btn {
-  background: #440074;
-  border: none;
-  border-radius: 0 7px 7px 0;
-  float: left;
-  font-weight: 700;
-  height: 32px;
-  width: 70px;
 }
 
 .MuiButtonBase-root {

@@ -17,9 +17,11 @@
 .card {
   display: flex;
   flex-direction: column;
-  margin: 10px;
+  margin: 20px;
   transition: 0.7s;
-  width: 200px;
+
+  /* pega o total de espaço da tela divide por 4 cards e subtrai as margens */
+  width: calc(100% / 4 - 20px);
 }
 
 .card-img {

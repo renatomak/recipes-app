@@ -7,8 +7,8 @@ import {
   ChecaSeFavorita,
 } from '../../Auxiliares/FuncoesAuxiliares';
 
-import whiteHeart from "../../images/whiteHeartIcon.svg";
-import blackHeart from "../../images/blackHeartIcon.svg";
+import whiteHeart from '../../images/whiteHeartIcon.svg';
+import blackHeart from '../../images/blackHeartIcon.svg';
 import shareIcon from '../../images/shareIcon.svg';
 
 function HeaderReceitas({ url }) {
@@ -42,9 +42,13 @@ function HeaderReceitas({ url }) {
       </div>
 
       <h2 data-testid="recipe-title">{strMeal || strDrink}</h2>
-      <p data-testid="recipe-category"> Categoria: {strAlcoholic || strCategory}</p>
+      <p data-testid="recipe-category">
+        Categoria:
+        {' '}
+        { strAlcoholic || strCategory }
+      </p>
 
-      <div className='botões-interacoes'>
+      <div className="botoes-interacoes">
         <input
           type="image"
           src={ shareIcon }
@@ -53,7 +57,7 @@ function HeaderReceitas({ url }) {
           alt="compartilhar"
           className="botao-compartilhar"
         />
-        <span>{copySuccess ? "Link copiado!" : ""}</span>
+        <span>{copySuccess ? 'Link copiado!' : ''}</span>
         <input
           type="image"
           data-testid="favorite-btn"

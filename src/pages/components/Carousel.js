@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Carousel from 'react-bootstrap/Carousel';
 import './Carousel.css';
-import { HiArrowRight, HiArrowNarrowLeft, HiArrowLeft } from "react-icons/hi";
+import { HiArrowRight, HiArrowNarrowLeft, HiArrowLeft } from 'react-icons/hi';
 
 function CarouselRecipes({ recomendations }) {
   const initialState = 0;

@@ -12,7 +12,7 @@ function Header(props) {
     <div className="header-content">
       <a
         type="button"
-        data-testid="profile-top-btn"
+        data-testid="btn-header profile-top-btn"
         src={ profileIcon }
         href="/perfil"
       >
@@ -29,7 +29,7 @@ function Header(props) {
         {JSON.parse(showSearchButton) && (
           <button
             type="button"
-            className="search-top-btn"
+            className="btn-header search-top-btn"
             data-testid="search-top-btn"
             src={ searchIcon }
             onClick={ () => setSearchBar(!searchBar) }
