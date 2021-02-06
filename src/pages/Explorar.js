@@ -2,8 +2,9 @@ import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import Footer from './components/Footer';
 import Header from './components/Header';
-import backgroundVideo from '../video/overcooked3.mp4';
+import backgroundVideo from '../video/overcooked.webm';
 import '../css/style-main.css';
+import '../css/styleExplorar.css';
 
 function Explorar(props) {
   const { history } = props;
@@ -13,7 +14,7 @@ function Explorar(props) {
       <video autoPlay muted loop className="backgroun-video">
         <source src={ backgroundVideo } type="video/webm" />
       </video>
-      <div className="contant-main-buttons">
+      <div className="contant-search-buttons">
         <button
           type="button"
           className="btn btn-explorar"

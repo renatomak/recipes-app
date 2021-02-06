@@ -1,0 +1,11 @@
+.contant-search-buttons {
+  border-radius: 0  0 10px   10px;
+  display: flex;
+  height: 54px;
+  justify-content: space-around;
+  left: 75px;
+  position: fixed;
+  right: 75px;
+  top: 35%;
+  z-index: 3;
+}
