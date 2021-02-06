@@ -8,6 +8,12 @@
   font-family: sans-serif;
 }
 
+body {
+  background-attachment: fixed;
+  background-image: url('./images/overHooked.jpeg');
+  background-repeat: no-repeat;
+}
+
 .meals {
   align-items: center;
   background: #0fa36b;
@@ -17,6 +23,10 @@
   height: 100vh;
   justify-content: center;
   width: 100%;
+}
+
+.overBackground {
+  background: rgba(224, 117, 31, 0.8);
 }
 
 /*

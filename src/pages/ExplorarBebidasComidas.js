@@ -36,9 +36,9 @@ function ExplorarBebidasComidas(props) {
     return (
       <div>
         <Header headerText={ `Explorar ${recipeType}` } showSearchButton="false" />
-        <video autoPlay muted loop className="backgroun-video">
+        {/* <video autoPlay muted loop className="backgroun-video">
           <source src={ backgroundVideo } type="video/webm" />
-        </video>
+        </video> */}
         <div className="contant-main-buttons">
           <Button
             value="Por Ingredientes"

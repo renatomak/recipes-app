@@ -1,11 +1,9 @@
 import React, { useState, useContext, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { Button } from '@material-ui/core';
 import Header from './components/Header';
 import RecipeAppContext from '../context/index';
 import RecipeCard from './components/RecipeCard';
 import Footer from './components/Footer';
-import backgroundVideo from '../video/overcooked.webm';
 import '../css/style-main.css';
 import '../css/recipeCard.css';
 
@@ -101,18 +99,15 @@ function TelaPrincipal(props) {
 
   return (
     <div>
-      <video autoPlay muted loop className="backgroun-video">
-        <source src={ backgroundVideo } type="video/webm" />
-      </video>
       <Header headerText={ recipeType } showSearchButton="true" />
-      <div className="content-main">
+      <div className="content-main overBackground">
         <div className="contant-main-buttons">
           {!isLoading && categories.map((category) => (
-            <Button
+            <button
               key={ category }
               color="secondary"
               variant="contained"
-              className="btn-category"
+              className="btn-category "
               type="button"
               data-testid={ `${category}-category-filter` }
               onClick={ () => {
@@ -127,12 +122,12 @@ function TelaPrincipal(props) {
               } }
             >
               { `${category}` }
-            </Button>
+            </button>
           ))}
           {!isLoading && (
-            <Button
+            <button
               color="secondary"
-              className="btn-category"
+              className="btn-category "
               variant="contained"
               type="button"
               data-testid="All-category-filter"
@@ -143,7 +138,7 @@ function TelaPrincipal(props) {
               } }
             >
               All
-            </Button>
+            </button>
           )}
         </div>
         <div className="wrapper">
