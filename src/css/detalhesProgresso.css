@@ -29,14 +29,25 @@
 }
 
 .detalhes .instructions {
-  margin: 0 20%;
+  margin: 0 20% 60px;
 }
 
 .detalhes .video {
   margin: 30px 0;
 }
 
-.detalhes .recomendações {
-  /* display: flex; */
+.iniciar-finalizar-receita {
+  bottom: 10px;
+  position: fixed;
+  padding: 5px 10px 10px 10px;
+  background-color: rgb(150, 221, 79);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+.iniciar-finalizar-receita:disabled {
+  background-color: rgba(218, 86, 86, 0.945);
+}

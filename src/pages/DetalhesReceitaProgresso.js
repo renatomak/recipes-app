@@ -141,7 +141,7 @@ function DetalhesReceitaBebidaComida(props) {
         ? (
           <button
             type="button"
-            className="btn"
+            className="iniciar-finalizar-receita"
             data-testid="finish-recipe-btn"
             disabled={ !finalizada }
             onClick={ () => redirecionarParaFeitas(history, receita) }
@@ -153,7 +153,7 @@ function DetalhesReceitaBebidaComida(props) {
           <button
             type="button"
             data-testid="start-recipe-btn"
-            className="iniciar-receita btn"
+            className="iniciar-finalizar-receita"
             hidden={ ChecaSeFoiFeita(idDrink || idMeal) }
             onClick={ () => { irParaTeladeProgresso(history, idDrink, idMeal); } }
           >

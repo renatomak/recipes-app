@@ -19,8 +19,8 @@ function CarouselRecipes({ recomendations }) {
       indicators={ false }
       interval={ null }
       nextLabel={ null }
-      nextIcon={ <HiArrowRight /> }
-      prevIcon={ <HiArrowLeft /> }
+      nextIcon={ <HiArrowRight className="icone" /> }
+      prevIcon={ <HiArrowLeft className="icone" /> }
       prevLabel={ null }
     >
       {recomendations.map(({

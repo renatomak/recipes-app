@@ -2,11 +2,6 @@
   visibility: hidden;
 }
 
-.iniciar-receita {
-  bottom: 10px;
-  position: fixed;
-}
-
 .carousel-image {
   width: 100px;
 }
@@ -28,6 +23,7 @@
   display: flex;
   width: 360px;
   justify-content: center;
+  margin: 20px 0 40px 0;
 }
 .recomendações :nth-child(1) { order: 2; }
 .recomendações :nth-child(2) { order: 1; }
@@ -39,4 +35,9 @@
 
 .carousel-control-next {
   align-self: center;
+}
+
+.recomendações .icone {
+  width: 50px;
+  height: 50px;
 }
