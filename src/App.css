@@ -3,7 +3,9 @@
 /* FONTE: www.devmedia.com.br na guia de CSS. O acesso só é restrito a usuários PRO */
 * {
   box-sizing: border-box;
-  font-family: "Concert One";
+
+  /* font-family: "Concert One"; */
+  font-family: sans-serif;
 }
 
 .meals {

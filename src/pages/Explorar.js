@@ -2,7 +2,7 @@ import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import Footer from './components/Footer';
 import Header from './components/Header';
-import backgroundVideo from '../video/Crown-Trick-Smaller1.webm';
+import backgroundVideo from '../video/overcooked3.mp4';
 import '../css/style-main.css';
 
 function Explorar(props) {
