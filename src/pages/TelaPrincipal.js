@@ -5,7 +5,7 @@ import Header from './components/Header';
 import RecipeAppContext from '../context/index';
 import RecipeCard from './components/RecipeCard';
 import Footer from './components/Footer';
-import backgroundVideo from '../video/AYCE-Smaller_1.webm';
+import backgroundVideo from '../video/overcooked.webm';
 import '../css/style-main.css';
 import '../css/recipeCard.css';
 

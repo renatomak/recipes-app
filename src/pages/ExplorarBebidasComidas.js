@@ -5,7 +5,7 @@ import { RecipeAppContext } from '../context/Provider';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Button from './components/Button';
-import backgroundVideo from '../video/MA-Smaller_1.webm';
+import backgroundVideo from '../video/overcooked2.mp4';
 
 function ExplorarBebidasComidas(props) {
   const { recipeType } = props;

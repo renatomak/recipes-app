@@ -3,7 +3,7 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import { Button } from '@material-ui/core';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import backgroundVideo from '../video/MS_Launch_1080_X_1080_Video_03.webm';
+import backgroundVideo from '../video/overcooked1.mp4';
 
 function recuperarEmail() {
   const user = localStorage.getItem('user');
