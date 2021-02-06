@@ -54,14 +54,14 @@ function HeaderReceitas({ url }) {
           className="botao-compartilhar"
         />
         <span>{copySuccess ? "Link copiado!" : ""}</span>
-      <input
-        type="image"
-        data-testid="favorite-btn"
-        alt="favorite button"
-        onClick={() => favoritarReceita(receita, favorita, setFavorita)}
-        src={favorita ? blackHeart : whiteHeart}
-        className="botao-favoritar"
-      />
+        <input
+          type="image"
+          data-testid="favorite-btn"
+          alt="favorite button"
+          onClick={ () => favoritarReceita(receita, favorita, setFavorita) }
+          src={ favorita ? blackHeart : whiteHeart }
+          className="botao-favoritar"
+        />
       </div>
 
     </div>
