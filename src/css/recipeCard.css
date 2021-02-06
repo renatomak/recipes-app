@@ -17,9 +17,9 @@
 .card {
   display: flex;
   flex-direction: column;
-  margin: 20px;
+  margin: 10px;
   transition: 0.7s;
-  width: calc(100% / 4 - 20px);
+  width: 200px;
 }
 
 .card-img {

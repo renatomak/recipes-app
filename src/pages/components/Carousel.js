@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Carousel from 'react-bootstrap/Carousel';
 import './Carousel.css';
+import { HiArrowRight, HiArrowNarrowLeft, HiArrowLeft } from "react-icons/hi";
 
 function CarouselRecipes({ recomendations }) {
   const initialState = 0;
@@ -15,6 +16,12 @@ function CarouselRecipes({ recomendations }) {
       className="recomendações"
       activeIndex={ index }
       onSelect={ handleSelect }
+      indicators={ false }
+      interval={ null }
+      nextLabel={ null }
+      nextIcon={ <HiArrowRight className="icone" /> }
+      prevIcon={ <HiArrowLeft className="icone" /> }
+      prevLabel={ null }
     >
       {recomendations.map(({
         strDrinkThumb,
@@ -45,7 +52,7 @@ function CarouselRecipes({ recomendations }) {
             </h3>
           </Carousel.Caption>
         </Carousel.Item>
-      
+
       ))}
     </Carousel>
   );
