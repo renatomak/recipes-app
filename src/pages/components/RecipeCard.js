@@ -24,15 +24,21 @@ function RecipeCard(props) {
 
   return (
     <div className="card" data-testid={ `${index}-recipe-card` }>
-      <div className="card-img">
-        <img data-testid={ `${index}-card-img` } src={ cardImage } alt="card" />
-      </div>
-      <div className="card-link">
-        <Link to={ `/${type}/${id}` }>
-          <p data-testid={ `${index}-card-name` }>{ cardName }</p>
-        </Link>
-      </div>
+      <Link to={ `/${type}/${id}` }>
+        <div className="card-img">
+          <img data-testid={ `${index}-card-img` } src={ cardImage } alt="card" />
+          <div className="text-houver">
+            Vizualizar Receita
+          </div>
+        </div>
+        <div className="card-link">
+          <div className="card-p">
+            <p data-testid={ `${index}-card-name` }>{ cardName }</p>
+          </div>
+        </div>
+      </Link>
     </div>
+
   );
 }
 

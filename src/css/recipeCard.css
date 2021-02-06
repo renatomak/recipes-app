@@ -1,62 +1,81 @@
 .wrapper {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   margin: 50px auto;
-  max-width: 900px;
   top: 100px;
   width: 100%;
 }
 
 .card-img img {
-  border-radius: 10px 10px 0 0;
-}
-
-.card, .card-link {
-  border-radius: 10px;
-}
-
-.card {
-  border: 5px solid #440074;
-  box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.5);
-  display: flex;
-  flex-direction: column;
-  margin: 10px;
-  width: calc(100% / 4 - 20px);
-}
-
-.card-img {
-  height: calc(((100vw - (100vw - 900px)) / 3 - 20px) / 2);
-}
-
-.card-img img {
+  border-radius: 20px;
   height: 100%;
   object-fit: cover;
   width: 100%;
 }
 
-
-.card-link p {
-  color: antiquewhite;
-  font-size: 20px;
-  font-weight: 300;
-  padding: 0;
-  margin: 0;
+.card {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  transition: 0.7s;
+  width: calc(100% / 4 - 20px);
 }
 
-.card-link a {
+.card-img {
+  filter: grayscale(0%);
+  height: calc(((100vw - (100vw - 900px)) / 1.7 - 20px) / 2);
+  transition: all 0.7s ease-in-out;
+}
+
+/* https://www.demorodavel.com/como-colocar-um-texto-por-cima-de-uma-foto-no-html/ */
+
+/* https://www.cursoemvideo.com/course/html5 aula 10 */
+.text-houver {
+  color: white;
+  font-size: 30px;
+  height: calc(((100vw - (100vw - 900px)) / 1.7 - 20px) / 2);
+  line-height: 100%;
+  opacity: 0;
+  padding-top: 25%;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 100%;
+}
+
+.text-houver:hover {
+  opacity: 100%;
+}
+
+.card-img:hover {
+  box-shadow: none;
+  filter: grayscale(150%);
+}
+
+.card:hover {
+  transform: scale(1.2);
+}
+
+.card-link p {
+  font-size: 20px;
+  font-weight: 300;
+  margin: 0;
+  padding: 0;
+}
+
+.card-link {
   background-color: #440074;
-  color: #494949;
-  display: block;
-  font-size: 14px;
+  border-radius: 10px;
+  color: antiquewhite;
+  font-size: 20px;
+  height: 60px;
+  margin: auto;
   padding: 10px 0;
   text-align: center;
   text-decoration: none;
-  text-transform: uppercase;
-  transition: 0.1s ease;
-}
-
-.card-link a:hover {
-  background-color: #cc6835;
+  transition: 0.8s ease;
+  width: 90%;
 }
 
 @media ( max-width : 768px ) {
