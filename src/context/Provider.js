@@ -14,6 +14,7 @@ const RecipeAppProvider = ({ children }) => {
   const [password, setPassword] = useState('');
   const [recipes, setRecipes] = useState([]);
   const [idRandon, setIdRandon] = useState('');
+  const [ingredient, setIngredient] = useState(false);
 
   const handleChangeEmail = (value) => setEmail(value);
   const handleChangePassword = (value) => setPassword(value);
@@ -150,6 +151,8 @@ const RecipeAppProvider = ({ children }) => {
     idRandon,
     setIdRandon,
     searchIDRandon,
+    ingredient,
+    setIngredient,
   };
 
   return (
