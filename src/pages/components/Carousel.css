@@ -19,6 +19,17 @@
   margin: 0 5px;
 }
 
+.carousel-item a img{
+  border-radius: 5px;
+}
+
+.carousel-item a img:hover {
+  border: none;
+  border-radius: 5px;
+  height: 100px;
+  width: 100px;
+}
+
 .recomendações {
   display: flex;
   width: 360px;

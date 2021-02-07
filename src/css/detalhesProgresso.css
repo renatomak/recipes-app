@@ -80,3 +80,12 @@
   height: 20px;
   margin-right: 5px;
 }
+
+@media ( max-width : 720px ) {
+  .detalhes {
+    width: 90%;
+  }
+  .detalhes .video {
+    width: 300px;
+  }
+}
