@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 function IngredientesText({ ingredientes }) {
   return (
     <div className="ingredientes">
-      <p>Ingrdientes</p>
+      <p className="receita-sub-titulo">Ingredientes</p>
       {ingredientes.map((ingrediente, index) => (
         <p
           key={ index }

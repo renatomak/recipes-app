@@ -33,7 +33,7 @@ function HeaderReceitas({ url }) {
 
   return (
     <div className="header-receita">
-      <div className="card">
+      <div className="">
         <img
           src={ strMealThumb || strDrinkThumb }
           alt="detalhes da receita"

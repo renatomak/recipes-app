@@ -97,7 +97,7 @@ function IngredientesCheckbox({ setFinalizada }) {
 
   return (
     <div className="ingredientes">
-      <p>Ingrdientes</p>
+      <p className="receita-sub-titulo">Ingredientes</p>
       {ingredientes.map((ingrediente, index) => (
         <div
           data-testid={ `${index}-ingredient-step` }
@@ -106,6 +106,7 @@ function IngredientesCheckbox({ setFinalizada }) {
         >
           <input
             type="checkbox"
+            className="ingrediente-checkbox"
             id={ `${index}-ingrediente` }
             checked={ checkIngrediente[index] }
             onChange={ () => checkboxSet(

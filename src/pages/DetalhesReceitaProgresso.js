@@ -12,8 +12,8 @@ import {
   fetchReceitas,
   fetchRecomendacoes,
 } from '../Auxiliares/FuncoesAuxiliares';
-import '../css/detalhesProgresso.css';
 import '../css/recipeCard.css';
+import '../css/detalhesProgresso.css';
 
 function redirecionarParaFeitas(history, receita) {
   const {
@@ -116,24 +116,31 @@ function DetalhesReceitaBebidaComida(props) {
         data-testid="instructions"
         className="instructions"
       >
-        <p>Instruções</p>
+        <p className="receita-sub-titulo">Instruções</p>
 
         {strInstructions}
       </div>
-
       {recipeType === 'Comidas' && !progresso
         ? (
-          <iframe
-            src={ `https://www.youtube.com/embed/${youTubeCode}` }
-            data-testid="video"
-            className="video"
-            title="video da receita"
-          />
+          <div>
+            <p className="receita-sub-titulo"> Video</p>
+            <iframe
+              src={ `https://www.youtube.com/embed/${youTubeCode}` }
+              data-testid="video"
+              className="video"
+              title="video da receita"
+            />
+          </div>
         ) : null}
       {
         progresso
-          ? ''
-          : <CarouselRecipes recomendations={ recomendations } />
+        ? ''
+        : (
+          <div>
+              <p className="receita-sub-titulo">Recomedações</p>
+              <CarouselRecipes recomendations={ recomendations } />
+            </div>
+          )
       }
 
       { progresso

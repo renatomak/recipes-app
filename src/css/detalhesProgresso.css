@@ -1,44 +1,56 @@
 .detalhes {
-  background-image: url('../images/overkooked2.jpeg');
+  /* background-image: url('../images/overkooked2.jpeg'); */
   /* background-repeat: no-repeat; */
+  background-color: rgba(252, 195, 105, 0.7);
+  width: 70%;
+  margin: 15px auto;
+  margin-top: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 10px;
 }
 
 .header-receita {
+  margin-top: 15px;
   display: flex;
   flex-direction: column;
   align-items: center; 
   /* background-color: white; */
 }
 
-.botões-interacoes {
+.header-receita img {
+  width: 200px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 5px;
+}
+
+.botoes-interacoes {
   margin-top: 10px;
   display: flex;
   width: 150px;
   justify-content: space-between;
 }
 
-.botões-interacoes .botao-compartilhar {
-  width: 50px;
+.botoes-interacoes .botao-compartilhar {
+  width: 40px;
 }
 
-.botões-interacoes .botao-favoritar {
-  width: 50px;
+.botoes-interacoes .botao-favoritar {
+  width: 40px;
 }
 
 .detalhes .instructions {
-  margin: 0 20% 60px;
+  margin: 0 10% 60px;
 }
 
 .detalhes .video {
-  margin: 30px 0;
+  margin: 0 0 20px 0;
 }
 
 .iniciar-finalizar-receita {
-  bottom: 10px;
-  position: fixed;
+  bottom: 20px;
+  position: relative;
   padding: 10px;
   background-color: rgb(150, 221, 79);
   border: 1px solid rgba(255, 255, 255, 0.5);
@@ -46,8 +58,25 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: large;
+  font-weight: bold;
 }
 
 .iniciar-finalizar-receita:disabled {
   background-color: rgba(218, 86, 86, 0.945);
+}
+
+.receita-sub-titulo {
+  text-align: center;
+  font-size: large;
+  font-weight: bold;
+}
+.ingrediente {
+  display: flex;
+  align-items: center;
+}
+.ingrediente-checkbox{
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
 }
