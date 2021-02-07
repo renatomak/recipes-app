@@ -83,6 +83,13 @@ a {
   text-decoration: none;
 }
 
+/* tela ExplorarComidasArea */
+.select {
+  background-color: rgba(136, 0, 194, 0.4);
+  color: white;
+  font-size: 20px;
+  width: 200px;
+}
 
 @media ( max-width : 768px ) {
 

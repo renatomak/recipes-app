@@ -34,12 +34,12 @@ function ExplorarBebidasComidas(props) {
   }
   if (recipeType === 'Comidas') {
     return (
-      <div>
+      <div className="main-explorar">
         <Header headerText={ `Explorar ${recipeType}` } showSearchButton="false" />
-        {/* <video autoPlay muted loop className="backgroun-video">
+        <video autoPlay muted loop className="backgroun-video">
           <source src={ backgroundVideo } type="video/webm" />
-        </video> */}
-        <div className="contant-main-buttons">
+        </video>
+        <div className="contant-search-buttons">
           <Button
             value="Por Ingredientes"
             dataTestid="explore-by-ingredient"
@@ -65,12 +65,12 @@ function ExplorarBebidasComidas(props) {
   }
 
   return (
-    <div>
+    <div className="main-explorar">
       <Header headerText={ `Explorar ${recipeType}` } showSearchButton="false" />
       <video autoPlay muted loop className="backgroun-video">
         <source src={ backgroundVideo } type="video/webm" />
       </video>
-      <div className="contant-main-buttons">
+      <div className="contant-search-buttons">
         <Button
           value="Por Ingredientes"
           dataTestid="explore-by-ingredient"

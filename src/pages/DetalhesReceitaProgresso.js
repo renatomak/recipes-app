@@ -119,7 +119,6 @@ function DetalhesReceitaBebidaComida(props) {
         <p>Instruções</p>
 
         {strInstructions}
-        
       </div>
 
       {recipeType === 'Comidas' && !progresso

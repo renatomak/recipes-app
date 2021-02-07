@@ -9,3 +9,48 @@
   top: 35%;
   z-index: 3;
 }
+
+.btn-search-ingredients {
+  background-color: rgba(68, 0, 117, 0);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 20px;
+}
+
+.img-search {
+  background-color: rgba(3, 3, 3, 0.4);
+  border-radius: 20px;
+}
+
+.card-explorar {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  transition: 0.7s;
+
+  /* pega o total de espaço da tela divide por 4 cards e subtrai as margens */
+  width: calc(100% / 5 - 20px);
+}
+
+.card-explorar:hover {
+  box-shadow: none;
+  transform: scale(1.2);
+}
+
+.btn-img {
+  filter: grayscale(0%);
+  transition: all 0.7s ease-in-out;
+}
+
+.btn-name {
+  background-color: #8800c2;
+  border-radius: 10px;
+  color: antiquewhite;
+  font-size: 20px;
+  height: 60px;
+  margin: auto;
+  text-align: center;
+  transition: 0.8s ease;
+  width: 150px;
+}

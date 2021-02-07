@@ -44,14 +44,28 @@ function IngredientCard(props) {
   );
 
   return (
-    <button
-      type="button"
-      data-testid={ `${index}-ingredient-card` }
-      onClick={ () => { handleClick(ingredients[index]); } }
-    >
-      <img data-testid={ `${index}-card-img` } src={ cardImage } alt="card" />
-      <p data-testid={ `${index}-card-name` }>{ cardName }</p>
-    </button>
+    <div className="card-explorar">
+      <button
+        type="button"
+        className="btn-search-ingredients"
+        data-testid={ `${index}-ingredient-card` }
+        onClick={ () => { handleClick(ingredients[index]); } }
+      >
+        <div className="btn-img">
+          <img
+            data-testid={ `${index}-card-img` }
+            src={ cardImage }
+            alt="card"
+            className="img-search"
+          />
+        </div>
+        <div className="btn-name">
+          <div>
+            <p data-testid={ `${index}-card-name` }>{ cardName }</p>
+          </div>
+        </div>
+      </button>
+    </div>
   );
 }
 

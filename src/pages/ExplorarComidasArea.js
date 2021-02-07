@@ -59,43 +59,50 @@ function ExplorarComidasArea() {
   return (
     <div>
       <Header headerText="Explorar Origem" showSearchButton="true" />
-      {isLoading && (
-        <h2>Carregando...</h2>
-      )}
-      {!isLoading && (
-        <select
-          value={ selectedArea }
-          data-testid="explore-by-area-dropdown"
-          onChange={ ({ target }) => {
-            showCards(target.value);
-            setSelectedArea(target.value);
-          } }
-        >
-          <option
-            data-testid="All-option"
-            value="All"
-          >
-            All
-          </option>
-          {areas.map((area) => (
-            <option
-              key={ area }
-              data-testid={ `${area}-option` }
-              value={ area }
+      <div className="content-main overBackground">
+        <div className="contant-main-buttons">
+          {isLoading && (
+            <h2>Carregando...</h2>
+          )}
+          {!isLoading && (
+            <select
+              className="select"
+              value={ selectedArea }
+              data-testid="explore-by-area-dropdown"
+              onChange={ ({ target }) => {
+                showCards(target.value);
+                setSelectedArea(target.value);
+              } }
             >
-              {area}
-            </option>
-          ))}
-        </select>)}
-      {!isLoading && (
-        recipes.map((item, index) => (
-          <RecipeCard
-            key={ index }
-            recipes={ recipes }
-            index={ index }
-            recipeType="Comidas"
-          />
-        )))}
+              <option
+                data-testid="All-option"
+                value="All"
+              >
+                All
+              </option>
+              {areas.map((area) => (
+                <option
+                  key={ area }
+                  data-testid={ `${area}-option` }
+                  value={ area }
+                >
+                  {area}
+                </option>
+              ))}
+            </select>)}
+        </div>
+        <div className="wrapper">
+          {!isLoading && (
+            recipes.map((item, index) => (
+              <RecipeCard
+                key={ index }
+                recipes={ recipes }
+                index={ index }
+                recipeType="Comidas"
+              />
+            )))}
+        </div>
+      </div>
       <Footer />
     </div>
   );

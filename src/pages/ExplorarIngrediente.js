@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import IngredientCard from './components/IngredientCard';
+import '../css/styleExplorar.css';
 
 function ExplorarIngrediente(props) {
   const { recipeType } = props;
@@ -44,16 +45,20 @@ function ExplorarIngrediente(props) {
   return (
     <div>
       <Header headerText="Explorar Ingredientes" showSearchButton="false" />
-      {!loading && (
-        ingredients.map((item, index) => (
-          <IngredientCard
-            key={ index }
-            ingredients={ ingredients }
-            index={ index }
-            recipeType={ recipeType }
-          />
-        ))
-      )}
+      <div className="content-main overBackground">
+        <div className="wrapper">
+          {!loading && (
+            ingredients.map((item, index) => (
+              <IngredientCard
+                key={ index }
+                ingredients={ ingredients }
+                index={ index }
+                recipeType={ recipeType }
+              />
+            ))
+          )}
+        </div>
+      </div>
       <Footer />
     </div>
   );

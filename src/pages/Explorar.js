@@ -9,7 +9,7 @@ import '../css/styleExplorar.css';
 function Explorar(props) {
   const { history } = props;
   return (
-    <div className="main-explorar">
+    <div className="container-main">
       <Header headerText="Explorar" showSearchButton="false" />
       <video autoPlay muted loop className="backgroun-video">
         <source src={ backgroundVideo } type="video/webm" />
