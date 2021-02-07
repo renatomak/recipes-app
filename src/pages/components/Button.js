@@ -8,7 +8,7 @@ function Button(props) {
     <Link
       to={ path }
       data-testid={ dataTestid }
-      className="btn "
+      className="btn"
     >
       <div className="btn-link">
         {value}

@@ -122,3 +122,16 @@
   display: flex;
   justify-content: space-between;
 }
+
+@media ( max-width : 720px ) {
+  .main-explorar {
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0);
+  }
+  .btn-link {
+    font-size: x-large;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+  }
+}
