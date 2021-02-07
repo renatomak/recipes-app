@@ -69,7 +69,9 @@
 
 .span-email {
   color: white;
-  margin: 50px;
+  margin-left: 70px;
+  position: absolute;
+  z-index: 4;
 }
 
 .contant-main-buttons {

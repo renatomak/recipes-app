@@ -14,6 +14,7 @@ import {
 } from '../Auxiliares/FuncoesAuxiliares';
 import '../css/recipeCard.css';
 import '../css/detalhesProgresso.css';
+import Footer from './components/Footer';
 
 function redirecionarParaFeitas(history, receita) {
   const {
@@ -129,15 +130,17 @@ function DetalhesReceitaBebidaComida(props) {
             data-testid="instructions"
             className="instructions"
           >
-            <p className="recipe-title">Instruções</p>
+            <p className="recipe-title titulo1">Instruções</p>
             {strInstructions}
           </div>
         </div>
-        {
-          progresso
-            ? ''
-            : <CarouselRecipes recomendations={ recomendations } />
-        }
+        <div className="carousel">
+          {
+            progresso
+              ? ''
+              : <CarouselRecipes recomendations={ recomendations } />
+          }
+        </div>
         { progresso
           ? (
             <button
@@ -166,6 +169,7 @@ function DetalhesReceitaBebidaComida(props) {
             </button>
           )}
       </div>
+      <Footer />
     </div>
   );
 }
