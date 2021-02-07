@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Carousel from 'react-bootstrap/Carousel';
 import './Carousel.css';
 import { HiArrowRight, HiArrowNarrowLeft, HiArrowLeft } from 'react-icons/hi';
+import { Link } from 'react-router-dom';
 
 function CarouselRecipes({ recomendations }) {
   const initialState = 0;
@@ -26,9 +27,9 @@ function CarouselRecipes({ recomendations }) {
       {recomendations.map(({
         strDrinkThumb,
         strDrink,
-        // idDrink,
+        idDrink,
         strAlcoholic,
-        // idMeal,
+        idMeal,
         strCategory,
         strMeal,
         strMealThumb,
@@ -38,11 +39,13 @@ function CarouselRecipes({ recomendations }) {
           data-testid={ `${recomendationIndex}-recomendation-card` }
           key={ recomendationIndex }
         >
-          <img
-            className="carousel-image"
-            src={ strDrinkThumb || strMealThumb }
-            alt="recomendation"
-          />
+          <Link to={ idMeal ? `/comidas/${idMeal}` : `/bebidas/${idDrink}`}>
+            <img
+              className="carousel-image"
+              src={ strDrinkThumb || strMealThumb }
+              alt="recomendation"
+            />
+          </Link>
           <Carousel.Caption>
             <p>{ strAlcoholic || strCategory }</p>
             <h3

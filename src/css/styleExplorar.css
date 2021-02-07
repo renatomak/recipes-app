@@ -54,3 +54,19 @@
   transition: 0.8s ease;
   width: 150px;
 }
+
+@media ( max-width : 720px ) {
+  .contant-search-buttons {
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    height: fit-content;
+    top: 120px;
+    left: auto;
+    right: auto;
+  }
+
+  /* .btn-explorar {
+    margin-top: 15px;
+  } */
+}

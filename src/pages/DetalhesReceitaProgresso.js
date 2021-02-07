@@ -12,8 +12,8 @@ import {
   fetchReceitas,
   fetchRecomendacoes,
 } from '../Auxiliares/FuncoesAuxiliares';
-import '../css/detalhesProgresso.css';
 import '../css/recipeCard.css';
+import '../css/detalhesProgresso.css';
 
 function redirecionarParaFeitas(history, receita) {
   const {
@@ -113,7 +113,7 @@ function DetalhesReceitaBebidaComida(props) {
             ? (
               <iframe
                 width="560"
-                height="315" 
+                height="315"
                 src={ `https://www.youtube.com/embed/${youTubeCode}` }
                 data-testid="video"
                 className="video"
