@@ -106,63 +106,66 @@ function DetalhesReceitaBebidaComida(props) {
 
   return (
     <div className="detalhes">
-      <HeaderReceitas url={ url } />
-
-      {progresso && ingredientes.length !== emptyArray
-        ? <IngredientesCheckbox setFinalizada={ setFinalizada } />
-        : <IngredientesText ingredientes={ ingredientes } />}
-
-      <div
-        data-testid="instructions"
-        className="instructions"
-      >
-        <p>Instruções</p>
-
-        {strInstructions}
+      <div className="content-main overBackground">
+        <div className="image-video">
+          <HeaderReceitas url={ url } />
+          {recipeType === 'Comidas' && !progresso
+            ? (
+              <iframe
+                width="560"
+                height="315" 
+                src={ `https://www.youtube.com/embed/${youTubeCode}` }
+                data-testid="video"
+                className="video"
+                title="video da receita"
+              />
+            ) : null}
+        </div>
+        <div className="ingredientes-instrucoes">
+          {progresso && ingredientes.length !== emptyArray
+            ? <IngredientesCheckbox setFinalizada={ setFinalizada } />
+            : <IngredientesText ingredientes={ ingredientes } />}
+          <div
+            data-testid="instructions"
+            className="instructions"
+          >
+            <p className="recipe-title">Instruções</p>
+            {strInstructions}
+          </div>
+        </div>
+        {
+          progresso
+            ? ''
+            : <CarouselRecipes recomendations={ recomendations } />
+        }
+        { progresso
+          ? (
+            <button
+              type="button"
+              className="iniciar-finalizar-receita"
+              data-testid="finish-recipe-btn"
+              disabled={ !finalizada }
+              onClick={ () => redirecionarParaFeitas(history, receita) }
+            >
+              Finalizar Receita
+            </button>
+          )
+          : (
+            <button
+              type="button"
+              data-testid="start-recipe-btn"
+              className="iniciar-finalizar-receita"
+              hidden={ ChecaSeFoiFeita(idDrink || idMeal) }
+              onClick={ () => { irParaTeladeProgresso(history, idDrink, idMeal); } }
+            >
+              {
+                ChecaSeEstaEmAndamento(idDrink, idMeal)
+                  ? 'Continuar Receita'
+                  : 'Iniciar receita'
+              }
+            </button>
+          )}
       </div>
-
-      {recipeType === 'Comidas' && !progresso
-        ? (
-          <iframe
-            src={ `https://www.youtube.com/embed/${youTubeCode}` }
-            data-testid="video"
-            className="video"
-            title="video da receita"
-          />
-        ) : null}
-      {
-        progresso
-          ? ''
-          : <CarouselRecipes recomendations={ recomendations } />
-      }
-
-      { progresso
-        ? (
-          <button
-            type="button"
-            className="iniciar-finalizar-receita"
-            data-testid="finish-recipe-btn"
-            disabled={ !finalizada }
-            onClick={ () => redirecionarParaFeitas(history, receita) }
-          >
-            Finalizar Receita
-          </button>
-        )
-        : (
-          <button
-            type="button"
-            data-testid="start-recipe-btn"
-            className="iniciar-finalizar-receita"
-            hidden={ ChecaSeFoiFeita(idDrink || idMeal) }
-            onClick={ () => { irParaTeladeProgresso(history, idDrink, idMeal); } }
-          >
-            {
-              ChecaSeEstaEmAndamento(idDrink, idMeal)
-                ? 'Continuar Receita'
-                : 'Iniciar receita'
-            }
-          </button>
-        )}
     </div>
   );
 }

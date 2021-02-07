@@ -33,41 +33,41 @@ function HeaderReceitas({ url }) {
 
   return (
     <div className="header-receita">
-      <div className="card">
-        <img
-          src={ strMealThumb || strDrinkThumb }
-          alt="detalhes da receita"
-          data-testid="recipe-photo"
-        />
-      </div>
-
-      <h2 data-testid="recipe-title">{strMeal || strDrink}</h2>
-      <p data-testid="recipe-category">
+      <p data-testid="recipe-category" className="recipe-title">
         Categoria:
         {' '}
         { strAlcoholic || strCategory }
       </p>
-
-      <div className="botoes-interacoes">
-        <input
-          type="image"
-          src={ shareIcon }
-          data-testid="share-btn"
-          onClick={ () => copyToClipboard(url, setCopySuccess) }
-          alt="compartilhar"
-          className="botao-compartilhar"
-        />
-        <span>{copySuccess ? 'Link copiado!' : ''}</span>
-        <input
-          type="image"
-          data-testid="favorite-btn"
-          alt="favorite button"
-          onClick={ () => favoritarReceita(receita, favorita, setFavorita) }
-          src={ favorita ? blackHeart : whiteHeart }
-          className="botao-favoritar"
-        />
+      <div className="container-details">
+        <h2 className="recipe-title" data-testid="recipe-title">{strMeal || strDrink}</h2>
+        <div className="botoes-interacoes">
+          <input
+            type="image"
+            src={ shareIcon }
+            data-testid="share-btn"
+            onClick={ () => copyToClipboard(url, setCopySuccess) }
+            alt="compartilhar"
+            className="botao-interacao botao-compartilhar"
+          />
+          <span>{copySuccess ? 'Link copiado!' : ''}</span>
+          <input
+            type="image"
+            data-testid="favorite-btn"
+            alt="favorite button"
+            onClick={ () => favoritarReceita(receita, favorita, setFavorita) }
+            src={ favorita ? blackHeart : whiteHeart }
+            className="botao-interacao botao-favoritar"
+          />
+        </div>
       </div>
-
+      <img
+        className="image-details"
+        width="600"
+        height="460"
+        src={ strMealThumb || strDrinkThumb }
+        alt="detalhes da receita"
+        data-testid="recipe-photo"
+      />
     </div>
   );
 }
