@@ -36,14 +36,14 @@ function CardFeitasFavoritas({
   const URL = `/${type}s/${id}`;
 
   return (
-    <div className="card-receita-feitas-favoritas">
+    <div className="card">
       <input
         type="image"
         src={ image }
         alt="receita feita"
         data-testid={ `${index}-horizontal-image` }
         onClick={ () => redirecionarParaDetalhes(URL, push) }
-        className="imagem-receita"
+        className="card-img"
       />
 
       <p
@@ -51,14 +51,18 @@ function CardFeitasFavoritas({
       >
         {type === 'comida' ? `${area} - ${category}` : alcoholicOrNot}
       </p>
-
-      <button
-        type="button"
-        data-testid={ `${index}-horizontal-name` }
-        onClick={ () => redirecionarParaDetalhes(URL, push) }
-      >
-        {name}
-      </button>
+      <div className="card-link">
+        <div className="card-p">
+          <button
+            type="button"
+            className="btn-category "
+            data-testid={ `${index}-horizontal-name` }
+            onClick={ () => redirecionarParaDetalhes(URL, push) }
+          >
+            {name}
+          </button>
+        </div>
+      </div>
       {telaAtual === 'feitas' ? (
         <p
           data-testid={ `${index}-horizontal-done-date` }
@@ -80,6 +84,7 @@ function CardFeitasFavoritas({
         </div>
       ) : ''}
       <input
+        className="botao-interacao botao-compartilhar"
         type="image"
         src={ shareIcon }
         data-testid={ `${index}-horizontal-share-btn` }

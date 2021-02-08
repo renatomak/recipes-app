@@ -6,6 +6,7 @@ function BotoesDeFiltros({ setFilter }) {
     <div className="botoes-filtros">
       <button
         type="button"
+        className="btn-category "
         data-testid="filter-by-all-btn"
         onClick={ () => setFilter('all') }
       >
@@ -14,6 +15,7 @@ function BotoesDeFiltros({ setFilter }) {
 
       <button
         type="button"
+        className="btn-category "
         data-testid="filter-by-food-btn"
         onClick={ () => setFilter('comida') }
       >
@@ -22,6 +24,7 @@ function BotoesDeFiltros({ setFilter }) {
 
       <button
         type="button"
+        className="btn-category"
         data-testid="filter-by-drink-btn"
         onClick={ () => setFilter('bebida') }
       >

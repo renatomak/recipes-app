@@ -109,8 +109,6 @@ function TelaPrincipal(props) {
           {!isLoading && categories.map((category) => (
             <button
               key={ category }
-              color="secondary"
-              variant="contained"
               className="btn-category "
               type="button"
               data-testid={ `${category}-category-filter` }

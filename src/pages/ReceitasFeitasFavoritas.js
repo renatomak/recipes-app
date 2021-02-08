@@ -24,24 +24,30 @@ function ReceitasFeitasFavoritas({ history: { push }, telaAtual }) {
   return (
     <div data-testid="tela-receitas-feitas-favoritas">
       <Header headerText={ messageTelaAtual } showSearchButton="false" />
-      <BotoesDeFiltros setFilter={ setFilter } />
-      {!loading && data
-        .filter(({ type }) => {
-          if (filter === 'all') return true;
-          if (filter === type) return true;
-          return false;
-        })
-        .map((receita, index) => (
-          <CardFeitasFavoritas
-            updateFavorites={ updateFavorites }
-            setUpdateFavorites={ setUpdateFavorites }
-            telaAtual={ telaAtual }
-            receita={ receita }
-            index={ index }
-            key={ index }
-            push={ push }
-          />
-        ))}
+      <div className="content-main overBackground">
+        <div className="contant-main-buttons">
+          <BotoesDeFiltros setFilter={ setFilter } />
+        </div>
+        <div className="wrapper">
+          {!loading && data
+            .filter(({ type }) => {
+              if (filter === 'all') return true;
+              if (filter === type) return true;
+              return false;
+            })
+            .map((receita, index) => (
+              <CardFeitasFavoritas
+                updateFavorites={ updateFavorites }
+                setUpdateFavorites={ setUpdateFavorites }
+                telaAtual={ telaAtual }
+                receita={ receita }
+                index={ index }
+                key={ index }
+                push={ push }
+              />
+            ))}
+        </div>
+      </div>
     </div>
   );
 }
