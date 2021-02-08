@@ -43,19 +43,49 @@ function CardFeitasFavoritas({
         alt="receita feita"
         data-testid={ `${index}-horizontal-image` }
         onClick={ () => redirecionarParaDetalhes(URL, push) }
-        className="card-img"
+        className="card-img horizontal-image"
       />
-
-      <p
-        data-testid={ `${index}-horizontal-top-text` }
-      >
-        {type === 'comida' ? `${area} - ${category}` : alcoholicOrNot}
-      </p>
+      <div className="card-meio">
+        <div className="card-meio-left">
+          <p
+            data-testid={ `${index}-horizontal-top-text` }
+          >
+            {type === 'comida' ? `${area} - ${category}` : alcoholicOrNot}
+          </p>
+          {telaAtual === 'feitas' ? (
+            <p
+              data-testid={ `${index}-horizontal-done-date` }
+            >
+              {doneDate}
+            </p>
+          ) : ''}
+          {telaAtual === 'feitas' ? (
+            <div className="tags">
+              {tags.map((tag) => (
+                <p
+                  data-testid={ `${index}-${tag}-horizontal-tag` }
+                  key={ tag }
+                >
+                  { tag}
+                </p>
+              ))}
+            </div>
+          ) : ''}
+        </div>
+        <input
+          className="botao-interacao botao-compartilhar"
+          type="image"
+          src={ shareIcon }
+          data-testid={ `${index}-horizontal-share-btn` }
+          onClick={ () => copyToClipboard(URL, setCopySuccess) }
+          alt="compartilhar"
+        />
+      </div>
       <div className="card-link">
         <div className="card-p">
           <button
             type="button"
-            className="btn-category "
+            className="horizontal-name "
             data-testid={ `${index}-horizontal-name` }
             onClick={ () => redirecionarParaDetalhes(URL, push) }
           >
@@ -63,34 +93,6 @@ function CardFeitasFavoritas({
           </button>
         </div>
       </div>
-      {telaAtual === 'feitas' ? (
-        <p
-          data-testid={ `${index}-horizontal-done-date` }
-        >
-          {doneDate}
-        </p>
-
-      ) : ''}
-      {telaAtual === 'feitas' ? (
-        <div className="tags">
-          {tags.map((tag) => (
-            <p
-              data-testid={ `${index}-${tag}-horizontal-tag` }
-              key={ tag }
-            >
-              { tag}
-            </p>
-          ))}
-        </div>
-      ) : ''}
-      <input
-        className="botao-interacao botao-compartilhar"
-        type="image"
-        src={ shareIcon }
-        data-testid={ `${index}-horizontal-share-btn` }
-        onClick={ () => copyToClipboard(URL, setCopySuccess) }
-        alt="compartilhar"
-      />
 
       {telaAtual === 'favoritas' ? (
         <input

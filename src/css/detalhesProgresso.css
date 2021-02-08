@@ -120,3 +120,28 @@
   display: flex;
   justify-content: center;
 }
+
+.horizontal-name {
+  background-color: rgba(68, 0, 117, 0);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 20px;
+  font-weight: 200;
+  width: 200px;
+}
+
+.card-meio {
+  color: white;
+  display: flex;
+  font-size: 20px;
+  justify-content: space-around;
+}
+
+.filter-by-all-btn {
+  height: 50px;
+}
+
+.horizontal-image {
+  border-radius: 20px;
+}

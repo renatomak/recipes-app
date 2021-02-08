@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Header from './components/Header';
 import BotoesDeFiltros from './components/BotoesDeFiltros';
 import CardFeitasFavoritas from './components/CardFeitasFavoritas';
+import Footer from './components/Footer';
 
 function ReceitasFeitasFavoritas({ history: { push }, telaAtual }) {
   const [filter, setFilter] = useState('all');
@@ -48,6 +49,7 @@ function ReceitasFeitasFavoritas({ history: { push }, telaAtual }) {
             ))}
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
