@@ -19,7 +19,7 @@
   margin: 0 5px;
 }
 
-.carousel-item a img{
+.carousel-item a img {
   border-radius: 5px;
 }
 
@@ -32,13 +32,16 @@
 
 .recomendações {
   display: flex;
-  width: 360px;
   justify-content: center;
-  margin: 20px 0 40px 0;
+  margin: 20px 0 40px;
+  width: 360px;
 }
-.recomendações :nth-child(1) { order: 2; }
-.recomendações :nth-child(2) { order: 1; }
-.recomendações :nth-child(3) { order: 3; }
+
+.recomendações :nth-child( 1 ) { order: 2; }
+
+.recomendações :nth-child( 2 ) { order: 1; }
+
+.recomendações :nth-child( 3 ) { order: 3; }
 
 .carousel-control-prev {
   align-self: center;
@@ -49,6 +52,6 @@
 }
 
 .recomendações .icone {
-  width: 50px;
   height: 50px;
+  width: 50px;
 }

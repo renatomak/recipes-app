@@ -29,7 +29,7 @@ body {
 
 .overBackground {
   background: rgba(22, 22, 21, 0.8);
-  box-shadow: inset 0 0 1em #363536, 0 0 1em #440074;
+  box-shadow: inset 0 0 1em rgb(54, 53, 54) , 0 0 1em #440074;
 }
 
 /*

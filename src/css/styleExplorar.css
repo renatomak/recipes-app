@@ -56,14 +56,15 @@
 }
 
 @media ( max-width : 720px ) {
+
   .contant-search-buttons {
-    flex-direction: column;
     align-items: center;
-    position: relative;
+    flex-direction: column;
     height: fit-content;
-    top: 120px;
     left: auto;
+    position: relative;
     right: auto;
+    top: 120px;
   }
 
   /* .btn-explorar {
