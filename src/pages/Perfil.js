@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
-import { Button } from '@material-ui/core';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import backgroundVideo from '../video/overcooked1.mp4';
@@ -25,42 +24,36 @@ function Perfil(props) {
     <div>
       <p>Perfil</p>
       <Header headerText="Perfil" showSearchButton="false" />
+      <button
+        type="button"
+        className="btn-sair"
+        data-testid="profile-logout-btn"
+        onClick={ exitPage }
+      >
+        Sair
+      </button>
       <video autoPlay muted loop className="backgroun-video">
         <source src={ backgroundVideo } type="video/webm" />
       </video>
       <span data-testid="profile-email" className="span-email">{ email }</span>
       <div className="content-main">
-        <div className="contant-main-buttons">
-          <Button
+        <div className="contant-search-buttons">
+          <button
             type="button"
-            color="secondary"
-            variant="contained"
-            className="btn-category"
+            className="btn btn-explorar"
             data-testid="profile-done-btn"
             onClick={ () => history.push('/receitas-feitas') }
           >
             Receitas Feitas
-          </Button>
-          <Button
+          </button>
+          <button
             type="button"
-            color="secondary"
-            variant="contained"
-            className="btn-category"
+            className="btn btn-explorar"
             data-testid="profile-favorite-btn"
             onClick={ () => history.push('/receitas-favoritas') }
           >
             Receitas Favoritas
-          </Button>
-          <Button
-            type="button"
-            color="secondary"
-            variant="contained"
-            className="btn-category"
-            data-testid="profile-logout-btn"
-            onClick={ exitPage }
-          >
-            Sair
-          </Button>
+          </button>
         </div>
       </div>
       <Footer />

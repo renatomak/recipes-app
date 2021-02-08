@@ -127,3 +127,28 @@
     justify-content: center;
   }
 }
+
+.btn-sair {
+  background-color: #8800c2;
+  border: none;
+  border-radius: 10px;
+  box-shadow: inset 0 0 1em rgb(204, 104, 53) , 0 0 1em red;
+  font-size: 20px;
+  height: 50px;
+  position: absolute;
+  right: 0;
+  text-transform: uppercase;
+  top: 5px;
+  transition: 0.7s;
+  width: 150px;
+  z-index: 4;
+}
+
+.btn-sair:hover {
+  background-color: #440074;
+  box-shadow: none;
+  color: red;
+  font-size: 40px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
