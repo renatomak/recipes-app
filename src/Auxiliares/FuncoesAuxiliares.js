@@ -18,7 +18,7 @@ export function filtraIngredientes(items) {
 
 export function ChecaSeFoiFeita(idReceita) {
   const receitasFeitas = JSON.parse(localStorage.getItem('doneRecipes'));
-  return receitasFeitas.some(({ id }) => id === idReceita);
+  if (receitasFeitas) return receitasFeitas.some(({ id }) => id === idReceita);
 }
 
 export function ChecaSeFavorita(idReceita) {

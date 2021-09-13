@@ -2,7 +2,6 @@ import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import backgroundVideo from '../video/overcooked1.mp4';
 
 function recuperarEmail() {
   const user = localStorage.getItem('user');
@@ -32,9 +31,6 @@ function Perfil(props) {
       >
         Sair
       </button>
-      <video autoPlay muted loop className="backgroun-video">
-        <source src={ backgroundVideo } type="video/webm" />
-      </video>
       <span data-testid="profile-email" className="span-email">{ email }</span>
       <div className="content-main">
         <div className="contant-search-buttons">

@@ -5,7 +5,6 @@ import { RecipeAppContext } from '../context/Provider';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Button from './components/Button';
-import backgroundVideo from '../video/overcooked2.mp4';
 
 function ExplorarBebidasComidas(props) {
   const { recipeType } = props;
@@ -36,9 +35,6 @@ function ExplorarBebidasComidas(props) {
     return (
       <div className="main-explorar">
         <Header headerText={ `Explorar ${recipeType}` } showSearchButton="false" />
-        <video autoPlay muted loop className="backgroun-video">
-          <source src={ backgroundVideo } type="video/webm" />
-        </video>
         <div className="contant-search-buttons">
           <Button
             value="Por Ingredientes"
@@ -67,9 +63,6 @@ function ExplorarBebidasComidas(props) {
   return (
     <div className="main-explorar">
       <Header headerText={ `Explorar ${recipeType}` } showSearchButton="false" />
-      <video autoPlay muted loop className="backgroun-video">
-        <source src={ backgroundVideo } type="video/webm" />
-      </video>
       <div className="contant-search-buttons">
         <Button
           value="Por Ingredientes"
