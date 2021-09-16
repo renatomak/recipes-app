@@ -2,15 +2,17 @@
 
 ## Sobre o projeto
 
-Esta é uma aplicação Web de receitas. Será utilizando o que há de mais moderno dentro do ecossistema React: Hooks e Context API!
+Esta é uma aplicação Web de receitas. Utilizamos o que há de mais moderno dentro do ecossistema React: Hooks e Context API!
 
 Nela será possível ver, buscar, filtrar, favoritar e acompanhar o processo de preparação de receitas e drinks!
 
 A base de dados serão 2 APIs distintas, uma para comidas e outra para bebidas.
 
-## Produção
+## Produção: Acesse a aplicação no link a baixo e faça o login
 
 [OverHooked](https://overhooked.netlify.app/)
+usuário: test@gemail.com
+senha: 1234567
 
 ## Layout
 
