@@ -8,6 +8,8 @@ Nela será possível ver, buscar, filtrar, favoritar e acompanhar o processo de 
 
 A base de dados serão 2 APIs distintas, uma para comidas e outra para bebidas.
 
+---
+
 ## Produção: Acesse a aplicação no link a baixo e faça o login
 
 [OverHooked](https://overhooked.netlify.app/)
